@@ -2,15 +2,18 @@ import React, { useState, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
 export const AddTransaction = () => {
-    const { addTransaction } = useContext(GlobalContext);
+    const { transactions, addTransaction } = useContext(GlobalContext);
     const [text, setText] = useState("")
     const [amount, setAmount] = useState(0)
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        // If first element , set id =1 else , set id = max id + 1
+        const id = transactions.length > 0 ? Math.max(...transactions.map(item => item.id)) + 1 : 1
+
         const newTrans = {
-            id: Math.floor(Math.random() * 100000000),
+            id: id,
             text,
             amount: +amount
         }
