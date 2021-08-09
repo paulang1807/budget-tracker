@@ -2,7 +2,7 @@
 ### Commands to start building the back end
 - `npm init` 
 - Dependencies: `npm install express dotenv mongoose colors morgan`
-  - dotenv - for global variables
+  - dotenv - for global variables. Use `process.env.<variable_name>` to access the variables.
   - mongoose - object data map; layer to interact with the database
   - colors - module to have color text in the console
   - morgan - logger
