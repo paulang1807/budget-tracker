@@ -12,6 +12,7 @@ connectDB();
 
 const app = express();
 
+app.use(express.json());  // Use BodyParser for processing data sent to api
 app.use('/api/v1/transactions', transactions);
 
 const PORT = process.env.PORT || 5000;
