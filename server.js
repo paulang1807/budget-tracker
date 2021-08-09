@@ -12,6 +12,11 @@ connectDB();
 
 const app = express();
 
+// Logger
+if(process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
 app.use(express.json());  // Use BodyParser for processing data sent to api
 app.use('/api/v1/transactions', transactions);
 
