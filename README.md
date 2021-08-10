@@ -13,3 +13,8 @@
 
 ### Scripts in package json
 - Can be run using `npm run`
+
+### Production Build
+- To create production build, run `npm run build` from the client folder.
+- To run the server, run `npm run start` (the script that starts the node server as configured in the server package json )
+  
