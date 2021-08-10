@@ -9,7 +9,7 @@ const AppReducer = (state, action) => {
         case 'DELETE_TRANS':
             return {
                 ...state,
-                transactions: state.transactions.filter(transaction => transaction.id !== action.payload)
+                transactions: state.transactions.filter(transaction => transaction._id !== action.payload)
             }
         case 'ADD_TRANS':
             return {
