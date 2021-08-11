@@ -9,6 +9,12 @@ import { Expense } from './components/Expense';
 import { TransactionList } from './components/TransactionList';
 import { AddTransaction } from './components/AddTransaction';
 
+import { AccountList } from './components/AccountList';
+import { AddAccount } from './components/AddAccount';
+
+import { MerchantList } from './components/MerchantList';
+import { AddMerchant } from './components/AddMerchant';
+
 import { GlobalProvider } from './context/GlobalState';
 
 function App() {
@@ -23,6 +29,10 @@ function App() {
         </div>
         <TransactionList />
         <AddTransaction />
+        <AccountList />
+        <AddAccount />
+        <MerchantList />
+        <AddMerchant />
       </div>
     
     </GlobalProvider>
