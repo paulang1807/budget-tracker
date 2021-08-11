@@ -3,7 +3,11 @@ import { GlobalContext } from '../context/GlobalState';
 
 export const AddTransaction = () => {
     const { transactions, addTransaction } = useContext(GlobalContext);
-    const [text, setText] = useState("")
+    const [transactionName, setTransactionName] = useState("")
+    const [type, setType] = useState("")
+    const [category, setCategory] = useState("")
+    const [subCategory, setSubCategory] = useState("")
+    const [transactionDate, setTransactionDate] = useState("")
     const [amount, setAmount] = useState(0)
 
     const handleSubmit = (event) => {
@@ -14,7 +18,11 @@ export const AddTransaction = () => {
 
         const newTrans = {
             id: id,
-            text,
+            transactionName,
+            type,
+            category,
+            subCategory,
+            transactionDate,
             amount: +amount
         }
         addTransaction(newTrans)
@@ -25,14 +33,30 @@ export const AddTransaction = () => {
             <h3>Add new transaction</h3>
                 <form onSubmit={handleSubmit}>
                     <div className="form-control">
-                    <label htmlFor="text">Text</label>
-                    <input type="text" value={text} onChange={(event) => setText(event.target.value)} placeholder="Enter text..." />
+                    <label htmlFor="text">TransactionName</label>
+                    <input type="text" value={transactionName} onChange={(event) => setTransactionName(event.target.value)} placeholder="Enter transaction name..." />
                     </div>
                     <div className="form-control">
-                    <label htmlFor="amount">Amount <br />(negative - expense, positive - income)</label>
+                    <label htmlFor="text">Type <br />(Income, Expense, Transfer)</label>
+                    <input type="text" value={type} onChange={(event) => setType(event.target.value)} placeholder="Enter transaction type..." />
+                    </div>
+                    <div className="form-control">
+                    <label htmlFor="text">Category</label>
+                    <input type="text" value={category} onChange={(event) => setCategory(event.target.value)} placeholder="Enter transaction category..." />
+                    </div>
+                    <div className="form-control">
+                    <label htmlFor="text">Sub Category</label>
+                    <input type="text" value={subCategory} onChange={(event) => setSubCategory(event.target.value)} placeholder="Enter transaction sub category..." />
+                    </div>
+                    <div className="form-control">
+                    <label htmlFor="text">Transaction Date</label><br />
+                    <input type="date" value={transactionDate} onChange={(event) => setTransactionDate(event.target.value)} />
+                    </div>
+                    <div className="form-control">
+                    <label htmlFor="amount">Amount</label>
                     <input type="number" value={amount} onChange={(event) => setAmount(event.target.value)} placeholder="Enter amount..." />
                     </div>
-                    <button className="btn">Add transaction</button>
+                    <button className="btn">Add Transaction</button>
                 </form>
         </>
     )
