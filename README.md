@@ -18,3 +18,6 @@
 - To create production build, run `npm run build` from the client folder.
 - To run the server, run `npm run start` (the script that starts the node server as configured in the server package json )
   
+### Mongo DB Connections
+- Atlas: `mongodb+srv://<username>:<password>@<cluster_name>.pqac7.mongodb.net/<database_name>?retryWrites=true&w=majority`
+- Local: `mongodb://<user_name>:<password>@0.0.0.0:32768/<database_to_connect>?authSource=<database_name_for_auth>&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`
