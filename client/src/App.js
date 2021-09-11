@@ -1,39 +1,47 @@
-import React from 'react';
+import React  from 'react';
 
-import './App.css';
+import './styles/App.css';
+import './styles/account/AccountView.css';
+import './styles/date/DateSelector.css';
+import './styles/account/AccountList.css';
+import './styles/transaction/TransactionList.css';
+import './styles/action/Actions.css';
 
-import { Header } from './components/Header';
-import { Balance } from './components/Balance';
-import { Income } from './components/Income';
-import { Expense } from './components/Expense';
-import { TransactionList } from './components/TransactionList';
-import { AddTransaction } from './components/AddTransaction';
-
-import { AccountList } from './components/AccountList';
-import { AddAccount } from './components/AddAccount';
-
-import { MerchantList } from './components/MerchantList';
-import { AddMerchant } from './components/AddMerchant';
+import { Header } from './components/header/Header';
+import { Menu } from './components/menu/Menu';
+import { AccountView } from './components/account/AccountView';
+import { DateSelector } from './components/date/DateSelector';
+import { AccountDisplay } from './components/account/AccountDisplay';
+import { TransactionList } from './components/transaction/TransactionList';
+import { Actions } from './components/action/Actions';
 
 import { GlobalProvider } from './context/GlobalState';
 
 function App() {
+
   return (
     <GlobalProvider>
       <Header />
-      <div className="container">
-        <Balance />
-        <div className="inc-exp-container">
-          <Income />
-          <Expense />
+      <Menu />
+        <div className="base-container">
+          <div className="accountView">
+            <AccountView />
+          </div>
+          <div className="dateSelect">
+            <DateSelector />
+          </div>
         </div>
-        <TransactionList />
-        <AddTransaction />
-        <AccountList />
-        <AddAccount />
-        <MerchantList />
-        <AddMerchant />
-      </div>
+        <div className="base-container">
+          <div className="accountList">
+            <AccountDisplay />
+          </div>
+          <div className="transactionList">
+            <TransactionList />
+          </div>
+          <div className="actions">
+            <Actions />
+          </div>
+        </div>
     
     </GlobalProvider>
   );

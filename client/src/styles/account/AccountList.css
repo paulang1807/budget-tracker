@@ -1,0 +1,5 @@
+.accountList {
+    flex-grow: 0.5;
+    text-align: center;
+    border: 1px solid;
+}
