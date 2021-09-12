@@ -14,10 +14,12 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'Jul
 // Initial State
 const initialState = {
     transactions: [],
-    accounts: [],
     merchants: [],
     error: null,
     loading: true,
+    // Account states
+    accounts: [],
+    accountView: true,
     // Date states
     monthNames: monthNames,
     displayDate: monthNames[monthDefault] + ' ' + yearDefault,
@@ -211,19 +213,21 @@ export const GlobalProvider = ({ children }) => {
 
     return (<GlobalContext.Provider value={{
         transactions: state.transactions,
-        accounts: acctState.accounts,
         merchants: merchantState.merchants,
         error: state.error,
         loading: state.loading,
         getTransactions,
         deleteTransaction,
         addTransaction,
-        getAccounts,
-        deleteAccount,
-        addAccount,
         getMerchants,
         deleteMerchant,
         addMerchant,
+        // Account Contexts
+        accounts: acctState.accounts,
+        accountView: acctState.accountView,
+        getAccounts,
+        deleteAccount,
+        addAccount,
         // Date Contexts
         monthNames: dateState.monthNames,
         displayDate: dateState.displayDate,

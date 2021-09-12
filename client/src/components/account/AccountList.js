@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { GlobalContext } from '../context/GlobalState';
+import { GlobalContext } from '../../context/GlobalState';
 import { Account } from './Account';
 
 export const AccountList = () => {
@@ -12,13 +12,10 @@ export const AccountList = () => {
     }, [])
 
     return (
-        <>
-            <h3>Accounts</h3>
-                <ul className="list">
-                    {accounts.map(account => (
-                        <Account key={account._id} account={account}/>
-                    ))}
-                </ul>
-        </>
+        <ul className="accountListItem">
+            {accounts.map(account => (
+                <Account key={account._id} account={account}/>
+            ))}
+        </ul>
     )
 }
