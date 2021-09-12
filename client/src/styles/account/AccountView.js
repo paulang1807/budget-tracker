@@ -8,7 +8,7 @@ export const btnTheme = createTheme({
           padding: "6px",
           borderRadius: "6px",
           '&:hover': {
-              backgroundImage: ["linear-gradient(180deg, #5990ca, #5990ca)", "!important"],
+              backgroundImage: ["linear-gradient(180deg, #b7d5f5, #5990ca)", "!important"],
          },
         },
         contained: {

@@ -32,7 +32,7 @@
 }
 
 .dsb-inner:hover{
-    background-image: linear-gradient(180deg, #5990ca, #5990ca);
+    background-image: linear-gradient(180deg, #b7d5f5, #5990ca);
 }
 
 /* Date Arrows Start */
@@ -105,7 +105,7 @@
 }
 
 .ds-button-date :hover{
-    background-image: linear-gradient(180deg, #5990ca, #5990ca);
+    background-image: linear-gradient(180deg, #b7d5f5, #5990ca);
     border-radius: 15px;
 }
 
