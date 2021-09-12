@@ -2,7 +2,14 @@ import React, { createContext, useReducer } from 'react';
 import AppReducer from './AppReducer';
 import AcctReducer from './AcctReducer';
 import MerchantReducer from './MerchantReducer';
+
+import DateSelectReducer from './DateSelectReducer';
+
 import axios from 'axios';
+
+const yearDefault = new Date().getFullYear()
+const monthDefault = new Date().getMonth()
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 // Initial State
 const initialState = {
@@ -10,7 +17,9 @@ const initialState = {
     accounts: [],
     merchants: [],
     error: null,
-    loading: true
+    loading: true,
+    // Date states
+    displayDate: monthNames[monthDefault] + ' ' + yearDefault,
 }
 
 // Create Context
@@ -21,6 +30,7 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
     const [acctState, acctDispatch] = useReducer(AcctReducer, initialState);
     const [merchantState, merchantDispatch] = useReducer(MerchantReducer, initialState);
+    const [dateState, dateDispatch] = useReducer(DateSelectReducer, initialState);
 
     // Actions - Transactions
     async function getTransactions() {
@@ -195,7 +205,9 @@ export const GlobalProvider = ({ children }) => {
         addAccount,
         getMerchants,
         deleteMerchant,
-        addMerchant
+        addMerchant,
+        // Date Contexts
+        displayDate: dateState.displayDate,
     }}>
         {children}
     </GlobalContext.Provider>

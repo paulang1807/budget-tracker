@@ -1,3 +1,132 @@
 .dateSelect {
     flex-grow: 7;
 }
+
+.ds-input{
+    height: 35px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.ds-button{
+    width: 45px;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.dsb-inner {
+    height: 35px;
+    width: 35px;
+    background-image: linear-gradient(180deg, #c9d9f1, #1a4482);
+    border-radius: 100%;
+    line-height: 35px;
+    text-align: center;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin-left: -17px;
+    margin-top: -17px;
+}
+
+.dsb-inner:hover{
+    background-image: linear-gradient(180deg, #5990ca, #5990ca);
+}
+
+/* Date Arrows Start */
+/* Create left and bottom borders */
+.dsbi-right-arrows:after,
+.dsbi-left-arrows:after,
+.dsbi-right-arrow,
+.dsbi-right-arrows,
+.dsbi-left-arrow,
+.dsbi-left-arrows{
+    width: 8px;
+    height: 8px;
+    border-left: 4px solid #dedede;
+    border-bottom: 4px solid #dedede;
+    position: absolute;
+}
+
+.dsbi-right-arrow :hover,
+.dsbi-right-arrows :hover,
+.dsbi-left-arrow :hover,
+.dsbi-left-arrows :hover{
+    border-left: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+}
+
+/* Rotate to 45 degrees to give the appearance of arrows */
+.dsbi-right-arrow,
+.dsbi-right-arrows,
+.dsbi-left-arrow,
+.dsbi-left-arrows{
+    transform: rotate(45deg);
+    left: 50%;
+    top:50%;
+    margin-left: -2px;
+    margin-top: -4px;
+}
+
+/* Rotate right hand side arrows to right */
+.dsbi-right-arrows,
+.dsbi-right-arrow {
+    transform: rotate(225deg);
+    margin-left: -4px;
+}
+
+/* Add double arrows for year */
+.dsbi-right-arrows:after,
+.dsbi-left-arrows:after{
+    content: '';
+}
+
+/* Arrow margins and positioning */
+.dsbi-left-arrows{
+    margin-left: -9.5px;
+}
+
+.dsbi-right-arrows{
+    margin-left: 2px;
+}
+
+.dsbi-right-arrows:after,
+.dsbi-left-arrows:after{
+    left: 3px;
+    top: -10.75px
+}
+
+/* Date Button */
+.ds-button-date{
+    width: 100%;
+    cursor: pointer;
+}
+
+.ds-button-date :hover{
+    background-image: linear-gradient(180deg, #5990ca, #5990ca);
+    border-radius: 15px;
+}
+
+.ds-container{
+    width: 100%;
+    height: 100%;
+}
+
+.dsc-txt{
+    width: 100%;
+    height: 35px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #dedede;
+    text-align: center;
+    background-image: linear-gradient(180deg, #c9d9f1, #1a4482);
+    border-radius: 15px;
+    padding-top: 3px;
+    margin-left: 1px;
+} 
+
+.dsc-txt :hover{
+    color: #fff;
+}
