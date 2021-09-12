@@ -19,7 +19,10 @@ const initialState = {
     error: null,
     loading: true,
     // Date states
+    monthNames: monthNames,
     displayDate: monthNames[monthDefault] + ' ' + yearDefault,
+    selYear: yearDefault,
+    selMonth: monthDefault,
 }
 
 // Create Context
@@ -191,6 +194,21 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    // Actions - Date Arrows
+    function handleYearSelect(offset) {
+        dateDispatch({
+            type: 'SEL_YEAR',
+            payload: offset
+        })
+    }
+
+    function handleMonthSelect(offset) {
+        dateDispatch({
+            type: 'SEL_MTH',
+            payload: offset
+        })
+    }
+
     return (<GlobalContext.Provider value={{
         transactions: state.transactions,
         accounts: acctState.accounts,
@@ -207,7 +225,12 @@ export const GlobalProvider = ({ children }) => {
         deleteMerchant,
         addMerchant,
         // Date Contexts
+        monthNames: dateState.monthNames,
         displayDate: dateState.displayDate,
+        selYear: dateState.selYear,
+        selMonth: dateState.selMonth,
+        handleYearSelect,
+        handleMonthSelect
     }}>
         {children}
     </GlobalContext.Provider>
