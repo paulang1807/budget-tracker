@@ -1,5 +1,5 @@
 .accountView {
-    flex-grow: 0.55;
     text-align: center;
-    border: 1px solid;
+    padding: 0 4px;
+    /* border: 1px solid; */
 }
