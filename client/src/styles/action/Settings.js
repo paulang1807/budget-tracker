@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export const useStyles = makeStyles(() => ({
     button: {
       fontSize: ".6rem",
+      color: "#dedede",
       margin: "10px 4px 4px 4px",
       backgroundImage: "linear-gradient(180deg, #c9d9f1, #1a4482)",
       '&:hover': {

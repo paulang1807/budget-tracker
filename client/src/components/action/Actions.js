@@ -24,7 +24,6 @@ export const Actions = () => {
             <ThemeProvider theme={btnTheme}>
                 <Button
                     variant="contained"
-                    // color="primary"
                     className={classes.button}
                     startIcon={<LibraryAddIcon />}
                 >
@@ -32,7 +31,6 @@ export const Actions = () => {
                 </Button>
                 <Button
                     variant="contained"
-                    color="primary"
                     className={classes.button}
                     startIcon={<FileCopyIcon />}
                 >
@@ -40,7 +38,6 @@ export const Actions = () => {
                 </Button>
                 <Button
                     variant="contained"
-                    color="primary"
                     className={classes.button}
                     startIcon={<EditIcon />}
                 >
@@ -48,7 +45,6 @@ export const Actions = () => {
                 </Button>
                 <Button
                     variant="contained"
-                    color="primary"
                     className={classes.button}
                     startIcon={<DeleteIcon />}
                 >
