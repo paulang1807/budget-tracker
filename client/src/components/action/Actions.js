@@ -10,6 +10,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import { useStyles, btnTheme } from '../../styles/action/Actions';
 
+import Settings from './Settings';
+
 
 export const Actions = () => {
 
@@ -18,6 +20,7 @@ export const Actions = () => {
 
     return (
         <>
+            <Settings />
             <ThemeProvider theme={btnTheme}>
                 <Button
                     variant="contained"
