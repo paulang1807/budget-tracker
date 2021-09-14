@@ -16,6 +16,11 @@ const AcctReducer = (state, action) => {
                 ...state,
                 accounts: [...state.accounts, action.payload]   // order is reversed when getting the data from the server api call
             }
+        case 'TOGGLE_ACCT_VIEW':
+            return {
+                ...state,
+                accountView: action.payload
+            }
         case 'ACCTS_ERR':
             return {
                 ...state,

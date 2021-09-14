@@ -143,6 +143,13 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    function toggleAccoutView(showVal) {
+        acctDispatch({
+            type: 'TOGGLE_ACCT_VIEW',
+            payload: showVal
+        })
+    }
+
     // Actions - Merchants
     async function getMerchants() {
         try {
@@ -228,6 +235,7 @@ export const GlobalProvider = ({ children }) => {
         getAccounts,
         deleteAccount,
         addAccount,
+        toggleAccoutView,
         // Date Contexts
         monthNames: dateState.monthNames,
         displayDate: dateState.displayDate,

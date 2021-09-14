@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalState';
 
 import { Button } from '@material-ui/core';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
@@ -10,6 +11,16 @@ import { useStyles, btnTheme } from '../../styles/account/AccountView';
 
 export const AccountView = () => {
 
+    const { toggleAccoutView } = useContext(GlobalContext);
+
+    function showAccounts() {
+        toggleAccoutView(true);
+    }
+    
+    function showSummary() {
+        toggleAccoutView(false);
+    }
+
     const classes = useStyles();
     return (
         <>
@@ -18,6 +29,7 @@ export const AccountView = () => {
                         variant="contained"
                         className={classes.button}
                         startIcon={<AccountBalanceIcon />}
+                        onClick={showAccounts}
                         >
                             Accounts
                     </Button>
@@ -25,6 +37,7 @@ export const AccountView = () => {
                         variant="contained"
                         className={classes.button}
                         startIcon={<FunctionsIcon />}
+                        onClick={showSummary}
                         >
                             Summary
                     </Button>
