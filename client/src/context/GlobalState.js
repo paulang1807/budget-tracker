@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from 'react';
 import AppReducer from './AppReducer';
 import AcctReducer from './AcctReducer';
 import MerchantReducer from './MerchantReducer';
+import AlertsReducer from './AlertsReducer';
 
 import DateSelectReducer from './DateSelectReducer';
 import ActionsReducer from './ActionsReducer';
@@ -28,6 +29,9 @@ const initialState = {
     selMonth: monthDefault,
     // Transaction states
     openTransModal: false,
+    // Alert states
+    openAlert: false,
+    alertContent: '',
 }
 
 // Create Context
@@ -40,6 +44,7 @@ export const GlobalProvider = ({ children }) => {
     const [merchantState, merchantDispatch] = useReducer(MerchantReducer, initialState);
     const [dateState, dateDispatch] = useReducer(DateSelectReducer, initialState);
     const [actionsState, actionsDispatch] = useReducer(ActionsReducer, initialState);
+    const [alertsState, alertsDispatch] = useReducer(AlertsReducer, initialState);
 
     // Actions - Transactions
     async function getTransactions() {
@@ -242,6 +247,20 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    // Actions - Alerts
+    function handleAlertOpen(alertText) {
+        alertsDispatch({
+            type: 'OPEN_ALERT',
+            payload: alertText
+        })
+    }
+
+    function handleAlertClose() {
+        alertsDispatch({
+            type: 'CLS_ALERT'
+        })
+    }
+
     return (<GlobalContext.Provider value={{
         merchants: merchantState.merchants,
         error: state.error,
@@ -272,7 +291,12 @@ export const GlobalProvider = ({ children }) => {
         // Action Contexts
         handleTransModalOpen,
         handleTransModalClose,
-        handleTransTypeChange
+        handleTransTypeChange,
+        // Alert Contexts
+        openAlert: alertsState.openAlert,
+        alertContent: alertsState.alertContent,
+        handleAlertOpen,
+        handleAlertClose,
     }}>
         {children}
     </GlobalContext.Provider>

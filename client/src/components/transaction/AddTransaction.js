@@ -8,6 +8,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import Alert from '../common/Alert';
+
 export const AddTransaction = () => {
 
     const { accounts
@@ -15,7 +17,8 @@ export const AddTransaction = () => {
             ,transType
             ,addTransaction
             ,openTransModal
-            ,handleTransModalClose } 
+            ,handleTransModalClose
+            ,handleAlertOpen } 
             = useContext(GlobalContext);
 
     const [transactionName, setTransactionName] = useState("")
@@ -62,6 +65,30 @@ export const AddTransaction = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        if (!transactionName){
+            let alertText='Transaction Name is required in order to add a transaction';
+            handleAlertOpen(alertText);
+            return (<Alert />);
+        }
+
+        if (accountId === '' || accountId === 'None'){
+            let alertText='Related account must be selected in order to add a transaction';
+            handleAlertOpen(alertText);
+            return (<Alert />);
+        }
+
+        if (merchantId === '' || merchantId === 'None'){
+            let alertText='Related Merchant must be selected in order to add a transaction';
+            handleAlertOpen(alertText);
+            return (<Alert />);
+        }
+
+        if (type === '' || type === 'None'){
+            let alertText='Type must be selected in order to add a transaction';
+            handleAlertOpen(alertText);
+            return (<Alert />);
+        }
 
         handleTransModalClose();
 
@@ -151,6 +178,7 @@ export const AddTransaction = () => {
                 </Button>
             </DialogActions>
             </Dialog>
+            <Alert />
         </>
     )
 }
