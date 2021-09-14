@@ -4,6 +4,7 @@ import AcctReducer from './AcctReducer';
 import MerchantReducer from './MerchantReducer';
 
 import DateSelectReducer from './DateSelectReducer';
+import ActionsReducer from './ActionsReducer';
 
 import axios from 'axios';
 
@@ -25,6 +26,8 @@ const initialState = {
     displayDate: monthNames[monthDefault] + ' ' + yearDefault,
     selYear: yearDefault,
     selMonth: monthDefault,
+    // Transaction states
+    openTransModal: false,
 }
 
 // Create Context
@@ -36,6 +39,7 @@ export const GlobalProvider = ({ children }) => {
     const [acctState, acctDispatch] = useReducer(AcctReducer, initialState);
     const [merchantState, merchantDispatch] = useReducer(MerchantReducer, initialState);
     const [dateState, dateDispatch] = useReducer(DateSelectReducer, initialState);
+    const [actionsState, actionsDispatch] = useReducer(ActionsReducer, initialState);
 
     // Actions - Transactions
     async function getTransactions() {
@@ -218,14 +222,30 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    // Actions - Transaction Modal
+    function handleTransModalOpen() {
+        actionsDispatch({
+            type: 'OPEN_ADD_TRANS_MODAL'
+        })
+    }
+
+    function handleTransModalClose() {
+        actionsDispatch({
+            type: 'CLS_ADD_TRANS_MODAL'
+        })
+    }
+
+    function handleTransTypeChange (typ) {
+        actionsDispatch({
+            type: 'CHG_TRANS_TYP',
+            payload: typ
+        })
+    }
+
     return (<GlobalContext.Provider value={{
-        transactions: state.transactions,
         merchants: merchantState.merchants,
         error: state.error,
         loading: state.loading,
-        getTransactions,
-        deleteTransaction,
-        addTransaction,
         getMerchants,
         deleteMerchant,
         addMerchant,
@@ -236,13 +256,23 @@ export const GlobalProvider = ({ children }) => {
         deleteAccount,
         addAccount,
         toggleAccoutView,
+        // Transaction Contexts
+        transactions: state.transactions,
+        openTransModal: actionsState.openTransModal,
+        getTransactions,
+        deleteTransaction,
+        addTransaction,
         // Date Contexts
         monthNames: dateState.monthNames,
         displayDate: dateState.displayDate,
         selYear: dateState.selYear,
         selMonth: dateState.selMonth,
         handleYearSelect,
-        handleMonthSelect
+        handleMonthSelect,
+        // Action Contexts
+        handleTransModalOpen,
+        handleTransModalClose,
+        handleTransTypeChange
     }}>
         {children}
     </GlobalContext.Provider>

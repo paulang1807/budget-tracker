@@ -21,6 +21,16 @@ const TransactionSchema = new mongoose.Schema({
         trim: true,
         required: false
     },
+    accountId: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    merchantId: {
+        type: String,
+        trim: true,
+        required: false
+    },
     amount: {
         type: Number,
         required: [true, 'Please add an amount']
@@ -32,7 +42,17 @@ const TransactionSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    description: {
+        type: String,
+        trim: true,
+        required: false
+    },
+    comments: {
+        type: String,
+        trim: true,
+        required: false
+    },
 });
 
 module.exports = mongoose.model('Transaction', TransactionSchema);

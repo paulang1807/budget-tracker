@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalState';
 
 import { Button} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -11,12 +12,21 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { useStyles, btnTheme } from '../../styles/action/Actions';
 
 import Settings from './Settings';
+import { AddTransaction } from '../transaction/AddTransaction';
 
 
 export const Actions = () => {
 
+    const { handleTransModalOpen 
+            ,handleTransTypeChange} 
+            = useContext(GlobalContext);
 
     const classes = useStyles();
+
+    const handleAdd = () => {
+        handleTransTypeChange('Add');
+        handleTransModalOpen();
+    }
 
     return (
         <>
@@ -26,6 +36,7 @@ export const Actions = () => {
                     variant="contained"
                     className={classes.button}
                     startIcon={<LibraryAddIcon />}
+                    onClick={handleAdd}
                 >
                     Add
                 </Button>
@@ -51,6 +62,7 @@ export const Actions = () => {
                     Delete
                 </Button>
             </ThemeProvider>
+            <AddTransaction />
         </>
     )
 }
