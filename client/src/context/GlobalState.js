@@ -29,6 +29,7 @@ const initialState = {
     selMonth: monthDefault,
     // Transaction states
     openTransModal: false,
+    selectedTrans: null,
     // Alert states
     openAlert: false,
     alertContent: '',
@@ -97,6 +98,13 @@ export const GlobalProvider = ({ children }) => {
                 payload: err.response.data.error
             })
         }
+    }
+
+    function selectTrans(transId) {
+        dispatch({
+            type: 'SEL_TRANS',
+            payload: transId
+        })
     }
 
     // Actions - Accounts
@@ -278,9 +286,11 @@ export const GlobalProvider = ({ children }) => {
         // Transaction Contexts
         transactions: state.transactions,
         openTransModal: actionsState.openTransModal,
+        selectedTrans: state.selectedTrans,
         getTransactions,
         deleteTransaction,
         addTransaction,
+        selectTrans,
         // Date Contexts
         monthNames: dateState.monthNames,
         displayDate: dateState.displayDate,

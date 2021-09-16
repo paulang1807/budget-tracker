@@ -15,13 +15,25 @@ export const Transaction = ({index, tran}) => {
     const classes = useStyles();
     const cellClasses = useCellStyles();
 
-    const { merchants, accounts } = useContext(GlobalContext);
+    const { merchants
+            ,accounts
+            ,selectTrans
+            ,selectedTrans,  } 
+            = useContext(GlobalContext);
+
     let account = accounts.filter((acct) => acct._id===tran.accountId)[0]
     let merchant = merchants.filter((merch) => merch._id===tran.merchantId)[0]
     let acctName = account && account.accountName
     let merchName = merchant && merchant.merchantName
 
+    const isSelected = (id) => selectedTrans === id;
+
+    const isItemSelected = isSelected(tran._id);
     const labelId = `enhanced-table-checkbox-${index}`;
+
+    const handleClick = (event, id) => {
+        selectTrans(id)
+    };
 
     transYear = new Date(tran.transactionDate).getFullYear();
     transMonth = new Date(tran.transactionDate).getMonth();
@@ -31,8 +43,11 @@ export const Transaction = ({index, tran}) => {
     return (
     <TableRow
         hover
+        onClick={(event) => handleClick(event, tran._id)}
+        aria-checked={isItemSelected}
         tabIndex={-1}
         key={tran._id}
+        selected={isItemSelected}
         className={classes.root}
     >
         <TableCell component="th" id={labelId} scope="row" className={cellClasses.root}>

@@ -21,6 +21,11 @@ const AppReducer = (state, action) => {
                 ...state,
                 transactions: action.payload
             }
+        case 'SEL_TRANS':
+            return {
+                ...state,
+                selectedTrans: action.payload
+            }
         default:
             return state
     }

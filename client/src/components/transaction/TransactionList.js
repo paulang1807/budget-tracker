@@ -103,7 +103,12 @@ EnhancedTableHead.propTypes = {
 
 export const TransactionList = () => {
 
-    const { getMerchants, transactions, getTransactions } = useContext(GlobalContext);
+    const { getMerchants
+            ,transactions
+            ,getTransactions
+            ,accountView
+            ,selectTrans } 
+            = useContext(GlobalContext);
     
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('transactionName');
@@ -114,6 +119,10 @@ export const TransactionList = () => {
         // To silence the default warnings, use
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    useEffect(() => {
+      selectTrans(null);
+  }, [accountView])
 
     const classes = useStyles();
     const tblHeadClasses = useCustomTableHeadStyles();
