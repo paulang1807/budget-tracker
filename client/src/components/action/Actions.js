@@ -18,7 +18,8 @@ import { AddTransaction } from '../transaction/AddTransaction';
 export const Actions = () => {
 
     const { handleTransModalOpen 
-            ,handleTransTypeChange} 
+            ,handleTransTypeChange
+            ,selectedTrans } 
             = useContext(GlobalContext);
 
     const classes = useStyles();
@@ -43,6 +44,7 @@ export const Actions = () => {
                 <Button
                     variant="contained"
                     className={classes.button}
+                    disabled={selectedTrans ? false : true}
                     startIcon={<FileCopyIcon />}
                 >
                     Copy
@@ -50,6 +52,7 @@ export const Actions = () => {
                 <Button
                     variant="contained"
                     className={classes.button}
+                    disabled={selectedTrans ? false : true}
                     startIcon={<EditIcon />}
                 >
                     Edit
@@ -57,6 +60,7 @@ export const Actions = () => {
                 <Button
                     variant="contained"
                     className={classes.button}
+                    disabled={selectedTrans ? false : true}
                     startIcon={<DeleteIcon />}
                 >
                     Delete
