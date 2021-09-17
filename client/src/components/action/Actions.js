@@ -19,7 +19,9 @@ export const Actions = () => {
 
     const { handleTransModalOpen 
             ,handleTransTypeChange
-            ,selectedTrans } 
+            ,selectedTrans
+            ,deleteTransaction
+            ,selectTrans } 
             = useContext(GlobalContext);
 
     const classes = useStyles();
@@ -27,6 +29,11 @@ export const Actions = () => {
     const handleAdd = () => {
         handleTransTypeChange('Add');
         handleTransModalOpen();
+    }
+
+    const handleDelete = () => {
+        deleteTransaction(selectedTrans);
+        selectTrans(null)
     }
 
     return (
@@ -62,6 +69,7 @@ export const Actions = () => {
                     className={classes.button}
                     disabled={selectedTrans ? false : true}
                     startIcon={<DeleteIcon />}
+                    onClick={handleDelete}
                 >
                     Delete
                 </Button>
