@@ -36,6 +36,11 @@ export const Actions = () => {
         selectTrans(null)
     }
 
+    const handleCopy = () => {
+        handleTransTypeChange('Copy');
+        handleTransModalOpen();
+    }
+
     return (
         <>
             <Settings />
@@ -53,6 +58,7 @@ export const Actions = () => {
                     className={classes.button}
                     disabled={selectedTrans ? false : true}
                     startIcon={<FileCopyIcon />}
+                    onClick={handleCopy}
                 >
                     Copy
                 </Button>

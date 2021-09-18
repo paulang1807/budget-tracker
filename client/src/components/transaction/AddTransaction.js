@@ -14,11 +14,13 @@ export const AddTransaction = () => {
 
     const { accounts
             ,merchants
+            ,transactions
             ,transType
             ,addTransaction
             ,openTransModal
             ,handleTransModalClose
-            ,handleAlertOpen } 
+            ,handleAlertOpen
+            ,selectedTrans } 
             = useContext(GlobalContext);
 
     const [transactionName, setTransactionName] = useState("")
@@ -41,27 +43,54 @@ export const AddTransaction = () => {
     const [transModalDesc, setTransModalDesc] = useState("Provide the following details for the new transaction.");
 
     useEffect(() => {
-        
-        setTransactionName("");
-        setType("");
-        setCategory("");
-        setSubCategory("");
-        setTransactionDate("");
-        setAmount("");
-        setAccountId("");
-        setMerchantId("");
-        setDescription("");
-        setComments("");
+        if((transType==='Copy') && selectedTrans) {
+            // Pre-populate form with selected transaction details
 
-        setDefaultTypSelection("None");
-        setDefaultAcctSelection("None");
-        setDefaultMerchSelection("None");
+            let selTrans = transactions.filter((transaction) => transaction._id===selectedTrans);
 
-        setTransModalTitle("Add new transaction");
-        setTransModalDesc("Provide the following details for the new transaction.");
+            let year = new Date(selTrans[0].transactionDate).getFullYear()
+            let month = new Date(selTrans[0].transactionDate).getMonth()
+            let date = new Date(selTrans[0].transactionDate).getDate()
+            let selTransDate = year + '-' +  String(month + 1).padStart(2, '0') + '-' +  String(date).padStart(2, '0')
 
-    },[transType])
+            setTransactionName(selTrans[0].transactionName);
+            setType(selTrans[0].type);
+            setCategory(selTrans[0].category);
+            setSubCategory(selTrans[0].subCategory);
+            setTransactionDate(selTransDate);
+            setAmount(selTrans[0].amount);
+            setAccountId(selTrans[0].accountId);
+            setMerchantId(selTrans[0].merchantId);
+            setDescription(selTrans[0].description);
+            setComments(selTrans[0].comments);
 
+            setDefaultTypSelection(selTrans[0].type);
+            setDefaultAcctSelection(selTrans[0].accountId);
+            setDefaultMerchSelection(selTrans[0].merchantId);
+
+            setTransModalTitle("Copy transaction");
+            setTransModalDesc("Create a new record based on the existing transaction.");
+        } else {
+            setTransactionName("");
+            setType("");
+            setCategory("");
+            setSubCategory("");
+            setTransactionDate("");
+            setAmount("");
+            setAccountId("");
+            setMerchantId("");
+            setDescription("");
+            setComments("");
+
+            setDefaultTypSelection("None");
+            setDefaultAcctSelection("None");
+            setDefaultMerchSelection("None");
+
+            setTransModalTitle("Add new transaction");
+            setTransModalDesc("Provide the following details for the new transaction.");
+        }
+
+    },[selectedTrans, transType, transactions])
 
     const handleSubmit = (event) => {
         event.preventDefault();

@@ -33,6 +33,8 @@ const initialState = {
     // Alert states
     openAlert: false,
     alertContent: '',
+    // Action states
+    transType: '',
 }
 
 // Create Context
@@ -299,6 +301,7 @@ export const GlobalProvider = ({ children }) => {
         handleYearSelect,
         handleMonthSelect,
         // Action Contexts
+        transType: actionsState.transType,
         handleTransModalOpen,
         handleTransModalClose,
         handleTransTypeChange,
