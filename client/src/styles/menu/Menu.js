@@ -14,9 +14,8 @@ export const menuBtntheme = createTheme({
 // Style for div containing button group
 export const useDivStyles = makeStyles((theme) => ({
     root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
+      borderStyle: "groove",
+      borderColor: "ghostwhite"
     },
   }));
 
