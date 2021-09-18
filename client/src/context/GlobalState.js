@@ -102,6 +102,26 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    async function updateTransaction(transaction) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        try {
+            await axios.put(`/api/v1/transactions`, transaction, config);
+            dispatch({
+                type: 'UPDATE_TRANS',
+                payload: transaction
+            });
+        } catch (err) {
+            dispatch({
+                type: 'TRANS_ERR',
+                payload: err.response.data.error
+            })
+        }
+    }
+
     function selectTrans(transId) {
         dispatch({
             type: 'SEL_TRANS',
@@ -292,6 +312,7 @@ export const GlobalProvider = ({ children }) => {
         getTransactions,
         deleteTransaction,
         addTransaction,
+        updateTransaction,
         selectTrans,
         // Date Contexts
         monthNames: dateState.monthNames,

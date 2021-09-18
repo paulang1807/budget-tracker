@@ -41,6 +41,11 @@ export const Actions = () => {
         handleTransModalOpen();
     }
 
+    const handleEdit = () => {
+        handleTransTypeChange('Edit');
+        handleTransModalOpen();
+    }
+
     return (
         <>
             <Settings />
@@ -67,6 +72,7 @@ export const Actions = () => {
                     className={classes.button}
                     disabled={selectedTrans ? false : true}
                     startIcon={<EditIcon />}
+                    onClick={handleEdit}
                 >
                     Edit
                 </Button>

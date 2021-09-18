@@ -79,3 +79,46 @@ exports.deleteTransaction = async (req, res, next) => {
     });
   }
 }
+
+// @desc    Update transaction
+// @route   UPDATE /api/v1/transactions:id
+// @access  Public
+exports.updateTransaction = async (req, res, next) => {
+  try {
+    const transaction = await Transaction.updateOne(
+      { "_id": req.body._id },
+      {
+          "transactionName": req.body.transactionName,
+          "type": req.body.type,
+          "category": req.body.category,
+          "subCategory": req.body.subCategory,
+          "accountId": req.body.accountId,
+          "merchantId": req.body.merchantId,
+          "amount": req.body.amount,
+          "transactionDate": req.body.transactionDate,
+          "description": req.body.description,
+          "comments": req.body.comments
+      }
+   );
+
+    if(!transaction){
+      console.log('Unable to update transaction')
+      return res.status(404).json({
+        success: false,
+        error: 'Unable to update transaction'
+      })
+    }
+
+    console.log('Transaction updated ', req.body)
+    return res.status(200).json({
+      success: true,
+      data: transaction
+    })
+
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: 'Server Error'
+    });
+  }
+}

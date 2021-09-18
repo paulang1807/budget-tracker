@@ -16,6 +16,12 @@ const AppReducer = (state, action) => {
                 ...state,
                 transactions: [...state.transactions, action.payload]   // order is reversed when getting the data from the server api call
             }
+        case 'UPDATE_TRANS':
+            let filTrans = state.transactions.filter(transaction => transaction._id !== action.payload._id)
+            return {
+                ...state,
+                transactions: [...filTrans, action.payload]
+            }
         case 'TRANS_ERR':
             return {
                 ...state,

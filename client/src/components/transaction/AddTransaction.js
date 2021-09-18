@@ -17,12 +17,14 @@ export const AddTransaction = () => {
             ,transactions
             ,transType
             ,addTransaction
+            ,updateTransaction
             ,openTransModal
             ,handleTransModalClose
             ,handleAlertOpen
             ,selectedTrans } 
             = useContext(GlobalContext);
 
+    const [_id, setTransactionId] = useState("")
     const [transactionName, setTransactionName] = useState("")
     const [type, setType] = useState("")
     const [category, setCategory] = useState("")
@@ -43,7 +45,7 @@ export const AddTransaction = () => {
     const [transModalDesc, setTransModalDesc] = useState("Provide the following details for the new transaction.");
 
     useEffect(() => {
-        if((transType==='Copy') && selectedTrans) {
+        if((transType==='Copy' || transType==='Edit') && selectedTrans) {
             // Pre-populate form with selected transaction details
 
             let selTrans = transactions.filter((transaction) => transaction._id===selectedTrans);
@@ -68,8 +70,14 @@ export const AddTransaction = () => {
             setDefaultAcctSelection(selTrans[0].accountId);
             setDefaultMerchSelection(selTrans[0].merchantId);
 
-            setTransModalTitle("Copy transaction");
-            setTransModalDesc("Create a new record based on the existing transaction.");
+            if(transType==='Edit') {
+                setTransactionId(selTrans[0]._id);
+                setTransModalTitle("Edit transaction");
+                setTransModalDesc("Edit the current transaction.");
+            } else {
+                setTransModalTitle("Copy transaction");
+                setTransModalDesc("Create a new record based on the existing transaction.");
+            }
         } else {
             setTransactionName("");
             setType("");
@@ -121,19 +129,36 @@ export const AddTransaction = () => {
 
         handleTransModalClose();
 
-        const newTrans = {
-            transactionName,
-            type,
-            category,
-            subCategory,
-            transactionDate,
-            amount: +amount,
-            accountId,
-            merchantId,
-            description,
-            comments
+        if(transType==='Copy' || transType==='Add') {
+            const newTrans = {
+                transactionName,
+                type,
+                category,
+                subCategory,
+                transactionDate,
+                amount: +amount,
+                accountId,
+                merchantId,
+                description,
+                comments
+            }
+            addTransaction(newTrans)
+        } else {
+            const modTrans = {
+                _id,
+                transactionName,
+                type,
+                category,
+                subCategory,
+                transactionDate,
+                amount: +amount,
+                accountId,
+                merchantId,
+                description,
+                comments
+            }
+            updateTransaction(modTrans)
         }
-        addTransaction(newTrans)
     }
 
     return (
@@ -200,10 +225,10 @@ export const AddTransaction = () => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleTransModalClose} color="primary">
-                Cancel
+                    Cancel
                 </Button>
                 <Button onClick={handleSubmit} color="primary">
-                Add
+                    {transType==='Edit' ? 'OK' : 'Add'}
                 </Button>
             </DialogActions>
             </Dialog>
