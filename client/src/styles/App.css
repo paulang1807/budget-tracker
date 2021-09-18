@@ -28,7 +28,7 @@ body {
   width: 350px;
 }
 
-h2 {
+.mainHeader {
   padding-top: 5px;
   text-align: center;
   margin: 0;
@@ -39,6 +39,11 @@ h2 {
   font-weight: bold; 
   border-style: outset;
   border-color: oldlace
+}
+
+h2 {
+  padding-top: 5px;
+  text-align: center;
 }
 
 h3 {
