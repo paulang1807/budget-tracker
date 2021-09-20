@@ -1,13 +1,26 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+
+import { ThemeProvider } from '@material-ui/core/styles';
+
 import '../../styles/date/DateSelector.css';
+import { useStyles, dateModalTheme } from '../../styles/date/DateSelector';
 
 export const DateSelector = () => {
 
     const { displayDate
             ,handleYearSelect
-            ,handleMonthSelect  } = useContext(GlobalContext);
+            ,handleMonthSelect
+            ,openDateModal
+            ,handleDateModalOpen
+            ,handleDateModalClose
+            ,handleCancelDateRangeSelect  } 
+            = useContext(GlobalContext);
 
     const setYear = offset => {
         handleYearSelect(offset)
@@ -17,7 +30,10 @@ export const DateSelector = () => {
         handleMonthSelect(offset)        
     }
 
+    const classes = useStyles();
+
     return (
+        <>
             <div className='ds-input' >
                 <div className='ds-button'>
                     <div className='dsb-inner' onClick={() => setYear(-1)}>
@@ -29,7 +45,7 @@ export const DateSelector = () => {
                         <span className='dsbi-left-arrow'></span>
                     </div>
                 </div>
-                <div className='ds-button-date'>
+                <div className='ds-button-date' onClick={handleDateModalOpen}>
                       <div className='ds-container'>
                           <div className='dsc-txt'>{displayDate}</div>
                       </div>
@@ -45,5 +61,32 @@ export const DateSelector = () => {
                     </div>
                 </div>
             </div>
+            <Dialog open={openDateModal} 
+                    onClose={handleCancelDateRangeSelect} 
+                    aria-labelledby="form-dialog-title" 
+                    classes={{ paper: classes.paper}}
+            >
+                <DialogContent>
+                    <div className='ds-grid'>
+                        <div className='dsg-container'>
+                            Begin Date
+                        </div>
+                        <div className='dsg-container'>
+                            End Date
+                        </div>
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <ThemeProvider theme={dateModalTheme}>
+                        <Button onClick={handleCancelDateRangeSelect} color="primary">
+                        Cancel
+                        </Button>
+                        <Button onClick={handleDateModalClose} color="primary">
+                        OK
+                        </Button>
+                    </ThemeProvider>
+                </DialogActions>
+            </Dialog>
+        </>
     )
 }

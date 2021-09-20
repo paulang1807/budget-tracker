@@ -28,6 +28,7 @@ const initialState = {
     displayDate: monthNames[monthDefault] + ' ' + yearDefault,
     selYear: yearDefault,
     selMonth: monthDefault,
+    openDateModal: false,
     // Transaction states
     openTransModal: false,
     selectedTrans: null,
@@ -265,6 +266,25 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    // Actions - Date Modal
+    function handleDateModalOpen() {
+        dateDispatch({
+            type: 'OPEN_DATE_SEL_MODAL'
+        })
+    }
+
+    function handleDateModalClose() {
+        dateDispatch({
+            type: 'CLS_DATE_SEL_MODAL'
+        })
+    }
+
+    function handleCancelDateRangeSelect() {
+        dateDispatch({
+            type: 'CANCEL_SEL_DT'
+        })
+    }
+
     // Actions - Transaction Modal
     function handleTransModalOpen() {
         actionsDispatch({
@@ -329,8 +349,12 @@ export const GlobalProvider = ({ children }) => {
         displayDate: dateState.displayDate,
         selYear: dateState.selYear,
         selMonth: dateState.selMonth,
+        openDateModal: dateState.openDateModal,
         handleYearSelect,
         handleMonthSelect,
+        handleDateModalOpen,
+        handleDateModalClose,
+        handleCancelDateRangeSelect,
         // Action Contexts
         transType: actionsState.transType,
         handleTransModalOpen,

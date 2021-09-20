@@ -130,3 +130,14 @@
 .dsc-txt :hover{
     color: #fff;
 }
+
+/* Date Modal */
+
+.ds-grid {
+    display: flex;
+    flex-direction: row;
+}
+
+.dsg-container {
+    margin: 5px;
+}

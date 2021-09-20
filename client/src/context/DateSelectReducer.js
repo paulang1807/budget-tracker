@@ -30,6 +30,21 @@ const DateSelectReducer = (state, action) => {
                 selYear: year,
                 displayDate: state.monthNames[month] + ' ' + year
             }
+        case 'OPEN_DATE_SEL_MODAL':
+            return {
+                ...state,
+                openDateModal: true,
+            }
+        case 'CLS_DATE_SEL_MODAL':
+            return {
+                ...state,
+                openDateModal: false,
+            }
+        case 'CANCEL_SEL_DT':
+            return {
+                ...state,
+                openDateModal: false
+            }
         default:
             return state
     }
