@@ -21,6 +21,11 @@ const AcctReducer = (state, action) => {
                 ...state,
                 accountView: action.payload
             }
+        case 'SEL_ACCT':
+            return {
+                ...state,
+                selectedAccount: action.payload
+            }
         case 'ACCTS_ERR':
             return {
                 ...state,

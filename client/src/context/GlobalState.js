@@ -22,6 +22,7 @@ const initialState = {
     // Account states
     accounts: [],
     accountView: true,
+    selectedAccount: null,
     // Date states
     monthNames: monthNames,
     displayDate: monthNames[monthDefault] + ' ' + yearDefault,
@@ -189,6 +190,13 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    function selectAccount(acctId) {
+        acctDispatch({
+            type: 'SEL_ACCT',
+            payload: acctId
+        })
+    }
+
     // Actions - Merchants
     async function getMerchants() {
         try {
@@ -301,10 +309,12 @@ export const GlobalProvider = ({ children }) => {
         // Account Contexts
         accounts: acctState.accounts,
         accountView: acctState.accountView,
+        selectedAccount: acctState.selectedAccount,
         getAccounts,
         deleteAccount,
         addAccount,
         toggleAccoutView,
+        selectAccount,
         // Transaction Contexts
         transactions: state.transactions,
         openTransModal: actionsState.openTransModal,

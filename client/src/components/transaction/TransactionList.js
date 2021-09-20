@@ -107,7 +107,8 @@ export const TransactionList = () => {
             ,transactions
             ,getTransactions
             ,accountView
-            ,selectTrans } 
+            ,selectTrans
+            ,selectedAccount } 
             = useContext(GlobalContext);
     
     const [order, setOrder] = useState('asc');
@@ -122,7 +123,7 @@ export const TransactionList = () => {
 
     useEffect(() => {
       selectTrans(null);
-  }, [accountView])
+  }, [accountView, selectedAccount])
 
     const classes = useStyles();
     const tblHeadClasses = useCustomTableHeadStyles();
@@ -132,6 +133,10 @@ export const TransactionList = () => {
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
+    
+    // If any account is selected, show transaction only for selected account
+    const filteredTransactions = (selectedAccount  && accountView)? 
+        (transactions.filter(transaction => transaction.accountId===selectedAccount)) : transactions;
 
     return (
         <div className={classes.root}>
@@ -151,7 +156,7 @@ export const TransactionList = () => {
                 onRequestSort={handleRequestSort}
                 />
                 <TableBody>
-                {stableSort(transactions, getComparator(order, orderBy))
+                {stableSort(filteredTransactions, getComparator(order, orderBy))
                     .map((inc, index) => (
                     <Transaction key={inc._id} index={index} tran={inc}/>
                 ))}

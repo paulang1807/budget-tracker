@@ -35,6 +35,11 @@ h4 {
     font-weight: bold;
   }
 
+.selAccountListItem {
+    background-image: linear-gradient(180deg, #65b6e6, #1d5663) !important;
+    color: #dedede;
+  }
+
   .accountListItem :hover {
     background-image: linear-gradient(180deg, #b7d5f5, #5990ca);
     color: #fff;
