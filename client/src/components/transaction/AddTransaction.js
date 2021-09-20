@@ -8,6 +8,10 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { ThemeProvider } from '@material-ui/core/styles';
+
+import { modalBtnTheme } from '../../styles/transaction/AddTransaction';
+
 import Alert from '../common/Alert';
 
 export const AddTransaction = () => {
@@ -72,10 +76,10 @@ export const AddTransaction = () => {
 
             if(transType==='Edit') {
                 setTransactionId(selTrans[0]._id);
-                setTransModalTitle("Edit transaction");
+                setTransModalTitle("Edit Transaction");
                 setTransModalDesc("Edit the current transaction.");
             } else {
-                setTransModalTitle("Copy transaction");
+                setTransModalTitle("Copy Transaction");
                 setTransModalDesc("Create a new record based on the existing transaction.");
             }
         } else {
@@ -94,7 +98,7 @@ export const AddTransaction = () => {
             setDefaultAcctSelection("None");
             setDefaultMerchSelection("None");
 
-            setTransModalTitle("Add new transaction");
+            setTransModalTitle("Add Transaction");
             setTransModalDesc("Provide the following details for the new transaction.");
         }
 
@@ -224,12 +228,14 @@ export const AddTransaction = () => {
                     </form>
             </DialogContent>
             <DialogActions>
+            <ThemeProvider theme={modalBtnTheme}>
                 <Button onClick={handleTransModalClose} color="primary">
                     Cancel
                 </Button>
                 <Button onClick={handleSubmit} color="primary">
                     {transType==='Edit' ? 'OK' : 'Add'}
                 </Button>
+                </ThemeProvider>
             </DialogActions>
             </Dialog>
             <Alert />
