@@ -11,6 +11,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import '../../styles/date/DateSelector.css';
 import { useStyles, dateModalTheme } from '../../styles/date/DateSelector';
 
+import { DateGrid } from './DateGrid';
+
 export const DateSelector = () => {
 
     const { displayDate
@@ -70,9 +72,11 @@ export const DateSelector = () => {
                     <div className='ds-grid'>
                         <div className='dsg-container'>
                             Begin Date
+                            <DateGrid />
                         </div>
                         <div className='dsg-container'>
                             End Date
+                            <DateGrid />
                         </div>
                     </div>
                 </DialogContent>
