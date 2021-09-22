@@ -72,11 +72,11 @@ export const DateSelector = () => {
                     <div className='ds-grid'>
                         <div className='dsg-container'>
                             Begin Date
-                            <DateGrid />
+                            <DateGrid begin={true}/>
                         </div>
                         <div className='dsg-container'>
                             End Date
-                            <DateGrid />
+                            <DateGrid begin={false}/>
                         </div>
                     </div>
                 </DialogContent>

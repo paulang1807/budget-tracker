@@ -6,7 +6,6 @@ const DateSelectReducer = (state, action) => {
         case 'SEL_YEAR':
             year = state.selYear + action.payload
             month = state.selMonth
-            console.log("YEAR: ", year, month)
             return {
                 ...state,
                 selYear: year,
@@ -15,7 +14,6 @@ const DateSelectReducer = (state, action) => {
         case 'SEL_MTH':
             month = state.selMonth + action.payload
             year =  state.selYear
-            console.log("MONTH: ", year, month)
             if(month === -1) {
                 month = 11;
                 year--;
@@ -23,12 +21,32 @@ const DateSelectReducer = (state, action) => {
                 month = 0;
                 year++;
             }
-            console.log("MONTH2: ", year, month,state.monthNames[month])
             return {
                 ...state,
                 selMonth: month,
                 selYear: year,
                 displayDate: state.monthNames[month] + ' ' + year
+            }
+        case 'SEL_END_YEAR':
+            year = state.selEndYear + action.payload
+            return {
+                ...state,
+                selEndYear: year,
+            }
+        case 'SEL_END_MTH':
+            month = state.selEndMonth + action.payload
+            year =  state.selEndYear
+            if(month === -1) {
+                month = 11;
+                year--;
+            } else if(month === 12) {
+                month = 0;
+                year++;
+            }
+            return {
+                ...state,
+                selEndMonth: month,
+                selEndYear: year,
             }
         case 'OPEN_DATE_SEL_MODAL':
             return {

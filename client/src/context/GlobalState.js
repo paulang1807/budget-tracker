@@ -28,6 +28,8 @@ const initialState = {
     displayDate: monthNames[monthDefault] + ' ' + yearDefault,
     selYear: yearDefault,
     selMonth: monthDefault,
+    selEndYear: monthDefault + 1 == 12 ? yearDefault + 1 : yearDefault,
+    selEndMonth: monthDefault + 1 == 12 ? 0 : monthDefault + 1,
     openDateModal: false,
     // Transaction states
     openTransModal: false,
@@ -285,6 +287,34 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    function handleYearSelect(offset) {
+        dateDispatch({
+            type: 'SEL_YEAR',
+            payload: offset
+        })
+    }
+
+    function handleMonthSelect(offset) {
+        dateDispatch({
+            type: 'SEL_MTH',
+            payload: offset
+        })
+    }
+
+    function handleEndYearSelect(offset) {
+        dateDispatch({
+            type: 'SEL_END_YEAR',
+            payload: offset
+        })
+    }
+
+    function handleEndMonthSelect(offset) {
+        dateDispatch({
+            type: 'SEL_END_MTH',
+            payload: offset
+        })
+    }
+
     // Actions - Transaction Modal
     function handleTransModalOpen() {
         actionsDispatch({
@@ -350,11 +380,17 @@ export const GlobalProvider = ({ children }) => {
         selYear: dateState.selYear,
         selMonth: dateState.selMonth,
         openDateModal: dateState.openDateModal,
+        selEndYear: dateState.selEndYear,
+        selEndMonth: dateState.selEndMonth,
         handleYearSelect,
         handleMonthSelect,
         handleDateModalOpen,
         handleDateModalClose,
         handleCancelDateRangeSelect,
+        handleYearSelect,
+        handleMonthSelect,
+        handleEndYearSelect,
+        handleEndMonthSelect,
         // Action Contexts
         transType: actionsState.transType,
         handleTransModalOpen,
