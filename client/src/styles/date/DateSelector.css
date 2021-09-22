@@ -36,9 +36,10 @@
 }
 
 /* Date Arrows Start */
-/* Create left and bottom borders */
+/* Add double arrows for year */
 .dsbi-right-arrows:after,
 .dsbi-left-arrows:after,
+/* Create left and bottom borders */
 .dsbi-right-arrow,
 .dsbi-right-arrows,
 .dsbi-left-arrow,

@@ -37,3 +37,94 @@
     font-weight: 200px;
     text-align: center;
 }
+
+.dgh-button{
+    float: left;
+    width: 45px;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Arrow buttons */
+.dghb-inner {
+    float: left;
+    height: 35px;
+    width: 35px;
+    background: #f4f4f4;
+    border-radius: 100%;
+    line-height: 35px;
+    text-align: center;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin-left: -17px;
+    margin-top: -17px;
+}
+
+.dghb-inner:hover{ 
+    cursor: pointer;
+    background: #eee;
+}
+
+/* Date Arrows Start */
+/* Add double arrows for year */
+.dghbi-right-arrows:after,
+.dghbi-left-arrows:after,
+/* Create left and bottom borders */
+.dghbi-right-arrow,
+.dghbi-right-arrows,
+.dghbi-left-arrow,
+.dghbi-left-arrows{
+    display: block;
+    float: left;
+    width: 6px;
+    height: 6px;
+    border-left: 2px solid #888;
+    border-bottom: 2px solid #888;
+    position: absolute;
+}
+
+/* Rotate to 45 degrees to give the appearance of arrows */
+.dghbi-right-arrow,
+.dghbi-right-arrows,
+.dghbi-left-arrow,
+.dghbi-left-arrows{
+    transform: rotate(45deg);
+    left: 50%;
+    top:50%;
+    margin-left: -2px;
+    margin-top: -3.5px;
+}
+
+/* Rotate right hand side arrows to right */
+.dghbi-right-arrows,
+.dghbi-right-arrow {
+    transform: rotate(225deg);
+    margin-left: -4px;
+}
+
+/* Add double arrows for year */
+.dghbi-right-arrows:after,
+.dghbi-left-arrows:after{
+    content: '';
+}
+
+/* Arrow margins and positioning */
+.dghbi-right-arrows:after,
+.dghbi-left-arrows:after{
+    left: 3px;
+    top: -7px
+} 
+
+.dghbi-left-arrows{
+    margin-left: -7px;
+}
+.dghbi-right-arrows{
+    margin-left: -0.5px;
+}
+
+/* Arrow hover behavior */
+.dghb-inner:hover > span{
+    border-color: #555!important;
+}
