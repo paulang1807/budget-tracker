@@ -108,7 +108,9 @@ export const TransactionList = () => {
             ,getTransactions
             ,accountView
             ,selectTrans
-            ,selectedAccount } 
+            ,selectedAccount
+            ,selRangeStart
+            ,selRangeEnd } 
             = useContext(GlobalContext);
     
     const [order, setOrder] = useState('asc');
@@ -133,10 +135,19 @@ export const TransactionList = () => {
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
+
+    const rangeStart = Date.parse(selRangeStart) < Date.parse(selRangeEnd) ? selRangeStart : selRangeEnd
+    const rangeSEnd = Date.parse(selRangeEnd) > Date.parse(selRangeStart) ? selRangeEnd : selRangeStart
+
+    console.log("DATES: ", rangeStart, rangeSEnd)
     
     // If any account is selected, show transaction only for selected account
     const filteredTransactions = (selectedAccount  && accountView)? 
-        (transactions.filter(transaction => transaction.accountId===selectedAccount)) : transactions;
+                                  (transactions.filter(transaction => transaction.accountId===selectedAccount 
+                                  && Date.parse(transaction.transactionDate) >= Date.parse(rangeStart)
+                                  && Date.parse(transaction.transactionDate) <= Date.parse(rangeSEnd))) : 
+                                  (transactions.filter(transaction => Date.parse(transaction.transactionDate) >= Date.parse(rangeStart)
+                                  && Date.parse(transaction.transactionDate) <= Date.parse(rangeSEnd)));
 
     return (
         <div className={classes.root}>
