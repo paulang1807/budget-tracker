@@ -326,6 +326,12 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    function handleCurrMonth() {
+        dateDispatch({
+            type: 'CURR_MTH'
+        })
+    }
+
     // Actions - Transaction Modal
     function handleTransModalOpen() {
         actionsDispatch({
@@ -412,6 +418,7 @@ export const GlobalProvider = ({ children }) => {
         handleEndMonthSelect,
         handleDateSelect,
         handleEndDateSelect,
+        handleCurrMonth,
         // Action Contexts
         transType: actionsState.transType,
         handleTransModalOpen,

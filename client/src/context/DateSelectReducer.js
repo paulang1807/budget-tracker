@@ -153,6 +153,26 @@ const DateSelectReducer = (state, action) => {
                 selRangeStartPrev: null,
                 selRangeEndPrev: null,
             }
+        case 'CURR_MTH':
+            year = new Date().getFullYear()
+            month = new Date().getMonth()
+            return {
+                ...state,
+                openDateModal: false,
+                selYearPrev: null,
+                selMonthPrev: null,
+                selRangeStartPrev: null,
+                selRangeEndPrev: null,
+                selYear: year,
+                selMonth: month,
+                selEndYear: month + 1 == 12 ? year + 1 : year,
+                selEndMonth: month + 1 == 12 ? 0 : month + 1,
+                selDate: year + String(month + 1).padStart(2, '0') + String(new Date().getDate()).padStart(2, '0'),
+                selEndDate: null,
+                selRangeStart: year + '-' + String(month + 1).padStart(2, '0') + '-01',
+                selRangeEnd: year + '-' +  String(month + 1).padStart(2, '0') + '-' +  String(new Date(year, month, 0).getDate()).padStart(2, '0'),
+                displayDate: state.monthNames[month] + ' ' + year
+            }
         default:
             return state
     }

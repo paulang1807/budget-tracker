@@ -21,7 +21,8 @@ export const DateSelector = () => {
             ,openDateModal
             ,handleDateModalOpen
             ,handleDateModalClose
-            ,handleCancelDateRangeSelect  } 
+            ,handleCancelDateRangeSelect
+            ,handleCurrMonth  } 
             = useContext(GlobalContext);
 
     const setYear = offset => {
@@ -79,6 +80,7 @@ export const DateSelector = () => {
                             <DateGrid begin={false}/>
                         </div>
                     </div>
+                    <button className='ds-button-current' onClick={handleCurrMonth}>Current Month</button>
                 </DialogContent>
                 <DialogActions>
                     <ThemeProvider theme={dateModalTheme}>

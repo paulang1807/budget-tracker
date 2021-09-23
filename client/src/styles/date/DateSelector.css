@@ -142,3 +142,19 @@
 .dsg-container {
     margin: 5px;
 }
+
+/* Current Month button */
+.ds-button-current {
+    width: 150px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 8px;
+    border-color: #999;
+    border-style: solid;
+}
+
+.ds-button-current:hover {
+    border-color: #555 !important;
+    color: black;
+    cursor: pointer;
+}
