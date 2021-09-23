@@ -128,3 +128,113 @@
 .dghb-inner:hover > span{
     border-color: #555!important;
 }
+
+/* Date Grid Body */
+.dg-body{
+    width: 300px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.dgb-container{ 
+    width: 100%;
+    height: 100%;
+}
+
+.dgb-day-container{ 
+    width: 14.285%;
+    height: 16.6666%;
+}
+
+.dgbc-head{ 
+    height: 30px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.dgbc-body{ 
+    height: 270px;
+    width: 100%;
+}
+
+.dgbc-month,
+.dgbc-head,
+.dgbch-name, 
+.dgbc-body,
+.dgbdc-day span,
+.dgbdc-day,
+.dgb-day-container,
+.dgb-container{
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.dgbch-name{ 
+    width: 14.285%;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 700;
+    color: #666;
+    font-size: 9px;
+    text-align: center;
+}
+
+.dgbdc-day{
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-weight: 300;
+    color: #444;
+    text-align: center;
+}
+
+.dgbdc-day span{ 
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-weight: 300;
+    color: #444;
+}
+
+.dgbdc-day span:hover{
+    cursor: pointer;
+    background: #eee;
+} 
+
+.dgbdc-day span{
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: -15px;
+    left: 50%;
+    top: 50%;
+    font-weight: 400;
+    border-radius: 100%;
+    line-height: 30px;
+}
+
+.dgb-day-container.disabled{
+    pointer-events: none;
+}
+
+.dgb-day-container.disabled .dgbdc-day span{
+    color: #ddd;
+}
+
+.dgb-day-container.disabled .dgbdc-day span{
+    background: #fff!important;
+}
+
+.dgb-day-container.highlight .dgbdc-day span{
+    background: #efdbca;
+}
+
+.dgb-day-container.highlight-green .dgbdc-day span{
+    background: #d4f9cb;
+}
+
+.dgb-day-container.highlight-green-range .dgbdc-day span{
+    background: #d4e2cb;
+}

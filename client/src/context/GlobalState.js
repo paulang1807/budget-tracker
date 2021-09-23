@@ -11,6 +11,7 @@ import axios from 'axios';
 
 const yearDefault = new Date().getFullYear()
 const monthDefault = new Date().getMonth()
+const dateDefault = new Date().getDate()
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 // Initial State
@@ -28,8 +29,18 @@ const initialState = {
     displayDate: monthNames[monthDefault] + ' ' + yearDefault,
     selYear: yearDefault,
     selMonth: monthDefault,
-    selEndYear: monthDefault + 1 == 12 ? yearDefault + 1 : yearDefault,
-    selEndMonth: monthDefault + 1 == 12 ? 0 : monthDefault + 1,
+    selEndYear: monthDefault + 1 === 12 ? yearDefault + 1 : yearDefault,
+    selEndMonth: monthDefault + 1 === 12 ? 0 : monthDefault + 1,
+    selYearPrev: null,
+    selMonthPrev: null,
+    dtToday: yearDefault + String(monthDefault + 1).padStart(2, '0') + String(dateDefault).padStart(2, '0'),
+    selDate: yearDefault + String(monthDefault + 1).padStart(2, '0') + String(dateDefault).padStart(2, '0'),
+    selEndDate: null,
+    selRangeStart: yearDefault + '-' + String(monthDefault + 1).padStart(2, '0') + '-01',
+    selRangeEnd: yearDefault + '-' +  String(monthDefault + 1).padStart(2, '0') + '-' +  String(new Date(yearDefault, monthDefault, 0).getDate()).padStart(2, '0'),
+    selRangeStartPrev: null,
+    selRangeEndPrev:null,
+    dateRange: false,
     openDateModal: false,
     // Transaction states
     openTransModal: false,
@@ -268,6 +279,20 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    function handleEndYearSelect(offset) {
+        dateDispatch({
+            type: 'SEL_END_YEAR',
+            payload: offset
+        })
+    }
+
+    function handleEndMonthSelect(offset) {
+        dateDispatch({
+            type: 'SEL_END_MTH',
+            payload: offset
+        })
+    }
+
     // Actions - Date Modal
     function handleDateModalOpen() {
         dateDispatch({
@@ -287,30 +312,16 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
-    function handleYearSelect(offset) {
+    function handleDateSelect(offset) {
         dateDispatch({
-            type: 'SEL_YEAR',
+            type: 'SEL_DT',
             payload: offset
         })
     }
 
-    function handleMonthSelect(offset) {
+    function handleEndDateSelect(offset) {
         dateDispatch({
-            type: 'SEL_MTH',
-            payload: offset
-        })
-    }
-
-    function handleEndYearSelect(offset) {
-        dateDispatch({
-            type: 'SEL_END_YEAR',
-            payload: offset
-        })
-    }
-
-    function handleEndMonthSelect(offset) {
-        dateDispatch({
-            type: 'SEL_END_MTH',
+            type: 'SEL_END_DT',
             payload: offset
         })
     }
@@ -379,18 +390,28 @@ export const GlobalProvider = ({ children }) => {
         displayDate: dateState.displayDate,
         selYear: dateState.selYear,
         selMonth: dateState.selMonth,
-        openDateModal: dateState.openDateModal,
         selEndYear: dateState.selEndYear,
         selEndMonth: dateState.selEndMonth,
+        selYearPrev: dateState.selYearPrev,
+        selMonthPrev: dateState.selMonthPrev,
+        dtToday: dateState.dtToday,
+        selDate: dateState.selDate,
+        selEndDate : dateState.selEndDate,
+        selRangeStart: dateState.selRangeStart,
+        selRangeEnd: dateState.selRangeEnd,
+        selRangeStartPrev: dateState.selRangeStartPrev,
+        selRangeEndPrev: dateState.selRangeEndPrev,
+        dateRange: dateState.dateRange,
+        openDateModal: dateState.openDateModal,
         handleYearSelect,
         handleMonthSelect,
         handleDateModalOpen,
         handleDateModalClose,
         handleCancelDateRangeSelect,
-        handleYearSelect,
-        handleMonthSelect,
         handleEndYearSelect,
         handleEndMonthSelect,
+        handleDateSelect,
+        handleEndDateSelect,
         // Action Contexts
         transType: actionsState.transType,
         handleTransModalOpen,
