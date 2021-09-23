@@ -7,19 +7,20 @@
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    margin: 10px;
+    margin: 5px;
 }
 
 .ds-button{
-    width: 45px;
+    width: 40px;
     height: 100%;
     position: relative;
     cursor: pointer;
+    margin: 0 2px;
 }
 
 .dsb-inner {
-    height: 35px;
-    width: 35px;
+    height: 34px;
+    width: 34px;
     background-image: linear-gradient(180deg, #c9d9f1, #1a4482);
     border-radius: 100%;
     line-height: 35px;

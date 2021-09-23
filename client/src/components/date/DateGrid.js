@@ -127,7 +127,7 @@ export const DateGrid = (props) => {
     }
 
     return (
-        <>
+        <div className='dg-base'>
                 <div className='dg-root'>
                   <div className='dg-head'>
                       <div className='dgh-button'>
@@ -159,6 +159,6 @@ export const DateGrid = (props) => {
                 <div className='dg-body'>
                     {renderCalendar()}
                 </div>
-        </>
+        </div>
     )
 }

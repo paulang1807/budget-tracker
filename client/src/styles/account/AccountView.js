@@ -11,6 +11,9 @@ export const btnTheme = createTheme({
               backgroundImage: ["linear-gradient(180deg, #b7d5f5, #5990ca)", "!important"],
          },
         },
+        startIcon: {
+          marginRight: ["2px", "!important"]
+        },
         contained: {
             color: "#dedede",
             '&:hover': {

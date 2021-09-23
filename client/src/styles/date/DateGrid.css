@@ -1,8 +1,11 @@
-.dg-root{
+.dg-base {
     border: 2px;
     border-color: #444;
     border-style: solid;
     border-radius: 8px;
+}
+
+.dg-root{
     margin-top: 5px;
 }
 
