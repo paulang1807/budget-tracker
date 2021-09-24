@@ -24,6 +24,7 @@ const initialState = {
     accounts: [],
     accountView: true,
     selectedAccount: null,
+    openAcctModal: false,
     // Date states
     monthNames: monthNames,
     displayDate: monthNames[monthDefault] + ' ' + yearDefault,
@@ -356,6 +357,19 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    // Actions - Accounts Modal
+    function handleAcctModalOpen() {
+        actionsDispatch({
+            type: 'OPEN_ADD_ACCT_MODAL'
+        })
+    }
+
+    function handleAcctModalClose() {
+        actionsDispatch({
+            type: 'CLS_ADD_ACCT_MODAL'
+        })
+    }
+
     // Actions - Alerts
     function handleAlertOpen(alertText) {
         alertsDispatch({
@@ -381,11 +395,14 @@ export const GlobalProvider = ({ children }) => {
         accounts: acctState.accounts,
         accountView: acctState.accountView,
         selectedAccount: acctState.selectedAccount,
+        openAcctModal: actionsState.openAcctModal,
         getAccounts,
         deleteAccount,
         addAccount,
         toggleAccoutView,
         selectAccount,
+        handleAcctModalOpen,
+        handleAcctModalClose,
         // Transaction Contexts
         transactions: state.transactions,
         openTransModal: actionsState.openTransModal,

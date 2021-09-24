@@ -10,6 +10,16 @@ const ActionsReducer = (state, action) => {
                 ...state,
                 openTransModal: false
             }
+        case 'OPEN_ADD_ACCT_MODAL':
+            return {
+                ...state,
+                openAcctModal: true
+            }
+        case 'CLS_ADD_ACCT_MODAL':
+            return {
+                ...state,
+                openAcctModal: false
+            }
         case 'CHG_TRANS_TYP':
             return {
                 ...state,
