@@ -12,9 +12,12 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { useDivStyles, useIconStyles, menuBtntheme } from '../../styles/menu/Menu';
 
 import { AddAccount } from '../account/AddAccount';
+import { AddMerchant } from '../merchant/AddMerchant';
 export const Menu = () => {
 
-    const { handleAcctModalOpen } = useContext(GlobalContext);
+    const { handleAcctModalOpen
+            ,handleMerchModalOpen } 
+            = useContext(GlobalContext);
 
     const divClasses = useDivStyles();
     const iconClasses = useIconStyles();
@@ -25,7 +28,7 @@ export const Menu = () => {
                 <IconButton color="primary" aria-label="accounts" className={iconClasses.root} onClick={handleAcctModalOpen}>
                     <AccountBalanceIcon fontSize="large" />
                 </IconButton>
-                <IconButton color="primary" aria-label="merchants" className={iconClasses.root}>
+                <IconButton color="primary" aria-label="merchants" className={iconClasses.root} onClick={handleMerchModalOpen}>
                     <StoreIcon fontSize="large" />
                 </IconButton>
                 <IconButton color="primary" aria-label="category" className={iconClasses.root}>
@@ -36,6 +39,7 @@ export const Menu = () => {
                 </IconButton>
             </ThemeProvider>
             <AddAccount />
+            <AddMerchant />
         </div>
     )
 }

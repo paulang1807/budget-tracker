@@ -16,8 +16,6 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'Jul
 
 // Initial State
 const initialState = {
-    transactions: [],
-    merchants: [],
     error: null,
     loading: true,
     // Account states
@@ -48,8 +46,12 @@ const initialState = {
     dateRange: false,
     openDateModal: false,
     // Transaction states
+    transactions: [],
     openTransModal: false,
     selectedTrans: null,
+    // Merchant states
+    merchants: [],
+    openMerchantModal: false,
     // Alert states
     openAlert: false,
     alertContent: '',
@@ -370,6 +372,20 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    // Actions - Merchant Mocal
+    function handleMerchModalOpen() {
+
+        actionsDispatch({
+            type: 'OPEN_ADD_MERCH_MODAL'
+        })
+    }
+
+    function handleMerchModalClose() {
+        actionsDispatch({
+            type: 'CLS_ADD_MERCH_MODAL'
+        })
+    }
+
     // Actions - Alerts
     function handleAlertOpen(alertText) {
         alertsDispatch({
@@ -385,12 +401,8 @@ export const GlobalProvider = ({ children }) => {
     }
 
     return (<GlobalContext.Provider value={{
-        merchants: merchantState.merchants,
         error: state.error,
         loading: state.loading,
-        getMerchants,
-        deleteMerchant,
-        addMerchant,
         // Account Contexts
         accounts: acctState.accounts,
         accountView: acctState.accountView,
@@ -412,6 +424,14 @@ export const GlobalProvider = ({ children }) => {
         addTransaction,
         updateTransaction,
         selectTrans,
+        // Merchant Contexts
+        merchants: merchantState.merchants,
+        openMerchantModal: actionsState.openMerchantModal,
+        getMerchants,
+        deleteMerchant,
+        addMerchant,
+        handleMerchModalOpen,
+        handleMerchModalClose,
         // Date Contexts
         monthNames: dateState.monthNames,
         displayDate: dateState.displayDate,

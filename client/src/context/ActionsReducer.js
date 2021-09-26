@@ -20,6 +20,16 @@ const ActionsReducer = (state, action) => {
                 ...state,
                 openAcctModal: false
             }
+        case 'OPEN_ADD_MERCH_MODAL':
+            return {
+                ...state,
+                openMerchantModal: true
+            }
+        case 'CLS_ADD_MERCH_MODAL':
+            return {
+                ...state,
+                openMerchantModal: false
+            }
         case 'CHG_TRANS_TYP':
             return {
                 ...state,
