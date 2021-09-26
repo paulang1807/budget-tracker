@@ -21,9 +21,13 @@ export const AddMerchant = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        let alertTitle='';
+        let alertText='';
+
         if (!merchantName){
-            let alertText='Merchant Name is required in order to add merchants';
-            handleAlertOpen(alertText);
+            alertTitle="Input Error!"
+            alertText='Merchant Name is required in order to add merchants';
+            handleAlertOpen({"alertTitle": alertTitle, "alertText": alertText});
             return (<Alert />);
         }
 
@@ -31,14 +35,19 @@ export const AddMerchant = () => {
 
         const merchantExists = merchants.filter((merchant) => merchant.merchantName.toLowerCase()===merchantName.toLowerCase())
         if (merchantExists.length > 0){
-            let alertText='Merchant already exists in the database';
-            handleAlertOpen(alertText);
+            alertTitle="Input Error!"
+            alertText='Merchant already exists in the database';
+            handleAlertOpen({"alertTitle": alertTitle, "alertText": alertText});
             return (<Alert />);
         } else {
             const newMerchant = {
                 merchantName
             }
             addMerchant(newMerchant)
+            alertTitle="Operation Successful!"
+            alertText='Merchant has been added.';
+            handleAlertOpen({"alertTitle": alertTitle, "alertText": alertText});
+            return (<Alert />);
         }
     }
 

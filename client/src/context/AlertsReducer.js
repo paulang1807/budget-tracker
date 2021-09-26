@@ -4,7 +4,8 @@ const AlertsReducer = (state, action) => {
             return {
                 ...state,
                 openAlert: true,
-                alertContent: action.payload
+                alertTitle: action.payload.alertTitle,
+                alertContent: action.payload.alertText
             }
         case 'CLS_ALERT':
             return {

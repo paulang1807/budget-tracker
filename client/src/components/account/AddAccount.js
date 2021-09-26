@@ -29,9 +29,13 @@ export const AddAccount = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        let alertTitle='';
+        let alertText='';
+
         if (!accountName){
-            let alertText='Account Name is required in order to add accounts';
-            handleAlertOpen(alertText);
+            alertTitle="Input Error!"
+            alertText='Account Name is required in order to add accounts';
+            handleAlertOpen({"alertTitle": alertTitle, "alertText": alertText});
             return (<Alert />);
         }
 
@@ -43,7 +47,12 @@ export const AddAccount = () => {
             initialBalance,
             comments
         }
-        addAccount(newAcct)
+        addAccount(newAcct);
+        alertTitle="Operation Successful!"
+        alertText='Account has been added.';
+        handleAlertOpen({"alertTitle": alertTitle, "alertText": alertText});
+        return (<Alert />);
+
     }
 
     return (

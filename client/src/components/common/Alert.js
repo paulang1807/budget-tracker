@@ -8,8 +8,16 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+import { ThemeProvider } from '@material-ui/core/styles';
+
+import { alertBtnTheme } from '../../styles/common/Alert';
+
 export default function Alert() {
-    const { openAlert, alertContent, handleAlertClose } = useContext(GlobalContext);
+    const { openAlert
+            ,alertContent
+            ,alertTitle
+            ,handleAlertClose } 
+            = useContext(GlobalContext);
 
     return (
         <div>
@@ -19,16 +27,18 @@ export default function Alert() {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
             >
-            <DialogTitle id="alert-dialog-title">{"Input error!"}</DialogTitle>
+            <DialogTitle id="alert-dialog-title">{alertTitle}</DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
                 {alertContent}
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleAlertClose} color="primary" autoFocus>
-                OK
-                </Button>
+                <ThemeProvider theme={alertBtnTheme}>
+                    <Button onClick={handleAlertClose} color="primary" autoFocus>
+                        OK
+                    </Button>
+                </ThemeProvider>
             </DialogActions>
             </Dialog>
         </div>

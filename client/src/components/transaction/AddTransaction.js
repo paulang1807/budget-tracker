@@ -107,27 +107,34 @@ export const AddTransaction = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        let alertTitle='';
+        let alertText='';
+
         if (!transactionName){
-            let alertText='Transaction Name is required in order to add a transaction';
-            handleAlertOpen(alertText);
+            alertTitle="Input Error!"
+            alertText='Transaction Name is required in order to add a transaction';
+            handleAlertOpen({"alertTitle": alertTitle, "alertText": alertText});
             return (<Alert />);
         }
 
         if (accountId === '' || accountId === 'None'){
-            let alertText='Related account must be selected in order to add a transaction';
-            handleAlertOpen(alertText);
+            alertTitle="Input Error!"
+            alertText='Related account must be selected in order to add a transaction';
+            handleAlertOpen({"alertTitle": alertTitle, "alertText": alertText});
             return (<Alert />);
         }
 
         if (merchantId === '' || merchantId === 'None'){
-            let alertText='Related Merchant must be selected in order to add a transaction';
-            handleAlertOpen(alertText);
+            alertTitle="Input Error!"
+            alertText='Related Merchant must be selected in order to add a transaction';
+            handleAlertOpen({"alertTitle": alertTitle, "alertText": alertText});
             return (<Alert />);
         }
 
         if (type === '' || type === 'None'){
-            let alertText='Type must be selected in order to add a transaction';
-            handleAlertOpen(alertText);
+            alertTitle="Input Error!"
+            alertText='Type must be selected in order to add a transaction';
+            handleAlertOpen({"alertTitle": alertTitle, "alertText": alertText});
             return (<Alert />);
         }
 
@@ -147,6 +154,7 @@ export const AddTransaction = () => {
                 comments
             }
             addTransaction(newTrans)
+            alertText='Transaction has been added.';
         } else {
             const modTrans = {
                 _id,
@@ -162,7 +170,11 @@ export const AddTransaction = () => {
                 comments
             }
             updateTransaction(modTrans)
+            alertText='Transaction has been updated.';
         }
+        alertTitle="Operation Successful!"
+        handleAlertOpen({"alertTitle": alertTitle, "alertText": alertText});
+        return (<Alert />);
     }
 
     return (

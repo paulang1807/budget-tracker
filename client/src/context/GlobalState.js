@@ -54,6 +54,7 @@ const initialState = {
     openMerchantModal: false,
     // Alert states
     openAlert: false,
+    alertTitle: '',
     alertContent: '',
     // Action states
     transType: '',
@@ -387,10 +388,10 @@ export const GlobalProvider = ({ children }) => {
     }
 
     // Actions - Alerts
-    function handleAlertOpen(alertText) {
+    function handleAlertOpen(alertParams) {
         alertsDispatch({
             type: 'OPEN_ALERT',
-            payload: alertText
+            payload: alertParams
         })
     }
 
@@ -471,6 +472,7 @@ export const GlobalProvider = ({ children }) => {
         handleTransTypeChange,
         // Alert Contexts
         openAlert: alertsState.openAlert,
+        alertTitle: alertsState.alertTitle,
         alertContent: alertsState.alertContent,
         handleAlertOpen,
         handleAlertClose,
