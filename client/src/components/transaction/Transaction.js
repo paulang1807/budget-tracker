@@ -10,9 +10,9 @@ import { useStyles, useCellStyles } from '../../styles/transaction/Transaction';
 let transYear = '';
 let transMonth = '';
 let transDay = '';
-export const Transaction = ({index, tran}) => {
+export const Transaction = ({index, tran, showRow}) => {
 
-    const classes = useStyles();
+    const classes = useStyles(showRow);
     const cellClasses = useCellStyles();
 
     const { merchants
@@ -50,6 +50,7 @@ export const Transaction = ({index, tran}) => {
         selected={isItemSelected}
         className={classes.root}
     >
+        <TableCell padding="checkbox" className={cellClasses.root}></TableCell>
         <TableCell component="th" id={labelId} scope="row" className={cellClasses.root}>
         {tran.transactionName}
         </TableCell>

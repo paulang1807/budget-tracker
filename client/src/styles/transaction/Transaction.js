@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(() => ({
-    root: { lineHeight: ".7",
+    root: { visibility: (showRow) => showRow ? "visible" : "collapse",
             fontSize: ".7rem"
             },
 }));
