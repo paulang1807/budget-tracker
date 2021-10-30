@@ -10,7 +10,9 @@ import StoreIcon from '@material-ui/icons/Store';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import TableChartIcon from '@material-ui/icons/TableChart';
 
-import { useStyles, useMenuStyles } from '../../styles/action/Settings';
+import { ThemeProvider } from '@material-ui/core/styles';
+
+import { useStyles, useMenuStyles, menuListTheme } from '../../styles/action/Settings';
 
 export default function Settings() {
 
@@ -40,36 +42,38 @@ export default function Settings() {
                 >
                 GroupBy
             </Button>
-            <Menu
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-                }}
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
-                <MenuItem className={menuClasses.root}>
-                    <ListItemIcon>
-                        <StoreIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText primary="Merchants" />
-                </MenuItem>
-                <MenuItem className={menuClasses.root}>
-                    <ListItemIcon>
-                        <CategoryIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText primary="Categories" />
-                </MenuItem>
-                <MenuItem className={menuClasses.root}>
-                    <ListItemIcon>
-                        <AccountTreeIcon fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText primary="SubCategories" />
-                </MenuItem>
-            </Menu>
+            <ThemeProvider theme={menuListTheme}>
+                <Menu
+                    getContentAnchorEl={null}
+                    anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                    }}
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <MenuItem className={menuClasses.root}>
+                        <ListItemIcon className={menuClasses.root}>
+                            <StoreIcon fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText primary="Merchants" />
+                    </MenuItem>
+                    <MenuItem className={menuClasses.root}>
+                        <ListItemIcon className={menuClasses.root}>
+                            <CategoryIcon fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText primary="Categories" />
+                    </MenuItem>
+                    <MenuItem className={menuClasses.root}>
+                        <ListItemIcon className={menuClasses.root}>
+                            <AccountTreeIcon fontSize="small" />
+                        </ListItemIcon>
+                        <ListItemText primary="SubCategories" />
+                    </MenuItem>
+                </Menu>
+            </ThemeProvider>
         </>
     )
 }

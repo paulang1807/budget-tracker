@@ -1,4 +1,16 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createTheme } from '@material-ui/core/styles';
+
+// Override List styles
+export const menuListTheme = createTheme({
+  overrides: {
+    MuiList: {
+      padding: {
+        paddingTop: "0",
+        paddingBottom: "0",
+      },
+    },
+  },
+});
 
 export const useStyles = makeStyles(() => ({
     button: {
