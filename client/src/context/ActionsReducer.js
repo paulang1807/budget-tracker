@@ -35,6 +35,21 @@ const ActionsReducer = (state, action) => {
                 ...state,
                 transType: action.payload
             }
+        case 'GRP_BY_MERCH':
+            return {
+                ...state,
+                grpbyMerch: !state.grpbyMerch
+            }
+        case 'GRP_BY_CAT':
+            return {
+                ...state,
+                grpbyCat: !state.grpbyCat
+            }
+        case 'GRP_BY_SUBCAT':
+            return {
+                ...state,
+                grpbySubcat: !state.grpbySubcat
+            }
         default:
             return state
     }

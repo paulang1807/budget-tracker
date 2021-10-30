@@ -43,7 +43,8 @@ export const useCustomTableHeadStyles = makeStyles(() => ({
         backgroundImage: "linear-gradient(180deg, #fbeeef, #f0bcc0)",
         fontWeight: 'bold',
         lineHeight: ".7",
-        fontSize: ".75rem"
+        fontSize: ".75rem",
+        padding: ["0 24px 0 16px", "!important"],
       }
   }));
 
@@ -54,6 +55,7 @@ export const useCustomTableHeadStyles = makeStyles(() => ({
           fontWeight: 'bold',
           lineHeight: ".7",
           fontSize: ".75rem",
+          padding: ["0 24px 0 16px", "!important"],
       },
   }));
   
@@ -63,7 +65,8 @@ export const useCustomTableHeadStyles = makeStyles(() => ({
       color: "white",
       fontWeight: 'bold',
       lineHeight: ".7",
-      fontSize: ".75rem"
+      fontSize: ".75rem",
+      padding: ["0 24px 0 16px", "!important"],
     }
   }));
   
@@ -73,6 +76,7 @@ export const useCustomTableHeadStyles = makeStyles(() => ({
       color: "white",
       fontWeight: 'bold',
       lineHeight: ".7",
-      fontSize: ".75rem"
+      fontSize: ".75rem",
+      padding: ["0 24px 0 16px", "!important"],
     }
   }));

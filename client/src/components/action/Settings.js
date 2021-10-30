@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { GlobalContext } from '../../context/GlobalState';
 
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -12,14 +13,23 @@ import TableChartIcon from '@material-ui/icons/TableChart';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import { useStyles, useMenuStyles, menuListTheme } from '../../styles/action/Settings';
+import { useStyles, useMenuStyles, useMenuActiveStyles, menuListTheme } from '../../styles/action/Settings';
 
 export default function Settings() {
+
+    const { grpbyMerch
+            ,grpbyCat
+            ,grpbySubcat
+            ,handleGroupByMerchant
+            ,handleGroupByCategory
+            ,handleGroupBySubCategory  } 
+            = useContext(GlobalContext);
 
     const [anchorEl, setAnchorEl] = useState(null);
 
     const classes = useStyles();
     const menuClasses = useMenuStyles();
+    const menuActiveClasses = useMenuActiveStyles();
 
     const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -54,19 +64,25 @@ export default function Settings() {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem className={menuClasses.root}>
+                    <MenuItem 
+                        onClick={handleGroupByMerchant}
+                        className={grpbyMerch ? menuActiveClasses.root : menuClasses.root}>
                         <ListItemIcon className={menuClasses.root}>
                             <StoreIcon fontSize="small" />
                         </ListItemIcon>
                         <ListItemText primary="Merchants" />
                     </MenuItem>
-                    <MenuItem className={menuClasses.root}>
+                    <MenuItem 
+                        onClick={handleGroupByCategory}
+                        className={grpbyCat ? menuActiveClasses.root : menuClasses.root}>
                         <ListItemIcon className={menuClasses.root}>
                             <CategoryIcon fontSize="small" />
                         </ListItemIcon>
                         <ListItemText primary="Categories" />
                     </MenuItem>
-                    <MenuItem className={menuClasses.root}>
+                    <MenuItem 
+                        onClick={handleGroupBySubCategory}
+                        className={grpbySubcat ? menuActiveClasses.root : menuClasses.root}>
                         <ListItemIcon className={menuClasses.root}>
                             <AccountTreeIcon fontSize="small" />
                         </ListItemIcon>

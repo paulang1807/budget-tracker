@@ -58,6 +58,9 @@ const initialState = {
     alertContent: '',
     // Action states
     transType: '',
+    grpbyMerch:false,
+    grpbyCat:false,
+    grpbySubcat:false
 }
 
 // Create Context
@@ -373,7 +376,7 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
-    // Actions - Merchant Mocal
+    // Actions - Merchant Modal
     function handleMerchModalOpen() {
 
         actionsDispatch({
@@ -398,6 +401,26 @@ export const GlobalProvider = ({ children }) => {
     function handleAlertClose() {
         alertsDispatch({
             type: 'CLS_ALERT'
+        })
+    }
+
+    // Actions - Settings
+    function handleGroupByMerchant() {
+        actionsDispatch({
+            type: 'GRP_BY_MERCH'
+        })
+    }
+
+    function handleGroupByCategory() {
+        actionsDispatch({
+            type: 'GRP_BY_CAT'
+        })
+    }
+
+    function handleGroupBySubCategory (typ) {
+        actionsDispatch({
+            type: 'GRP_BY_SUBCAT',
+            payload: typ
         })
     }
 
@@ -467,9 +490,15 @@ export const GlobalProvider = ({ children }) => {
         handleCurrMonth,
         // Action Contexts
         transType: actionsState.transType,
+        grpbyMerch: actionsState.grpbyMerch,
+        grpbyCat: actionsState.grpbyCat,
+        grpbySubcat: actionsState.grpbySubcat,
         handleTransModalOpen,
         handleTransModalClose,
         handleTransTypeChange,
+        handleGroupByMerchant,
+        handleGroupByCategory,
+        handleGroupBySubCategory,
         // Alert Contexts
         openAlert: alertsState.openAlert,
         alertTitle: alertsState.alertTitle,
