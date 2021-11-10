@@ -20,18 +20,23 @@ export const GroupedDisplay = ({
   order,
   orderBy,
   groupByCode,
-  colArrSpan,
-  indOpen,
-  setIndOpen,
-  colGrpSpan,
-  titleStr,
-  amount,
-  tran,
+  grpTrans,
+  recurse,            // This parameter is used to differentiate between calls frm the parent and recursive calls within this component
   showRow,
 }) => {
 
   const classes = useStyles({showRow: showRow, groupByCode: groupByCode});
   const cellClasses = useCellStyles();
+
+  const colArrSpan=recurse? grpTrans.colArrSpan : groupByCode==='I' ? null : grpTrans.colArrSpan
+  const indOpen=recurse? grpTrans.indOpen : groupByCode==='I' ? null : grpTrans.indOpen
+  const setIndOpen=recurse? grpTrans.setIndOpen : groupByCode==='I' ? null : grpTrans.setIndOpen
+  const colGrpSpan=recurse? grpTrans.colGrpSpan : groupByCode==='I' ? null : grpTrans.colGrpSpan
+  const grpId=grpTrans.groupId 
+  const blnGrpId=grpTrans[grpId] 
+  const titleStr=recurse ? (groupByCode === "C" || groupByCode === "CS" ? grpTrans.category : groupByCode === "S" ? grpTrans.subCategory : grpTrans.merchant) : (groupByCode==='I' ? null : (groupByCode==='M' || groupByCode==='MC' || groupByCode==='MS' || groupByCode==='MCS') ? grpTrans.merchant : (groupByCode==='C' || groupByCode==='CS') ? grpTrans.category : groupByCode==='S' ? grpTrans.subCategory : null)
+  const amount=recurse? grpTrans.amount : groupByCode==='I' ? null : grpTrans.amount 
+  const tran=recurse? grpTrans.trans : groupByCode==='I' ? grpTrans : grpTrans.trans 
 
   const nextGroupByCode =
     groupByCode === "MCS"
@@ -43,6 +48,10 @@ export const GroupedDisplay = ({
       : groupByCode === "M" || groupByCode === "C" || groupByCode === "S"
       ? "L1"
       : null;
+
+  const handleExpandToggle = () => {
+    setIndOpen(!indOpen);
+  }
 
   return (
     <>
@@ -60,7 +69,7 @@ export const GroupedDisplay = ({
               <IconButton
                 aria-label="expand row"
                 size="small"
-                onClick={() => setIndOpen(!indOpen)}
+                onClick={() => handleExpandToggle()}
               >
                 {indOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
               </IconButton>
@@ -92,7 +101,7 @@ export const GroupedDisplay = ({
               <IconButton
                 aria-label="expand row"
                 size="small"
-                onClick={() => setIndOpen(!indOpen)}
+                onClick={() => handleExpandToggle()}
               >
                 {indOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
               </IconButton>
@@ -118,19 +127,8 @@ export const GroupedDisplay = ({
                 order={order}
                 orderBy={orderBy}
                 groupByCode={nextGroupByCode}
-                colArrSpan={inc1.colArrSpan}
-                indOpen={inc1.indOpen}
-                setIndOpen={inc1.setIndOpen}
-                colGrpSpan={inc1.colGrpSpan}
-                titleStr={
-                  nextGroupByCode === "C" || nextGroupByCode === "CS"
-                    ? inc1.category
-                    : nextGroupByCode === "S"
-                    ? inc1.subCategory
-                    : inc1.merchant
-                }
-                amount={inc1.amount}
-                tran={inc1.trans}
+                grpTrans={inc1} 
+                recurse={true}
                 showRow={indOpen}
               />
             )
