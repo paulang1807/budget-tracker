@@ -1,4 +1,5 @@
-import React from "react";
+import React,{ useContext, useEffect } from "react";
+import { GlobalContext } from '../../context/GlobalState';
 
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
@@ -19,24 +20,54 @@ export const GroupedDisplay = ({
   getComparator,
   order,
   orderBy,
+  type,    // Type of group - income, expense or transfer
   groupByCode,
   grpTrans,
   recurse,            // This parameter is used to differentiate between calls frm the parent and recursive calls within this component
-  showRow,
+  showRow,   
 }) => {
-
   const classes = useStyles({showRow: showRow, groupByCode: groupByCode});
   const cellClasses = useCellStyles();
 
+  const { 
+    // Object with groupIds and toggle boolean for the items that are clicked for expand/collapse
+    // format -> {groupId1: {groupId1: toggle_boolean1}...}
+    clickedIds   
+    // function for modifying clickedIds
+    // Reducer: ActionReducer   
+    ,handleClicked
+    // function for clearing clickedIds
+    // This is called whenever the grouping changes
+    // Reducer: ActionReducer
+    ,clearClicked
+    ,currGroupByCode } 
+    = useContext(GlobalContext);
+
   const colArrSpan=recurse? grpTrans.colArrSpan : groupByCode==='I' ? null : grpTrans.colArrSpan
-  const indOpen=recurse? grpTrans.indOpen : groupByCode==='I' ? null : grpTrans.indOpen
-  const setIndOpen=recurse? grpTrans.setIndOpen : groupByCode==='I' ? null : grpTrans.setIndOpen
   const colGrpSpan=recurse? grpTrans.colGrpSpan : groupByCode==='I' ? null : grpTrans.colGrpSpan
   const grpId=grpTrans.groupId 
-  const blnGrpId=grpTrans[grpId] 
+  // Array containing group ids of child elements
+  const childGroupIds=grpTrans.childGroupIds
   const titleStr=recurse ? (groupByCode === "C" || groupByCode === "CS" ? grpTrans.category : groupByCode === "S" ? grpTrans.subCategory : grpTrans.merchant) : (groupByCode==='I' ? null : (groupByCode==='M' || groupByCode==='MC' || groupByCode==='MS' || groupByCode==='MCS') ? grpTrans.merchant : (groupByCode==='C' || groupByCode==='CS') ? grpTrans.category : groupByCode==='S' ? grpTrans.subCategory : null)
   const amount=recurse? grpTrans.amount : groupByCode==='I' ? null : grpTrans.amount 
   const tran=recurse? grpTrans.trans : groupByCode==='I' ? grpTrans : grpTrans.trans 
+
+  // Temporary vars for storing the group ids and toggle boolean for the clicked row groups
+  let clickedGrpIdAndBool={};
+  let arrClickedGrpIdAndBool = [];
+
+  // If group code is different from previous group code, clear clicked id array
+  useEffect(() => {
+    if (groupByCode !== currGroupByCode) {
+      clearClicked()
+    }
+  },[currGroupByCode])
+
+  // Set the toggle boolean for the groups based on the values in clickedIds
+  if(grpId in clickedIds){
+    const clickedIdGrp = clickedIds[grpId]
+    grpTrans[grpId] = clickedIdGrp[grpId]
+  }
 
   const nextGroupByCode =
     groupByCode === "MCS"
@@ -50,7 +81,20 @@ export const GroupedDisplay = ({
       : null;
 
   const handleExpandToggle = () => {
-    setIndOpen(!indOpen);
+    // Toggle show hide boolean and add to array
+    clickedGrpIdAndBool[grpId] = !grpTrans[grpId]
+    clickedGrpIdAndBool['type'] = type
+    arrClickedGrpIdAndBool.push(clickedGrpIdAndBool)
+    // If parent row toggle set to false (hide row), set the toggle for all the corresponding child rows to false as well
+    if (!clickedGrpIdAndBool[grpId]){
+      childGroupIds.map(id => {
+        clickedGrpIdAndBool = {}
+        clickedGrpIdAndBool[id] = false
+        clickedGrpIdAndBool['type'] = type
+        arrClickedGrpIdAndBool.push(clickedGrpIdAndBool)
+      }) 
+    }
+    handleClicked(arrClickedGrpIdAndBool)
   }
 
   return (
@@ -71,7 +115,7 @@ export const GroupedDisplay = ({
                 size="small"
                 onClick={() => handleExpandToggle()}
               >
-                {indOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                {grpTrans[grpId] ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
               </IconButton>
             </TableCell>
             <TableCell
@@ -90,7 +134,7 @@ export const GroupedDisplay = ({
               key={inc._id}
               index={index}
               tran={inc}
-              showRow={indOpen}
+              showRow={grpTrans[grpId]}
             />
           ))}
         </>
@@ -103,7 +147,7 @@ export const GroupedDisplay = ({
                 size="small"
                 onClick={() => handleExpandToggle()}
               >
-                {indOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                { grpTrans[grpId] ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon /> }
               </IconButton>
             </TableCell>
             <TableCell
@@ -126,10 +170,11 @@ export const GroupedDisplay = ({
                 getComparator={getComparator}
                 order={order}
                 orderBy={orderBy}
+                type={type}
                 groupByCode={nextGroupByCode}
                 grpTrans={inc1} 
                 recurse={true}
-                showRow={indOpen}
+                showRow={grpTrans[grpId]}
               />
             )
           )}

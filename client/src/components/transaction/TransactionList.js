@@ -130,26 +130,17 @@ export const TransactionList = () => {
           ,selRangeEnd
           ,grpbyMerch
           ,grpbyCat
-          ,grpbySubcat } 
+          ,grpbySubcat
+          // function to set a global variable to identify the current grouping
+          ,handleGroupBy
+          ,clickedIds    
+          ,handleClicked } 
           = useContext(GlobalContext);
 
   // Variable to control the expansion and collapse of grouped rows at top level
   const [incOpen, setIncOpen] = useState(false);
   const [expOpen, setExpOpen] = useState(false);
   const [transOpen, setTransOpen] = useState(false);
-
-  // Variable to control the expansion and collapse of rows grouped by merchant
-  const [incMOpen, setIncMOpen] = useState(false);
-  const [expMOpen, setExpMOpen] = useState(false);
-  const [transMOpen, setTransMOpen] = useState(false);
-  // Variable to control the expansion and collapse of rows grouped by category
-  const [incCOpen, setIncCOpen] = useState(false);
-  const [expCOpen, setExpCOpen] = useState(false);
-  const [transCOpen, setTransCOpen] = useState(false);
-  // Variable to control the expansion and collapse of rows grouped by subcategory
-  const [incSOpen, setIncSOpen] = useState(false);
-  const [expSOpen, setExpSOpen] = useState(false);
-  const [transSOpen, setTransSOpen] = useState(false);
   
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('transactionName');
@@ -166,55 +157,13 @@ export const TransactionList = () => {
     setIncOpen(false);
     setExpOpen(false);
     setTransOpen(false);
+    resetChildRowToggle();
   }, [accountView, selectedAccount])
 
   useEffect(() => {
     // Disable action buttons
     selectTrans(null);
-    // Collapse income groups
-    setIncMOpen(false);
-    setIncCOpen(false);
-    setIncSOpen(false);
   }, [selectedAccount, accountView, grpbyMerch , grpbyCat, grpbySubcat])
-
-  useEffect(() => {
-    if(!incOpen){
-      setIncMOpen(false);
-      setIncCOpen(false);
-      setIncSOpen(false);
-    }
-    if(!expOpen){
-      setExpMOpen(false);
-      setExpCOpen(false);
-      setExpSOpen(false);
-    }
-    if(!transOpen){
-      setTransMOpen(false);
-      setTransCOpen(false);
-      setTransSOpen(false);
-    }
-    if(grpbyMerch && !incMOpen){
-      setIncCOpen(false);
-      setIncSOpen(false);
-    }
-    if(grpbyMerch && !expMOpen){
-      setExpCOpen(false);
-      setExpSOpen(false);
-    }
-    if(grpbyMerch && !transMOpen){
-      setTransCOpen(false);
-      setTransSOpen(false);
-    }
-    if(grpbyCat && !incCOpen){
-      setIncSOpen(false);
-    }
-    if(grpbyCat && !expCOpen){
-      setExpSOpen(false);
-    }
-    if(grpbyCat && !transCOpen){
-      setTransSOpen(false);
-    }
-  }, [incOpen, expOpen, transOpen, incMOpen, expMOpen, transMOpen, incCOpen, expCOpen, transCOpen, incSOpen, expSOpen, transSOpen])
 
   const classes = useStyles();
   const tblHeadClasses = useCustomTableHeadStyles();
@@ -227,6 +176,50 @@ export const TransactionList = () => {
       setOrder(isAsc ? 'desc' : 'asc');
       setOrderBy(property);
   };
+
+  // Function to set toggle values for all expanded records to false
+  const resetChildRowToggle = (typ='All') => {
+    let currGrp = {};
+    let tmpGrp = {};
+    let arrTmpGrp = [];
+    let filClickedIds={};  // Array for group data filtered for the type clicked
+    if(typ !== 'All') {
+      // Filter the nested object based on the type of transaction
+      filClickedIds =  Object.entries(clickedIds).filter(([key, val]) =>  val.type===typ)
+    } else {
+      filClickedIds = clickedIds
+    }
+    // Parse object to get the group toggle and type
+    for  (const grp in filClickedIds) {
+      currGrp = Object.values(filClickedIds[grp])[1];
+      tmpGrp = {};
+      tmpGrp[Object.keys(currGrp)[0]] = false
+      tmpGrp['type'] = Object.values(currGrp)[1]
+      arrTmpGrp.push(tmpGrp)
+    }
+    handleClicked(arrTmpGrp)
+  }
+
+  // Function to set the states for the income, expense and transfer expand toggles
+  // If the toggle value is being set to collapse, it will set the toggle value for any expanded child records to false as well
+  const handleClick = (typ) => {
+    if(typ==='I'){
+      setIncOpen(!incOpen)
+      if (incOpen) {
+        resetChildRowToggle('income')
+      }
+    } else if(typ==='E') {
+      setExpOpen(!expOpen)
+      if (expOpen) {
+        resetChildRowToggle('expense')
+      }
+    } else if(typ==='T') {
+      setTransOpen(!transOpen)
+      if (transOpen) {
+        resetChildRowToggle('transfer')
+      }
+    }
+  }
 
   const rangeStart = Date.parse(selRangeStart) < Date.parse(selRangeEnd) ? selRangeStart : selRangeEnd
   const rangeSEnd = Date.parse(selRangeEnd) > Date.parse(selRangeStart) ? selRangeEnd : selRangeStart
@@ -336,36 +329,33 @@ export const TransactionList = () => {
     groupedTransactions = groupBySubcategory
   }
 
+  // Store group by code globally whenever it changes
+  useEffect(() => {
+    handleGroupBy(groupByCode)
+  },[grpbyMerch , grpbyCat, grpbySubcat])
+
   // Grouping column spans and indicators
   const getGroupParams = (cd, type,) => {
     let colArrSpan = 0;
     let colGrpSpan = 0;
-    let indOpen;
-    let setIndOpen;
     if(cd==='M'){
       colArrSpan = 3;
       colGrpSpan = 3;
-      indOpen = type==='income' ? incMOpen : type==='expenses' ? expMOpen : transMOpen;
-      setIndOpen = type==='income' ? setIncMOpen : type==='expenses' ? setExpMOpen : setTransMOpen;
     } else if (cd==='C'){
       colArrSpan = 4;
       colGrpSpan = 2;
-      indOpen = type==='income' ? incCOpen : type==='expenses' ? expCOpen : transCOpen;
-      setIndOpen = type==='income' ? setIncCOpen : type==='expenses' ? setExpCOpen : setTransCOpen;
     }  else if (cd==='S'){
       colArrSpan = 5;
       colGrpSpan = 1;
-      indOpen = type==='income' ? incSOpen : type==='expenses' ? expSOpen : transSOpen;
-      setIndOpen = type==='income' ? setIncSOpen : type==='expenses' ? setExpSOpen : setTransSOpen;
     } 
-    return [colArrSpan, colGrpSpan, indOpen, setIndOpen];
+    return [colArrSpan, colGrpSpan];
   }
 
   let groupedTrans, groupedTransL2, groupedTransL3;
 
   // Helper function for adding transactions to array
-  const addTransactionsToArray = (pGroupedTrans, pType, pTmpTrans, pGroupByStrKey, pGroupByStr, pAmt, pGrpParms, pArrTrans) => {
-    pTmpTrans = {"groupId":pGroupByStrKey, "amount": pAmt, "colArrSpan": pGrpParms[0], "colGrpSpan": pGrpParms[1], "indOpen": pGrpParms[2], "setIndOpen": pGrpParms[3], "trans": pArrTrans};
+  const addTransactionsToArray = (pGroupedTrans, pType, pTmpTrans, pGroupByStrKey, pGroupByStr, groupByStrChildKeys, pAmt, pGrpParms, pArrTrans) => {
+    pTmpTrans = {"groupId":pGroupByStrKey, "childGroupIds":groupByStrChildKeys,  "amount": pAmt, "colArrSpan": pGrpParms[0], "colGrpSpan": pGrpParms[1], "trans": pArrTrans};
     pTmpTrans[pGroupByStrKey] = false;
     pTmpTrans[pType] = pGroupByStr;
     pGroupedTrans.push(pTmpTrans)
@@ -387,6 +377,10 @@ export const TransactionList = () => {
     let groupByStrKeyL2 = '';
     let groupByStrKeyL3 = '';
     let groupByStrKeyTmp = '';
+    // Array for storing the group Ids for the child groups. 
+    // This will be blank for the lowest level groups (group codes M, C and S)
+    let groupByStrChildKeys = []; 
+    let groupByStrChildKeysL2 = [];     
     let grpParms = [];
     let tmpTrans = {};
   
@@ -400,15 +394,16 @@ export const TransactionList = () => {
         groupArrMatch = merchants.filter((merch) => merch._id===key)[0];
         groupByStr = groupArrMatch && groupArrMatch.merchantName;
         groupByStrKey = groupByStr.replace(/\s+/g, '').toLowerCase();
-        groupedTrans = addTransactionsToArray(groupedTrans, "merchant", tmpTrans, groupByStrKey, groupByStr, amt, grpParms, value)
+        groupedTrans = addTransactionsToArray(groupedTrans, "merchant", tmpTrans, groupByStrKey, groupByStr, [], amt, grpParms, value)
       } else if(groupByCode==='C'){
-        groupedTrans = addTransactionsToArray(groupedTrans, "category", tmpTrans, groupByStrKey, groupByStr, amt, grpParms, value)
+        groupedTrans = addTransactionsToArray(groupedTrans, "category", tmpTrans, groupByStrKey, groupByStr, [], amt, grpParms, value)
       } else if(groupByCode==='S'){
-        groupedTrans = addTransactionsToArray(groupedTrans, "subCategory", tmpTrans, groupByStrKey, groupByStr, amt, grpParms, value)
+        groupedTrans = addTransactionsToArray(groupedTrans, "subCategory", tmpTrans, groupByStrKey, groupByStr, [], amt, grpParms, value)
       } 
     })
   } else if(groupByCode==='MC' || groupByCode==='MS' || groupByCode==='CS'){
     _.forEach(groupedTransactions, (value, key) => {
+      groupByStrChildKeysL2 = [];     // Reset array
       amt = 0;
       groupedTransL2 = [];
       if(groupByCode==='MC' || groupByCode==='MS'){
@@ -421,29 +416,30 @@ export const TransactionList = () => {
         groupByStrKey = key.replace(/\s+/g, '').toLowerCase(); 
       }
       _.forEach(value, (value1, key1) => {
-      // amtL2 = 0;
       groupByStrL2 = key1;
       groupByStrKeyL2 = groupByStrKey + groupByStrL2.replace(/\s+/g, '').toLowerCase();
       amtL2 = _.sum(_.map(value1, (t) => t.amount));    
       amt += amtL2;
       if(groupByCode==='CS' || groupByCode==='MS'){
         grpParms = getGroupParams('S', type);
-        groupedTransL2 = addTransactionsToArray(groupedTransL2, "subCategory", tmpTrans, groupByStrKeyL2, groupByStrL2, amtL2, grpParms, value1)
+        groupedTransL2 = addTransactionsToArray(groupedTransL2, "subCategory", tmpTrans, groupByStrKeyL2, groupByStrL2, [], amtL2, grpParms, value1)
       } else if(groupByCode==='MC'){
         grpParms = getGroupParams('C', type);
-        groupedTransL2 = addTransactionsToArray(groupedTransL2, "category", tmpTrans, groupByStrKeyL2, groupByStrL2, amtL2, grpParms, value1)
+        groupedTransL2 = addTransactionsToArray(groupedTransL2, "category", tmpTrans, groupByStrKeyL2, groupByStrL2, [], amtL2, grpParms, value1)
       } 
+      groupByStrChildKeysL2.push(groupByStrKeyL2)
       })
       if(groupByCode==='MC' || groupByCode==='MS'){
         grpParms = getGroupParams('M', type);
-        groupedTrans = addTransactionsToArray(groupedTrans, "merchant", tmpTrans, groupByStrKey, groupByStr, amt, grpParms, groupedTransL2)
+        groupedTrans = addTransactionsToArray(groupedTrans, "merchant", tmpTrans, groupByStrKey, groupByStr, groupByStrChildKeysL2, amt, grpParms, groupedTransL2)
       } else if(groupByCode==='CS'){
         grpParms = getGroupParams('C', type);
-        groupedTrans = addTransactionsToArray(groupedTrans, "category", tmpTrans, groupByStrKey, groupByStr, amt, grpParms, groupedTransL2)
+        groupedTrans = addTransactionsToArray(groupedTrans, "category", tmpTrans, groupByStrKey, groupByStr, groupByStrChildKeysL2, amt, grpParms, groupedTransL2)
       }
     })
   } else if(groupByCode==='MCS') {
     _.forEach(groupedTransactions, (value, key) => {
+      groupByStrChildKeys = [];     // Reset array
       amt = 0;
       groupedTransL2 = [];  
       groupArrMatch = merchants.filter((merch) => merch._id===key)[0];
@@ -451,6 +447,7 @@ export const TransactionList = () => {
       groupByStr = groupByStrKeyTmp
       groupByStrKey = groupByStr.replace(/\s+/g, '').toLowerCase();
       _.forEach(value, (value1, key1) => {
+        groupByStrChildKeysL2 = [];
         amtL2 = 0;
         groupedTransL3 = [];
         groupByStrL2 = key1;
@@ -461,20 +458,22 @@ export const TransactionList = () => {
           amtL3 = _.sum(_.map(value2, (t) => t.amount));
           amtL2 += amtL3;
           grpParms = getGroupParams('S', type);
-          groupedTransL3 = addTransactionsToArray(groupedTransL3, "subCategory", tmpTrans, groupByStrKeyL3, groupByStrL3, amtL3, grpParms, value2)
+          groupedTransL3 = addTransactionsToArray(groupedTransL3, "subCategory", tmpTrans, groupByStrKeyL3, groupByStrL3, [], amtL3, grpParms, value2)
+          groupByStrChildKeysL2.push(groupByStrKeyL3)
+          groupByStrChildKeys.push(groupByStrKeyL3)
         })
         grpParms = getGroupParams('C', type);
-        groupedTransL2 = addTransactionsToArray(groupedTransL2, "category", tmpTrans, groupByStrKeyL2, groupByStrL2, amtL2, grpParms, groupedTransL3)
+        groupedTransL2 = addTransactionsToArray(groupedTransL2, "category", tmpTrans, groupByStrKeyL2, groupByStrL2, groupByStrChildKeysL2, amtL2, grpParms, groupedTransL3)
         amt += amtL2;
+        groupByStrChildKeys.push(groupByStrKeyL2)
       })
       grpParms = getGroupParams('M', type);
-      groupedTrans = addTransactionsToArray(groupedTrans, "merchant", tmpTrans, groupByStrKey, groupByStr, amt, grpParms, groupedTransL2)
+      groupedTrans = addTransactionsToArray(groupedTrans, "merchant", tmpTrans, groupByStrKey, groupByStr, groupByStrChildKeys, amt, grpParms, groupedTransL2)
     
     })
   } else {
     groupedTrans = groupedTransactions
   }
-  console.log("GROUPED TRANS: ", groupedTrans)
   }
 
   return (
@@ -500,7 +499,7 @@ export const TransactionList = () => {
               <TableRow>
                 <ThemeProvider theme={arrowIconTheme}>
                   <TableCell className={tblIncClasses.root}>
-                    <IconButton aria-label="expand row" size="small" onClick={() => setIncOpen(!incOpen)}>
+                    <IconButton aria-label="expand row" size="small" onClick={() => handleClick('I')}>
                       {incOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                   </TableCell>
@@ -514,14 +513,14 @@ export const TransactionList = () => {
               {/* Income Body */}
               {stableSort(groupedTrans, getComparator(order, orderBy))
                 .map((inc, index) => (
-              <GroupedDisplay index={index} key={groupByCode==='I' ? inc._id : inc.trans._id} stableSort={stableSort} getComparator={getComparator} order={order} orderBy={orderBy} groupByCode={groupByCode} grpTrans={inc} recurse={false} showRow={incOpen}/> 
+              <GroupedDisplay index={index} key={groupByCode==='I' ? inc._id : inc.trans._id} stableSort={stableSort} getComparator={getComparator} order={order} orderBy={orderBy} type={'income'} groupByCode={groupByCode} grpTrans={inc} recurse={false} showRow={incOpen}/> 
               ))}
               {/* Expense Grouping */}
               {/* Expense Header */}
               <TableRow>
                 <ThemeProvider theme={arrowIconTheme}>
                   <TableCell className={tblExpClasses.root}>
-                    <IconButton aria-label="expand row" size="small" onClick={() => setExpOpen(!expOpen)}>
+                    <IconButton aria-label="expand row" size="small" onClick={() => handleClick('E')}>
                       {expOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                   </TableCell>
@@ -535,14 +534,14 @@ export const TransactionList = () => {
               {/* Expense Body */}
               {stableSort(groupedTrans, getComparator(order, orderBy))
                 .map((exp, index) => (
-              <GroupedDisplay index={index} key={groupByCode==='I' ? exp._id : exp.trans._id} stableSort={stableSort} getComparator={getComparator} order={order} orderBy={orderBy} groupByCode={groupByCode} grpTrans={exp} recurse={false} showRow={expOpen}/> 
+              <GroupedDisplay index={index} key={groupByCode==='I' ? exp._id : exp.trans._id} stableSort={stableSort} getComparator={getComparator} order={order} orderBy={orderBy} type={'expense'} groupByCode={groupByCode} grpTrans={exp} recurse={false} showRow={expOpen}/> 
               ))}
               {/* Transfer Grouping */}
               {/* Transfer Header */}
               <TableRow>
                 <ThemeProvider theme={arrowIconTheme}>
                   <TableCell className={tblTransClasses.root}>
-                    <IconButton aria-label="expand row" size="small" onClick={() => setTransOpen(!transOpen)}>
+                    <IconButton aria-label="expand row" size="small" onClick={() => handleClick('T')}>
                       {transOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                   </TableCell>
@@ -556,7 +555,7 @@ export const TransactionList = () => {
               {/* Transfer Body */}
               {stableSort(groupedTrans, getComparator(order, orderBy))
                 .map((xfer, index) => (
-              <GroupedDisplay index={index} key={groupByCode==='I' ? xfer._id : xfer.trans._id} stableSort={stableSort} getComparator={getComparator} order={order} orderBy={orderBy} groupByCode={groupByCode} grpTrans={xfer} recurse={false} showRow={transOpen}/> 
+              <GroupedDisplay index={index} key={groupByCode==='I' ? xfer._id : xfer.trans._id} stableSort={stableSort} getComparator={getComparator} order={order} orderBy={orderBy} type={'transfer'} groupByCode={groupByCode} grpTrans={xfer} recurse={false} showRow={transOpen}/> 
               ))}
               </TableBody>
           </Table>

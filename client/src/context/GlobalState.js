@@ -60,7 +60,9 @@ const initialState = {
     transType: '',
     grpbyMerch:false,
     grpbyCat:false,
-    grpbySubcat:false
+    grpbySubcat:false,
+    clickedIds: {},         // Object containing the details for the groups that have been clicked
+    currGroupByCode: '',        // Var for tracking the group code for the current grouping
 }
 
 // Create Context
@@ -424,6 +426,26 @@ export const GlobalProvider = ({ children }) => {
         })
     }
 
+    function handleClicked (clickedGrpIdAndBool) {
+        actionsDispatch({
+            type: 'SET_CLICKED',
+            payload: clickedGrpIdAndBool
+        })
+    }
+
+    function clearClicked () {
+        actionsDispatch({
+            type: 'RESET_CLICKED'
+        })
+    }
+
+    function handleGroupBy (grpByCd) {
+        actionsDispatch({
+            type: 'SET_GRPBY_CD',
+            payload: grpByCd
+        })
+    }
+
     return (<GlobalContext.Provider value={{
         error: state.error,
         loading: state.loading,
@@ -493,12 +515,17 @@ export const GlobalProvider = ({ children }) => {
         grpbyMerch: actionsState.grpbyMerch,
         grpbyCat: actionsState.grpbyCat,
         grpbySubcat: actionsState.grpbySubcat,
+        clickedIds: actionsState.clickedIds,
+        currGroupByCode: actionsState.currGroupByCode,
         handleTransModalOpen,
         handleTransModalClose,
         handleTransTypeChange,
         handleGroupByMerchant,
         handleGroupByCategory,
         handleGroupBySubCategory,
+        handleClicked,
+        clearClicked,
+        handleGroupBy,
         // Alert Contexts
         openAlert: alertsState.openAlert,
         alertTitle: alertsState.alertTitle,
