@@ -1,9 +1,12 @@
 import React from 'react'
 
+// Styles
+import { Title } from '../../styles/App';
+
 export const Header = () => {
     return (
-        <h2 className={"mainHeader"}>
+        <Title>
             Budget-N-Expenses
-        </h2>
+        </Title>
     )
 }

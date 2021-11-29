@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 import { numberWithCommas } from '../../utils/format';
 
+// Styles
+import { AccountTotal } from '../../styles/account/Account';
+
 export const Balance = () => {
     const { transactions } = useContext(GlobalContext);
 
@@ -11,9 +14,9 @@ export const Balance = () => {
     const total = (incomes.reduce((acc, item) => (acc += item), 0) - expenses.reduce((acc, item) => (acc += item), 0)).toFixed(2);
 
     return (
-        <div className="totalDisplay">
+        <AccountTotal>
             <h4>Your Balance</h4>
             <h1>${numberWithCommas(total)}</h1>
-        </div>
+        </AccountTotal>
     )
 }

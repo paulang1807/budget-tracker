@@ -6,9 +6,9 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
+// Styles
+import { DateSelectorWrapper, DateSelectorArrows, DateSelectorButton, DateSelectorGrid, DateSelectorCurrentMonth, MonthArrow, YearArrow } from '../../styles/date/DateSelector';
 import { ThemeProvider } from '@material-ui/core/styles';
-
-import '../../styles/date/DateSelector.css';
 import { useStyles, dateModalTheme } from '../../styles/date/DateSelector';
 
 import { DateGrid } from './DateGrid';
@@ -37,50 +37,50 @@ export const DateSelector = () => {
 
     return (
         <>
-            <div className='ds-input' >
-                <div className='ds-button'>
-                    <div className='dsb-inner' onClick={() => setYear(-1)}>
-                        <span className='dsbi-left-arrows'></span>
+            <DateSelectorWrapper>
+                <DateSelectorArrows>
+                    <div onClick={() => setYear(-1)}>
+                        <YearArrow left></YearArrow>
                     </div>
-                </div>
-                <div className='ds-button'>
-                    <div className='dsb-inner' onClick={()=> setMonth(-1)}>
-                        <span className='dsbi-left-arrow'></span>
+                </DateSelectorArrows>
+                <DateSelectorArrows>
+                    <div onClick={()=> setMonth(-1)}>
+                        <MonthArrow left></MonthArrow>
                     </div>
-                </div>
-                <div className='ds-button-date' onClick={handleDateModalOpen}>
-                      <div className='ds-container'>
-                          <div className='dsc-txt'>{displayDate}</div>
-                      </div>
-                </div>
-                <div className='ds-button'>
-                    <div className='dsb-inner' onClick={()=> setMonth(1)}>
-                        <span className='dsbi-right-arrow'></span>
+                </DateSelectorArrows>
+                {/* <div className='ds-button-date' onClick={handleDateModalOpen}> */}
+                      {/* <div className='ds-container'> */}
+                <DateSelectorButton onClick={handleDateModalOpen}>{displayDate}</DateSelectorButton>
+                      {/* </div> */}
+                {/* </div> */}
+                <DateSelectorArrows>
+                    <div onClick={()=> setMonth(1)}>
+                        <MonthArrow right></MonthArrow>
                     </div>
-                </div>
-                <div className='ds-button'>
-                    <div className='dsb-inner' onClick={()=> setYear(1)}>
-                        <span className='dsbi-right-arrows'></span>
+                </DateSelectorArrows>
+                <DateSelectorArrows>
+                    <div onClick={()=> setYear(1)}>
+                        <YearArrow right></YearArrow>
                     </div>
-                </div>
-            </div>
+                </DateSelectorArrows>
+            </DateSelectorWrapper>
             <Dialog open={openDateModal} 
                     onClose={handleCancelDateRangeSelect} 
                     aria-labelledby="form-dialog-title" 
                     classes={{ paper: classes.paper}}
             >
                 <DialogContent>
-                    <div className='ds-grid'>
-                        <div className='dsg-container'>
+                    <DateSelectorGrid>
+                        <div>
                             Begin Date
                             <DateGrid begin={true}/>
                         </div>
-                        <div className='dsg-container'>
+                        <div>
                             End Date
                             <DateGrid begin={false}/>
                         </div>
-                    </div>
-                    <button className='ds-button-current' onClick={handleCurrMonth}>Current Month</button>
+                    </DateSelectorGrid>
+                    <DateSelectorCurrentMonth onClick={handleCurrMonth}>Current Month</DateSelectorCurrentMonth>
                 </DialogContent>
                 <DialogActions>
                     <ThemeProvider theme={dateModalTheme}>

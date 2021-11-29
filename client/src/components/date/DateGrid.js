@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 
+// styles
+import { DateGridWrapper, DataGridHead, DataGridBody, DateGridButton, DateGridArrows, DataGridHeader, DataGridYear, DataGridMonth, DataGridBodyWrapper, DataGridBodyDayWrapper, DataGridWeekday, DataGridBodyDay, DataGridDayContainer, MonthArrow, YearArrow } from '../../styles/date/DateGrid';
 import '../../styles/date/DateGrid.css';
 
 export const DateGrid = (props) => {
@@ -101,64 +103,62 @@ export const DateGrid = (props) => {
         let monthDtls = monthDetails();
         let days = monthDtls.map((day, index)=> {
             return (
-                <div className={'dgb-day-container ' + (day.month !== 0 ? ' disabled' : '') + 
+                <DataGridDayContainer className={(day.month !== 0 ? ' disabled' : '') + 
                     (day.dateString === dtToday ? ' highlight' : '') + 
                       (day.dateString === selDate ? ' highlight-green' : '') + 
                         (day.dateString === selEndDate ? ' highlight-green' : '') + 
                         (day.dateString > selDate && day.dateString < selEndDate ? ' highlight-green-range' : '')} key={index}>
-                    <div className='dgbdc-day'>
+                    <DataGridBodyDay className='dgbdc-day'>
                         <span onClick={()=>setDate(day.date)}>
                             {day.date}
                         </span>
-                    </div>
-                </div>
+                    </DataGridBodyDay>
+                </DataGridDayContainer>
             )
         })
         return (
-            <div className='dgb-container'>
-                <div className='dgbc-head'>
-                    {dayNamesShort.map((d,i)=><div key={i} className='dgbch-name'>{d}</div>)}
+            <DataGridBodyWrapper>
+                <div>
+                    {dayNamesShort.map((d,i)=><DataGridWeekday key={i} >{d}</DataGridWeekday>)}
                 </div>
-                <div className='dgbc-body'>
+                <DataGridBodyDayWrapper>
                     {days}
-                </div>
-            </div>
+                </DataGridBodyDayWrapper>
+            </DataGridBodyWrapper>
         )
     }
 
     return (
-        <div className='dg-base'>
-                <div className='dg-root'>
-                  <div className='dg-head'>
-                      <div className='dgh-button'>
-                          <div className='dghb-inner' onClick={() => setYear(-1)}>
-                              <span className='dghbi-left-arrows'></span>
-                          </div>
-                      </div>
-                      <div className='dgh-button'>
-                          <div className='dghb-inner' onClick={()=> setMonth(-1)}>
-                              <span className='dghbi-left-arrow'></span>
-                          </div>
-                      </div>
-                      <div className='dgh-container'>
-                          <div className='dghc-year'>{props.begin ? selYear : selEndYear}</div>
-                          <div className='dghc-month'>{getMonthStr}</div>
-                      </div>
-                      <div className='dgh-button'>
-                          <div className='dghb-inner' onClick={()=> setMonth(1)}>
-                              <span className='dghbi-right-arrow'></span>
-                          </div>
-                      </div>
-                      <div className='dgh-button'>
-                          <div className='dghb-inner' onClick={()=> setYear(1)}>
-                              <span className='dghbi-right-arrows'></span>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-                <div className='dg-body'>
+        <DateGridWrapper>
+                <DataGridHead>
+                    <DateGridButton>
+                        <DateGridArrows onClick={() => setYear(-1)}>
+                            <YearArrow left></YearArrow>
+                        </DateGridArrows>
+                    </DateGridButton>
+                    <DateGridButton>
+                        <DateGridArrows onClick={()=> setMonth(-1)}>
+                            <MonthArrow left></MonthArrow>
+                        </DateGridArrows>
+                    </DateGridButton>
+                    <DataGridHeader>
+                        <DataGridYear>{props.begin ? selYear : selEndYear}</DataGridYear>
+                        <DataGridMonth>{getMonthStr}</DataGridMonth>
+                    </DataGridHeader>
+                    <DateGridButton>
+                        <DateGridArrows onClick={()=> setMonth(1)}>
+                            <MonthArrow right></MonthArrow>
+                        </DateGridArrows>
+                    </DateGridButton>
+                    <DateGridButton>
+                        <DateGridArrows onClick={()=> setYear(1)}>
+                            <YearArrow right></YearArrow>
+                        </DateGridArrows>
+                    </DateGridButton>
+                </DataGridHead>
+                <DataGridBody>
                     {renderCalendar()}
-                </div>
-        </div>
+                </DataGridBody>
+        </DateGridWrapper>
     )
 }

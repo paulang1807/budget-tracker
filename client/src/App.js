@@ -1,11 +1,8 @@
 import React  from 'react';
 
+// Styles
+import { BaseContainer, AccountViewSelect, ActionsSelect, DateSelect, TransactionListSelect } from './styles/App';
 import './styles/App.css';
-import './styles/account/AccountView.css';
-import './styles/date/DateSelector.css';
-import './styles/account/AccountList.css';
-import './styles/transaction/TransactionList.css';
-import './styles/action/Actions.css';
 
 import { Header } from './components/header/Header';
 import { Menu } from './components/menu/Menu';
@@ -23,25 +20,25 @@ function App() {
     <GlobalProvider>
       <Header />
       <Menu />
-        <div className="base-container">
-          <div className="accountView">
+        <BaseContainer>
+          <AccountViewSelect>
             <AccountView />
-          </div>
-          <div className="dateSelect">
+          </AccountViewSelect>
+          <DateSelect>
             <DateSelector />
-          </div>
-        </div>
-        <div className="base-container">
-          <div className="accountList">
+          </DateSelect>
+        </BaseContainer>
+        <BaseContainer>
+          <div>
             <AccountDisplay />
           </div>
-          <div className="transactionList">
+          <TransactionListSelect>
             <TransactionList />
-          </div>
-          <div className="actions">
+          </TransactionListSelect>
+          <ActionsSelect>
             <Actions />
-          </div>
-        </div>
+          </ActionsSelect>
+        </BaseContainer>
     
     </GlobalProvider>
   );
