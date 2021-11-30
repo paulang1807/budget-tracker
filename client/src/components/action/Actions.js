@@ -11,6 +11,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import { useStyles, btnTheme } from '../../styles/action/Actions';
 
+import Tooltip from '../common/Tooltip';
+
 import Settings from './Settings';
 import { AddTransaction } from '../transaction/AddTransaction';
 
@@ -50,41 +52,49 @@ export const Actions = () => {
         <>
             <Settings />
             <ThemeProvider theme={btnTheme}>
-                <Button
-                    variant="contained"
-                    className={classes.button}
-                    startIcon={<LibraryAddIcon />}
-                    onClick={handleAdd}
-                >
-                    Add
-                </Button>
-                <Button
-                    variant="contained"
-                    className={classes.button}
-                    disabled={selectedTrans ? false : true}
-                    startIcon={<FileCopyIcon />}
-                    onClick={handleCopy}
-                >
-                    Copy
-                </Button>
-                <Button
-                    variant="contained"
-                    className={classes.button}
-                    disabled={selectedTrans ? false : true}
-                    startIcon={<EditIcon />}
-                    onClick={handleEdit}
-                >
-                    Edit
-                </Button>
-                <Button
-                    variant="contained"
-                    className={classes.button}
-                    disabled={selectedTrans ? false : true}
-                    startIcon={<DeleteIcon />}
-                    onClick={handleDelete}
-                >
-                    Delete
-                </Button>
+                <Tooltip tooltip={'Add New Transaction'}>
+                    <Button
+                        variant="contained"
+                        className={classes.button}
+                        startIcon={<LibraryAddIcon />}
+                        onClick={handleAdd}
+                    >
+                        Add
+                    </Button>
+                </Tooltip>
+                <Tooltip tooltip={'Copy Selected Transaction'}>
+                    <Button
+                        variant="contained"
+                        className={classes.button}
+                        disabled={selectedTrans ? false : true}
+                        startIcon={<FileCopyIcon />}
+                        onClick={handleCopy}
+                    >
+                        Copy
+                    </Button>
+                </Tooltip>
+                <Tooltip tooltip={'Edit Selected Transaction'}>
+                    <Button
+                        variant="contained"
+                        className={classes.button}
+                        disabled={selectedTrans ? false : true}
+                        startIcon={<EditIcon />}
+                        onClick={handleEdit}
+                    >
+                        Edit
+                    </Button>
+                </Tooltip>
+                <Tooltip tooltip={'Delete Selected Transaction'}>
+                    <Button
+                        variant="contained"
+                        className={classes.button}
+                        disabled={selectedTrans ? false : true}
+                        startIcon={<DeleteIcon />}
+                        onClick={handleDelete}
+                    >
+                        Delete
+                    </Button>
+                </Tooltip>
             </ThemeProvider>
             <AddTransaction />
         </>

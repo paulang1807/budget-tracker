@@ -15,6 +15,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import { useStyles, useMenuStyles, useMenuActiveStyles, menuListTheme } from '../../styles/action/Settings';
 
+import Tooltip from '../common/Tooltip';
+
 export default function Settings() {
 
     const { grpbyMerch
@@ -41,17 +43,19 @@ export default function Settings() {
 
     return (
         <>
-            <Button
-                aria-controls="customized-menu"
-                aria-haspopup="true"
-                variant="contained"
-                color="primary"
-                startIcon={<TableChartIcon />}
-                onClick={handleClick}
-                className={classes.button}
-                >
-                GroupBy
-            </Button>
+            <Tooltip tooltip={'Group by Merchant, Category and/or Subcategory'}>
+                <Button
+                    aria-controls="customized-menu"
+                    aria-haspopup="true"
+                    variant="contained"
+                    color="primary"
+                    startIcon={<TableChartIcon />}
+                    onClick={handleClick}
+                    className={classes.button}
+                    >
+                    GroupBy
+                </Button>
+            </Tooltip>
             <ThemeProvider theme={menuListTheme}>
                 <Menu
                     getContentAnchorEl={null}

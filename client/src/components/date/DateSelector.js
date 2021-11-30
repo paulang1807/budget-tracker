@@ -11,6 +11,8 @@ import { DateSelectorWrapper, DateSelectorArrows, DateSelectorButton, DateSelect
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useStyles, dateModalTheme } from '../../styles/date/DateSelector';
 
+import Tooltip from '../common/Tooltip';
+
 import { DateGrid } from './DateGrid';
 
 export const DateSelector = () => {
@@ -38,31 +40,37 @@ export const DateSelector = () => {
     return (
         <>
             <DateSelectorWrapper>
+                <Tooltip tooltip={'Previous Year'}>
                 <DateSelectorArrows>
                     <div onClick={() => setYear(-1)}>
                         <YearArrow left></YearArrow>
                     </div>
                 </DateSelectorArrows>
+                </Tooltip>
+                <Tooltip tooltip={'Previous Month'}>
                 <DateSelectorArrows>
                     <div onClick={()=> setMonth(-1)}>
                         <MonthArrow left></MonthArrow>
                     </div>
                 </DateSelectorArrows>
-                {/* <div className='ds-button-date' onClick={handleDateModalOpen}> */}
-                      {/* <div className='ds-container'> */}
+                </Tooltip>
+                <Tooltip tooltip={'Open Date Selector'}>
                 <DateSelectorButton onClick={handleDateModalOpen}>{displayDate}</DateSelectorButton>
-                      {/* </div> */}
-                {/* </div> */}
+                </Tooltip>
+                <Tooltip tooltip={'Next Month'}>
                 <DateSelectorArrows>
                     <div onClick={()=> setMonth(1)}>
                         <MonthArrow right></MonthArrow>
                     </div>
                 </DateSelectorArrows>
+                </Tooltip>
+                <Tooltip tooltip={'Next Year'}>
                 <DateSelectorArrows>
-                    <div onClick={()=> setYear(1)}>
+                    <div onClick={()=> setYear(1)}> 
                         <YearArrow right></YearArrow>
                     </div>
                 </DateSelectorArrows>
+                </Tooltip>
             </DateSelectorWrapper>
             <Dialog open={openDateModal} 
                     onClose={handleCancelDateRangeSelect} 

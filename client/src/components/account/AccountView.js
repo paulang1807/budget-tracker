@@ -9,6 +9,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import { useStyles, btnTheme } from '../../styles/account/AccountView';
 
+import Tooltip from '../common/Tooltip';
+
 export const AccountView = () => {
 
     const { toggleAccoutView } = useContext(GlobalContext);
@@ -25,6 +27,7 @@ export const AccountView = () => {
     return (
         <>
             <ThemeProvider theme={btnTheme}>
+                <Tooltip tooltip={'Show accounts'}>
                     <Button
                         variant="contained"
                         className={classes.button}
@@ -33,6 +36,8 @@ export const AccountView = () => {
                         >
                             Accounts
                     </Button>
+                </Tooltip>
+                <Tooltip tooltip={'Show summary of all accounts'}>
                     <Button
                         variant="contained"
                         className={classes.button}
@@ -41,6 +46,7 @@ export const AccountView = () => {
                         >
                             Summary
                     </Button>
+                </Tooltip>
             </ThemeProvider>
         </>
     )

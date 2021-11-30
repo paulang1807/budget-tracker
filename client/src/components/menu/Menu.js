@@ -11,6 +11,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import { useDivStyles, useIconStyles, menuBtntheme } from '../../styles/menu/Menu';
 
+import Tooltip from '../common/Tooltip';
+
 import { AddAccount } from '../account/AddAccount';
 import { AddMerchant } from '../merchant/AddMerchant';
 export const Menu = () => {
@@ -25,18 +27,26 @@ export const Menu = () => {
     return (
         <div className={divClasses.root}>
             <ThemeProvider theme={menuBtntheme}>
-                <IconButton color="primary" aria-label="accounts" className={iconClasses.root} onClick={handleAcctModalOpen}>
-                    <AccountBalanceIcon fontSize="large" />
-                </IconButton>
-                <IconButton color="primary" aria-label="merchants" className={iconClasses.root} onClick={handleMerchModalOpen}>
-                    <StoreIcon fontSize="large" />
-                </IconButton>
-                <IconButton color="primary" aria-label="category" className={iconClasses.root}>
-                    <CategoryIcon fontSize="large" />
-                </IconButton>
-                <IconButton color="primary" aria-label="subcategory" className={iconClasses.root}>
-                    <AccountTreeIcon fontSize="large" />
-                </IconButton>
+                <Tooltip tooltip={'Account'}>
+                    <IconButton color="primary" aria-label="accounts" className={iconClasses.root} onClick={handleAcctModalOpen}>
+                        <AccountBalanceIcon fontSize="large" />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip tooltip={'Merchant'}>
+                    <IconButton color="primary" aria-label="merchants" className={iconClasses.root} onClick={handleMerchModalOpen}>
+                        <StoreIcon fontSize="large" />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip tooltip={'Category'}>
+                    <IconButton color="primary" aria-label="category" className={iconClasses.root}>
+                        <CategoryIcon fontSize="large" />
+                    </IconButton>
+                </Tooltip>
+                <Tooltip tooltip={'Subcategory'}>
+                    <IconButton color="primary" aria-label="subcategory" className={iconClasses.root}>
+                        <AccountTreeIcon fontSize="large" />
+                    </IconButton>
+                </Tooltip>
             </ThemeProvider>
             <AddAccount />
             <AddMerchant />
