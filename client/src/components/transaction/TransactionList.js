@@ -16,15 +16,15 @@ import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+//Styles
 import { ThemeProvider } from '@material-ui/core/styles';
-
 import { useStyles, 
           useCustomTableHeadStyles,
           useCustomIncHeadStyles,
           useCustomExpHeadStyles,
           useCustomTransHeadStyles,
-          arrowIconTheme
         } from '../../styles/transaction/TransactionList';
+import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import { GroupedDisplay } from "./GroupedDisplay";
 
@@ -497,7 +497,7 @@ export const TransactionList = () => {
               {/* Income Grouping */}
               {/* Income Header */}
               <TableRow>
-                <ThemeProvider theme={arrowIconTheme}>
+                <ThemeProvider theme={customMUITheme}>
                   <TableCell className={tblIncClasses.root}>
                     <IconButton aria-label="expand row" size="small" onClick={() => handleClick('I')}>
                       {incOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -518,7 +518,7 @@ export const TransactionList = () => {
               {/* Expense Grouping */}
               {/* Expense Header */}
               <TableRow>
-                <ThemeProvider theme={arrowIconTheme}>
+                <ThemeProvider theme={customMUITheme}>
                   <TableCell className={tblExpClasses.root}>
                     <IconButton aria-label="expand row" size="small" onClick={() => handleClick('E')}>
                       {expOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -539,7 +539,7 @@ export const TransactionList = () => {
               {/* Transfer Grouping */}
               {/* Transfer Header */}
               <TableRow>
-                <ThemeProvider theme={arrowIconTheme}>
+                <ThemeProvider theme={customMUITheme}>
                   <TableCell className={tblTransClasses.root}>
                     <IconButton aria-label="expand row" size="small" onClick={() => handleClick('T')}>
                       {transOpen ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}

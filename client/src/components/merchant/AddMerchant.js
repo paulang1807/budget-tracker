@@ -8,9 +8,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+//Styles
 import { ThemeProvider } from '@material-ui/core/styles';
-
-import { merchantModalBtnTheme } from '../../styles/merchant/AddMerchant';
+import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Alert from '../common/Alert';
 
@@ -53,30 +53,28 @@ export const AddMerchant = () => {
 
     return (
         <>
-        <Dialog open={openMerchantModal} onClose={handleMerchModalClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Add new merchant</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Provide the following details for the new merchant.
-            </DialogContentText>
-                <form onSubmit={handleSubmit}>
-                    <div className="form-control">
-                    <label htmlFor="text">MerchantName</label>
-                    <input type="text" value={merchantName} onChange={(event) => setMerchantName(event.target.value)} placeholder="Enter merchant name..." />
-                    </div>
-                </form>
-          </DialogContent>
-          <DialogActions>
-            <ThemeProvider theme={merchantModalBtnTheme}>
-                <Button onClick={handleMerchModalClose} color="primary">
-                Cancel
-                </Button>
-                <Button onClick={handleSubmit} color="primary">
-                Add
-                </Button>
-            </ThemeProvider>
-          </DialogActions>
-        </Dialog>
+        <ThemeProvider theme={customMUITheme}>
+            <Dialog open={openMerchantModal} onClose={handleMerchModalClose} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title">Add new merchant</DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                Provide the following details for the new merchant.
+                </DialogContentText>
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="merchName">MerchantName</label>
+                        <input id="merchName" type="text" value={merchantName} onChange={(event) => setMerchantName(event.target.value)} placeholder="Enter merchant name..." />
+                    </form>
+            </DialogContent>
+            <DialogActions>
+                    <Button onClick={handleMerchModalClose} color="primary">
+                    Cancel
+                    </Button>
+                    <Button onClick={handleSubmit} color="primary">
+                    Add
+                    </Button>
+            </DialogActions>
+            </Dialog>
+        </ThemeProvider>
         <Alert />
         </>
     )

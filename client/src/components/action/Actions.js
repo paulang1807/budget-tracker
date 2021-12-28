@@ -7,9 +7,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 
+//Styles
 import { ThemeProvider } from '@material-ui/core/styles';
-
-import { useStyles, btnTheme } from '../../styles/action/Actions';
+import { useStyles } from '../../styles/action/Actions';
+import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Tooltip from '../common/Tooltip';
 
@@ -51,7 +52,7 @@ export const Actions = () => {
     return (
         <>
             <Settings />
-            <ThemeProvider theme={btnTheme}>
+            <ThemeProvider theme={customMUITheme}>
                 <Tooltip tooltip={'Add New Transaction'}>
                     <Button
                         variant="contained"

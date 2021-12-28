@@ -8,9 +8,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+//Styles
 import { ThemeProvider } from '@material-ui/core/styles';
-
-import { alertBtnTheme } from '../../styles/common/Alert';
+import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 export default function Alert() {
     const { openAlert
@@ -34,7 +34,7 @@ export default function Alert() {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <ThemeProvider theme={alertBtnTheme}>
+                <ThemeProvider theme={customMUITheme}>
                     <Button onClick={handleAlertClose} color="primary" autoFocus>
                         OK
                     </Button>

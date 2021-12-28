@@ -5,12 +5,10 @@ export const Title = styled.h2`
   text-align: center;
   margin: 0;
   padding: 5px 0;
-  background-color: steelblue;
+  background-color: #2465a9;
   color: whitesmoke;
   font-size: 30px;
   font-weight: bold; 
-  border-style: outset;
-  border-color: oldlace
 `;
 
 export const AccountViewSelect = styled.div`

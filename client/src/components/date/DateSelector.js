@@ -7,9 +7,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
 // Styles
-import { DateSelectorWrapper, DateSelectorArrows, DateSelectorButton, DateSelectorGrid, DateSelectorCurrentMonth, MonthArrow, YearArrow } from '../../styles/date/DateSelector';
+import { DateSelectorWrapper, DateSelectorArrows, DateSelectorButton, DateSelectorGrid, MonthArrow, YearArrow } from '../../styles/date/DateSelector';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { useStyles, dateModalTheme } from '../../styles/date/DateSelector';
+import { useStyles } from '../../styles/date/DateSelector';
+import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Tooltip from '../common/Tooltip';
 
@@ -72,35 +73,35 @@ export const DateSelector = () => {
                 </DateSelectorArrows>
                 </Tooltip>
             </DateSelectorWrapper>
-            <Dialog open={openDateModal} 
-                    onClose={handleCancelDateRangeSelect} 
-                    aria-labelledby="form-dialog-title" 
-                    classes={{ paper: classes.paper}}
-            >
-                <DialogContent>
-                    <DateSelectorGrid>
-                        <div>
-                            Begin Date
-                            <DateGrid begin={true}/>
-                        </div>
-                        <div>
-                            End Date
-                            <DateGrid begin={false}/>
-                        </div>
-                    </DateSelectorGrid>
-                    <DateSelectorCurrentMonth onClick={handleCurrMonth}>Current Month</DateSelectorCurrentMonth>
-                </DialogContent>
-                <DialogActions>
-                    <ThemeProvider theme={dateModalTheme}>
-                        <Button onClick={handleCancelDateRangeSelect} color="primary">
-                        Cancel
-                        </Button>
-                        <Button onClick={handleDateModalClose} color="primary">
-                        OK
-                        </Button>
-                    </ThemeProvider>
-                </DialogActions>
-            </Dialog>
+            <ThemeProvider theme={customMUITheme}>
+                <Dialog open={openDateModal} 
+                        onClose={handleCancelDateRangeSelect} 
+                        aria-labelledby="form-dialog-title" 
+                        classes={{ paper: classes.paper}}
+                >
+                    <DialogContent>
+                        <DateSelectorGrid>
+                            <div>
+                                Begin Date
+                                <DateGrid begin={true}/>
+                            </div>
+                            <div>
+                                End Date
+                                <DateGrid begin={false}/>
+                            </div>
+                        </DateSelectorGrid>
+                        <Button onClick={handleCurrMonth}>Current Month</Button>
+                    </DialogContent>
+                    <DialogActions>
+                            <Button onClick={handleCancelDateRangeSelect} color="primary">
+                            Cancel
+                            </Button>
+                            <Button onClick={handleDateModalClose} color="primary">
+                            OK
+                            </Button>
+                    </DialogActions>
+                </Dialog>
+            </ThemeProvider>
         </>
     )
 }

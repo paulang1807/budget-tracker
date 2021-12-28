@@ -7,6 +7,7 @@ export const DateGridWrapper = styled.div`
   border-radius: 8px;
   padding-top: 5px;
   width: 300px;
+  margin-bottom: 5px;
 `;
 
 const DataGridFlex = styled.div`

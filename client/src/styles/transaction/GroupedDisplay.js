@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(() => ({
   root: { visibility: (props) => props.showRow ? "visible" : "collapse",
-          color: "#fff",
+          color: "whitesmoke",
           fontWeight: 'bold',
           backgroundImage: (props) => props.groupByCode==='MCS' ? "linear-gradient(180deg, #cedbf2, #4d7bd1)" : 
             (props.groupByCode==='CS' || props.groupByCode==='MS' || props.groupByCode==='MC') ? "linear-gradient(180deg, #8dabe2, #193261)" : 
@@ -11,7 +11,7 @@ export const useStyles = makeStyles(() => ({
 }));
 
 export const useCellStyles = makeStyles(() => ({
-  root: {  color: "#fff",
+  root: {  color: "whitesmoke",
             padding: ["0 24px 0 16px", "!important"],
           },
 }));

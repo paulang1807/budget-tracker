@@ -8,9 +8,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+// Styles
 import { ThemeProvider } from '@material-ui/core/styles';
-
-import { modalBtnTheme } from '../../styles/transaction/AddTransaction';
+import { FormDiv } from '../../styles/transaction/AddTransaction';
+import { customMUITheme } from '../../styles/common/MaterialUIThemes';
+import '../../styles/transaction/AddTransaction.css';
 
 import Alert from '../common/Alert';
 
@@ -179,78 +181,62 @@ export const AddTransaction = () => {
 
     return (
         <>
+        <ThemeProvider theme={customMUITheme}>
             <Dialog open={openTransModal} onClose={handleTransModalClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">{transModalTitle}</DialogTitle>
-            <DialogContent>
-                <DialogContentText>
-                {transModalDesc}
-                </DialogContentText>
-                    <form>
-                        <div className="form-control">
-                        <label htmlFor="text">TransactionName</label>
-                        <input type="text" value={transactionName} onChange={(event) => setTransactionName(event.target.value)} placeholder="Enter transaction name..." />
-                        </div>
-                        <div className="form-control">
-                        <label htmlFor="type">Type</label><br />
-                            <select name="type" id="type" defaultValue={defaultTypSelection} onChange={(event) => {setType(event.target.options[event.target.selectedIndex].value)}}>
-                                <option value="None">Select Type</option>
-                                <option value="income">Income</option>
-                                <option value="expense">Expense</option>
-                                <option value="transfer">Transfer</option>
-                            </select>
-                        </div>
-                        <div className="form-control">
-                        <label htmlFor="text">Category</label>
-                        <input type="text" value={category} onChange={(event) => setCategory(event.target.value)} placeholder="Enter transaction category..." />
-                        </div>
-                        <div className="form-control">
-                        <label htmlFor="text">Sub Category</label>
-                        <input type="text" value={subCategory} onChange={(event) => setSubCategory(event.target.value)} placeholder="Enter transaction sub category..." />
-                        </div>
-                        <div className="form-control">
-                        <label htmlFor="text">Transaction Date</label><br />
-                        <input type="date" value={transactionDate} onChange={(event) => setTransactionDate(event.target.value)} />
-                        </div>
-                        <div className="form-control">
-                        <label htmlFor="amount">Amount</label>
-                        <input type="number" value={amount} onChange={(event) => setAmount(event.target.value)} placeholder="Enter amount..." />
-                        </div>
-                        <div>
-                        <label htmlFor="account">Account Name</label><br />
-                            <select name="account" id="account" defaultValue={defaultAcctSelection} onChange={(event) => {setAccountId(event.target.options[event.target.selectedIndex].value)}}>
-                                <option value="None">Select Account</option>
-                                {accounts.map((account) => (<option key={account._id} value={account._id} >{account.accountName}</option>))}
-                            </select>
-                        </div>
-                        <div>
-                        <label htmlFor="merchant">Merchant Name</label><br />
-                            <select name="merchant" id="merchant" defaultValue={defaultMerchSelection} onChange={(event) => {setMerchantId(event.target.options[event.target.selectedIndex].value)}}>
-                                <option value="None">Select Merchant</option>
-                                {merchants.map((merchant) => (<option key={merchant._id} value={merchant._id}>{merchant.merchantName}</option>))}
-                            </select>
-                        </div>
-                        <div className="form-control">
-                        <label htmlFor="text">Description</label>
-                        <input type="text" value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Enter description..." />
-                        </div>
-                        <div className="form-control">
-                        <label htmlFor="text">Comments</label>
-                        <input type="text" value={comments} onChange={(event) => setComments(event.target.value)} placeholder="Enter comments..." />
-                        </div>
-                    </form>
-            </DialogContent>
-            <DialogActions>
-            <ThemeProvider theme={modalBtnTheme}>
-                <Button onClick={handleTransModalClose} color="primary">
-                    Cancel
-                </Button>
-                <Button onClick={handleSubmit} color="primary">
-                    {transType==='Edit' ? 'OK' : 'Add'}
-                </Button>
-                </ThemeProvider>
-            </DialogActions>
+                <DialogTitle id="form-dialog-title">{transModalTitle}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                    {transModalDesc}
+                    </DialogContentText>
+                        <form className="form-content">
+                            <FormDiv>
+                            <label htmlFor="transName">TransactionName</label>
+                            <input id="transName" type="text" value={transactionName} onChange={(event) => setTransactionName(event.target.value)} placeholder="Enter transaction name..." />
+                            <label htmlFor="transDate">Transaction Date</label><br />
+                            <input id="transDate" type="date" value={transactionDate} onChange={(event) => setTransactionDate(event.target.value)}/>
+                            <label htmlFor="transAmount">Amount</label>
+                            <input id="transAmount" type="number" value={amount} onChange={(event) => setAmount(event.target.value)} placeholder="Enter amount..." />
+                            <label htmlFor="merchant">Merchant Name</label><br />
+                                <select name="merchant" id="merchant" defaultValue={defaultMerchSelection} onChange={(event) => {setMerchantId(event.target.options[event.target.selectedIndex].value)}}>
+                                    <option value="None">Select Merchant</option>
+                                    {merchants.map((merchant) => (<option key={merchant._id} value={merchant._id}>{merchant.merchantName}</option>))}
+                                </select>
+                            <label htmlFor="transDesc">Description</label>
+                            <textarea id="transDesc" value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Enter description..." />
+                            </FormDiv>
+                            <FormDiv>
+                            <label htmlFor="type">Type</label><br />
+                                <select name="type" id="type" defaultValue={defaultTypSelection} onChange={(event) => {setType(event.target.options[event.target.selectedIndex].value)}}>
+                                    <option value="None">Select Type</option>
+                                    <option value="income">Income</option>
+                                    <option value="expense">Expense</option>
+                                    <option value="transfer">Transfer</option>
+                                </select>
+                            <label htmlFor="transCat">Category</label>
+                            <input id="transCat" type="text" value={category} onChange={(event) => setCategory(event.target.value)} placeholder="Enter transaction category..." />
+                            <label htmlFor="transSubcat">Sub Category</label>
+                            <input id="transSubcat" type="text" value={subCategory} onChange={(event) => setSubCategory(event.target.value)} placeholder="Enter transaction sub category..." />
+                            <label htmlFor="account">Account Name</label><br />
+                                <select name="account" id="account" defaultValue={defaultAcctSelection} onChange={(event) => {setAccountId(event.target.options[event.target.selectedIndex].value)}}>
+                                    <option value="None">Select Account</option>
+                                    {accounts.map((account) => (<option key={account._id} value={account._id} >{account.accountName}</option>))}
+                                </select>
+                            <label htmlFor="transCmnts">Comments</label>
+                            <textarea id="transCmnts" value={comments} onChange={(event) => setComments(event.target.value)} placeholder="Enter comments..." />
+                            </FormDiv>
+                        </form>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleTransModalClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleSubmit} color="primary">
+                        {transType==='Edit' ? 'OK' : 'Add'}
+                    </Button>
+                </DialogActions>
             </Dialog>
-            <Alert />
+        </ThemeProvider>
+        <Alert />
         </>
     )
 }

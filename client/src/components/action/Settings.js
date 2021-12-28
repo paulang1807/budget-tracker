@@ -11,9 +11,10 @@ import StoreIcon from '@material-ui/icons/Store';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import TableChartIcon from '@material-ui/icons/TableChart';
 
+//Styles
 import { ThemeProvider } from '@material-ui/core/styles';
-
-import { useStyles, useMenuStyles, useMenuActiveStyles, menuListTheme } from '../../styles/action/Settings';
+import { useStyles, useMenuStyles, useMenuActiveStyles } from '../../styles/action/Settings';
+import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Tooltip from '../common/Tooltip';
 
@@ -56,7 +57,7 @@ export default function Settings() {
                     GroupBy
                 </Button>
             </Tooltip>
-            <ThemeProvider theme={menuListTheme}>
+            <ThemeProvider theme={customMUITheme}>
                 <Menu
                     getContentAnchorEl={null}
                     anchorOrigin={{

@@ -5,9 +5,10 @@ import { Button } from '@material-ui/core';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import FunctionsIcon from '@material-ui/icons/Functions';
 
+//Styles
 import { ThemeProvider } from '@material-ui/core/styles';
-
-import { useStyles, btnTheme } from '../../styles/account/AccountView';
+import { useStyles } from '../../styles/account/AccountView';
+import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Tooltip from '../common/Tooltip';
 
@@ -26,7 +27,7 @@ export const AccountView = () => {
     const classes = useStyles();
     return (
         <>
-            <ThemeProvider theme={btnTheme}>
+            <ThemeProvider theme={customMUITheme}>
                 <Tooltip tooltip={'Show accounts'}>
                     <Button
                         variant="contained"

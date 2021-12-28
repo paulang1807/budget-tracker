@@ -2,28 +2,6 @@ import { makeStyles, createTheme } from '@material-ui/core/styles';
 import styled from 'styled-components';
 
 // MUI Styles
-// Override button styles
-export const dateModalTheme = createTheme({
-    overrides: {
-      MuiButton: {
-        root: {
-          padding: "6px",
-          borderRadius: "6px",
-          '&:hover': {
-              backgroundImage: ["linear-gradient(180deg, #b7d5f5, #5990ca)", "!important"],
-              color: ["#fff", "!important"]
-         },
-        },
-        contained: {
-            color: "#dedede",
-            '&:hover': {
-                color: "#fff",
-           },
-        },
-      },
-    },
-  });
-
 export const useStyles = makeStyles(() => ({
     paper: { minWidth: "675px",
             borderRadius: "10px" },
@@ -87,21 +65,6 @@ export const DateSelectorGrid = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-export const DateSelectorCurrentMonth = styled.div`
-  width: 150px;
-  margin: 5px;
-  padding: 5px;
-  border-radius: 8px;
-  background-image: linear-gradient(180deg,#ccc,#999);
-  padding-left: 1.3vw;
-  color: dimgray;
-
-  &:hover{
-    background-image: linear-gradient(180deg,#eee,#aaa);
-    cursor: pointer;
-  }
 `;
 
 const DateArrowBase = styled.span`

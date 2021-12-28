@@ -10,7 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 
-import { acctModalBtnTheme } from '../../styles/account/AddAccount';
+import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Alert from '../common/Alert';
 
@@ -57,42 +57,34 @@ export const AddAccount = () => {
 
     return (
         <>
-        <Dialog open={openAcctModal} onClose={handleAcctModalClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Add new account</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Provide the following details for the new account.
-            </DialogContentText>
-                <form>
-                    <div className="form-control">
-                    <label htmlFor="text">AccountName</label>
-                    <input type="text" value={accountName} onChange={(event) => setAccountName(event.target.value)} placeholder="Enter account name..." />
-                    </div>
-                    <div className="form-control">
-                    <label htmlFor="text">AccountNumber</label>
-                    <input type="text" value={accountNumber} onChange={(event) => setAccountNumber(event.target.value)} placeholder="Enter account number..." />
-                    </div>
-                    <div className="form-control">
-                    <label htmlFor="amount">Initial Balance</label>
-                    <input type="number" value={initialBalance} onChange={(event) => setInitialBalance(event.target.value)} placeholder="Enter amount..." />
-                    </div>
-                    <div className="form-control">
-                    <label htmlFor="text">Comments</label>
-                    <input type="text" value={comments} onChange={(event) => setComments(event.target.value)} placeholder="Enter comments..." />
-                    </div>
-                </form>
-          </DialogContent>
-          <DialogActions>
-            <ThemeProvider theme={acctModalBtnTheme}>
-                <Button onClick={handleAcctModalClose} color="primary">
-                Cancel
-                </Button>
-                <Button onClick={handleSubmit} color="primary">
-                Add
-                </Button>
-            </ThemeProvider>
-          </DialogActions>
-        </Dialog>
+        <ThemeProvider theme={customMUITheme}>
+            <Dialog open={openAcctModal} onClose={handleAcctModalClose} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title">Add new account</DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                Provide the following details for the new account.
+                </DialogContentText>
+                    <form>
+                        <label htmlFor="acctName">AccountName</label>
+                        <input id="acctName" type="text" value={accountName} onChange={(event) => setAccountName(event.target.value)} placeholder="Enter account name..." />
+                        <label htmlFor="acctNum">AccountNumber</label>
+                        <input id="acctNum" type="text" value={accountNumber} onChange={(event) => setAccountNumber(event.target.value)} placeholder="Enter account number..." />
+                        <label htmlFor="acctAmount">Initial Balance</label>
+                        <input id="acctAmount" type="number" value={initialBalance} onChange={(event) => setInitialBalance(event.target.value)} placeholder="Enter amount..." />
+                        <label htmlFor="acctComments">Comments</label>
+                        <textarea id="acctComments" value={comments} onChange={(event) => setComments(event.target.value)} placeholder="Enter comments..." />
+                    </form>
+            </DialogContent>
+            <DialogActions>
+                    <Button onClick={handleAcctModalClose} color="primary">
+                    Cancel
+                    </Button>
+                    <Button onClick={handleSubmit} color="primary">
+                    Add
+                    </Button>
+            </DialogActions>
+            </Dialog>
+        </ThemeProvider>
         <Alert />
         </>
     )

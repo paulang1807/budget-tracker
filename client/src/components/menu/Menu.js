@@ -7,9 +7,10 @@ import StoreIcon from '@material-ui/icons/Store';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 
+//Styles
 import { ThemeProvider } from '@material-ui/core/styles';
-
-import { useDivStyles, useIconStyles, menuBtntheme } from '../../styles/menu/Menu';
+import { useDivStyles, useIconStyles } from '../../styles/menu/Menu';
+import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Tooltip from '../common/Tooltip';
 
@@ -26,24 +27,24 @@ export const Menu = () => {
     
     return (
         <div className={divClasses.root}>
-            <ThemeProvider theme={menuBtntheme}>
+            <ThemeProvider theme={customMUITheme}>
                 <Tooltip tooltip={'Account'}>
-                    <IconButton color="primary" aria-label="accounts" className={iconClasses.root} onClick={handleAcctModalOpen}>
+                    <IconButton color="primary" aria-label="accounts" size="small" className={iconClasses.root} onClick={handleAcctModalOpen}>
                         <AccountBalanceIcon fontSize="large" />
                     </IconButton>
                 </Tooltip>
                 <Tooltip tooltip={'Merchant'}>
-                    <IconButton color="primary" aria-label="merchants" className={iconClasses.root} onClick={handleMerchModalOpen}>
+                    <IconButton color="primary" aria-label="merchants" size="small" className={iconClasses.root} onClick={handleMerchModalOpen}>
                         <StoreIcon fontSize="large" />
                     </IconButton>
                 </Tooltip>
                 <Tooltip tooltip={'Category'}>
-                    <IconButton color="primary" aria-label="category" className={iconClasses.root}>
+                    <IconButton color="primary" aria-label="category" size="small" className={iconClasses.root}>
                         <CategoryIcon fontSize="large" />
                     </IconButton>
                 </Tooltip>
                 <Tooltip tooltip={'Subcategory'}>
-                    <IconButton color="primary" aria-label="subcategory" className={iconClasses.root}>
+                    <IconButton color="primary" aria-label="subcategory" size="small" className={iconClasses.root}>
                         <AccountTreeIcon fontSize="large" />
                     </IconButton>
                 </Tooltip>
