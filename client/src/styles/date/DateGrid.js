@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import "../App.css";
 
 export const DateGridWrapper = styled.div`
   border: 2px;
-  border-color: #444;
   border-style: solid;
   border-radius: 8px;
   padding-top: 5px;
@@ -35,7 +35,7 @@ export const DateGridArrows = styled.div`
   float: left;
   height: 35px;
   width: 35px;
-  background-image: linear-gradient(180deg, #c9d9f1, #1a4482);
+  background-image: linear-gradient(180deg, var(--button-background-grad1), var(--button-background-grad2));
   border-radius: 100%;
   line-height: 35px;
   text-align: center;
@@ -47,7 +47,7 @@ export const DateGridArrows = styled.div`
 
   &:hover{ 
     cursor: pointer;
-    background-image: linear-gradient(180deg, #b7d5f5, #5990ca);
+    background-image: linear-gradient(180deg, var(--button-hover-grad1), var(--button-hover-grad2));
   }
 `;
 
@@ -60,7 +60,7 @@ export const DataGridHeader = styled.div`
 const DataGridHeaderBase = styled.div`
   float: left;
   width: 100%;
-  color: #2465a9;
+  color: var(--date-grid-title);
   font-weight: 200px;
   text-align: center;
 `;
@@ -92,7 +92,7 @@ const DataGridDayBase = styled.div`
 export const DataGridWeekday = styled(DataGridDayBase)`
   width: 14.285%;
   font-weight: 700;
-  color: #666;
+  color: var(--date-grid-text);
   font-size: 9px;
   text-align: center;
 `;
@@ -109,7 +109,7 @@ export const DataGridBodyDay = styled(DataGridDayBase)`
     margin-left: -15px;
     left: 50%;
     top: 50%;
-    color: #444;
+    color: var(--date-grid-text);
     font-size: 12px;
     font-weight: 400;
     border-radius: 100%;
@@ -118,7 +118,7 @@ export const DataGridBodyDay = styled(DataGridDayBase)`
 
     &:hover{
       cursor: pointer;
-      background: #d7e3f4;
+      background: var(--date-grid-text-hover);
     } 
   }
 `;
@@ -134,16 +134,16 @@ const DateArrowBase = styled.span`
   float: left;
   width: 6px;
   height: 6px;
-  border-left: 2px solid #dedede;
-  border-bottom: 2px solid #dedede;
+  border-left: 2px solid var(--button-text);
+  border-bottom: 2px solid var(--button-text);
   position: absolute;
   left: 50%;
   top:50%;
   margin-top: -3.5px;
 
   &:hover{
-    border-left: 2px solid #fff;
-    border-bottom: 2px solid #fff;
+    border-left: 2px solid var(--button-hover-text);
+    border-bottom: 2px solid var(--button-hover-text);
 `;
 
 export const MonthArrow = styled(DateArrowBase)`
@@ -165,8 +165,8 @@ export const YearArrow = styled(DateArrowBase)`
     float: left;
     width: 6px;
     height: 6px;
-    border-left: 2px solid #dedede;
-    border-bottom: 2px solid #dedede;
+    border-left: 2px solid var(--button-text);
+    border-bottom: 2px solid var(--button-text);
     position: absolute;
 
     // Add double arrows for year

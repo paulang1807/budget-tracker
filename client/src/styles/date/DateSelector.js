@@ -1,5 +1,6 @@
 import { makeStyles, createTheme } from '@material-ui/core/styles';
 import styled from 'styled-components';
+import "../App.css";
 
 // MUI Styles
 export const useStyles = makeStyles(() => ({
@@ -26,7 +27,7 @@ export const DateSelectorArrows = styled.div`
   & div {
     height: 34px;
     width: 34px;
-    background-image: linear-gradient(180deg, #c9d9f1, #1a4482);
+    background-image: linear-gradient(180deg, var(--button-background-grad1), var(--button-background-grad2));
     border-radius: 100%;
     line-height: 35px;
     text-align: center;
@@ -37,7 +38,7 @@ export const DateSelectorArrows = styled.div`
     margin-top: -17px;
 
     &:hover{
-      background-image: linear-gradient(180deg, #b7d5f5, #5990ca);
+      background-image: linear-gradient(180deg, var(--button-hover-grad1), var(--button-hover-grad2));
     }
   }
 `;
@@ -47,17 +48,17 @@ export const DateSelectorButton = styled.div`
   height: 35px;
   font-size: 20px;
   font-weight: bold;
-  color: #dedede;
+  color: var(--button-text);
   text-align: center;
-  background-image: linear-gradient(180deg, #c9d9f1, #1a4482);
+  background-image: linear-gradient(180deg, var(--button-background-grad1), var(--button-background-grad2));
   border-radius: 15px;
   padding-top: 3px;
   margin-left: 1px;
   cursor: pointer;
 
   &:hover{
-    color: #fff;
-    background-image: linear-gradient(180deg, #b7d5f5, #5990ca);
+    color: var(--button-hover-text);
+    background-image: linear-gradient(180deg, var(--button-hover-grad1), var(--button-hover-grad2));
   }
 `;
 
@@ -71,16 +72,16 @@ const DateArrowBase = styled.span`
   // Create left and bottom borders
   width: 8px;
   height: 8px;
-  border-left: 4px solid #dedede;
-  border-bottom: 4px solid #dedede;
+  border-left: 4px solid var(--button-text);
+  border-bottom: 4px solid var(--button-text);
   position: absolute;
   left: 50%;
   top:50%;
   margin-top: -4px;
 
   &:hover{
-    border-left: 4px solid #fff;
-    border-bottom: 4px solid #fff;
+    border-left: 4px solid var(--button-hover-text);
+    border-bottom: 4px solid var(--button-hover-text);
   }
 `;
 
@@ -101,8 +102,8 @@ export const YearArrow = styled(DateArrowBase)`
   &:after{
     width: 8px;
     height: 8px;
-    border-left: 4px solid #dedede;
-    border-bottom: 4px solid #dedede;
+    border-left: 4px solid var(--button-text);
+    border-bottom: 4px solid var(--button-text);
     position: absolute;
 
     // Add double arrows for year

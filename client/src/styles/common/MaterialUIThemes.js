@@ -1,4 +1,6 @@
 import { createTheme } from '@material-ui/core/styles';
+import "../App.css";
+
 // Override button styles
 export const customMUITheme = createTheme({
     overrides: {
@@ -6,23 +8,23 @@ export const customMUITheme = createTheme({
         root: {
           padding: ["6px 10px", "!important"],
           borderRadius: "6px",
-          color: ["whitesmoke", "!important"],
-          backgroundImage: "linear-gradient(180deg, #c9d9f1, #1a4482)",
+          color: ["var(--title-text)", "!important"],
+          backgroundImage: "linear-gradient(180deg, var(--button-background-grad1), var(--button-background-grad2))",
           '&:hover': {
-              backgroundImage: ["linear-gradient(180deg, #b7d5f5, #5990ca)", "!important"],
-              color: ["#fff", "!important"]
+              backgroundImage: ["linear-gradient(180deg, var(--button-hover-grad1), var(--button-hover-grad2))", "!important"],
+              color: ["var(--button-hover-text)", "!important"]
          },
          '&:disabled': {
-             color: ["#bbb", "!important"]
+             color: ["var(--button-disabled-text)", "!important"]
         },
         },
         startIcon: {
           marginRight: ["2px", "!important"]
         },
         contained: {
-            color: "whitesmoke",
+            color: "var(--title-text)",
             '&:hover': {
-                color: "#fff",
+                color: "var(--button-hover-text)",
            },
         },
       },
@@ -44,7 +46,7 @@ export const customMUITheme = createTheme({
       },
       MuiIconButton: {
         colorPrimary: {
-          color: ["#c2cddffa", "!important"],
+          color: ["var(--menu-icon)", "!important"],
         },
         sizeSmall: {
           padding: ["3px 4px", "!important"],
@@ -55,7 +57,7 @@ export const customMUITheme = createTheme({
           width: ["0.75em", "!important"],
           height: ["0.75em", "!important"],
           '&:hover': {
-              color: ["#fff", "!important"]
+              color: ["var(--menu-icon-hover)", "!important"]
          },
         }
       }

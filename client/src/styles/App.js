@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import "./App.css";
 
 export const Title = styled.h2`
   padding-top: 5px;
   text-align: center;
   margin: 0;
   padding: 5px 0;
-  background-color: #2465a9;
-  color: whitesmoke;
+  background-color: var(--title-background);
+  color: var(--title-text);
   font-size: 30px;
   font-weight: bold; 
 `;

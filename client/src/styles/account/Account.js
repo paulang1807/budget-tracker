@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import "../App.css";
 
 export const AccountTotal = styled.div`
-  background-image: linear-gradient(180deg, #c9d9f1, #1a4482);
-  color: #fff;
+  background-image: linear-gradient(180deg, var(--button-background-grad1), var(--button-background-grad2));
+  color: var(--button-text);
   justify-content: space-between;
   position: relative;
   padding: 10px;
@@ -30,9 +31,9 @@ export const AccountListItem = styled.ul`
 
   & li {
     cursor: pointer;
-    background-image: linear-gradient(180deg, #c9d9f1, #1a4482);
+    background-image: linear-gradient(180deg, var(--button-background-grad1), var(--button-background-grad2));
     box-shadow: var(--box-shadow);
-    color: #dedede;
+    color: var(--button-text);
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -43,7 +44,7 @@ export const AccountListItem = styled.ul`
   }
 
   & :hover {
-    background-image: linear-gradient(180deg, #b7d5f5, #5990ca);
-    color: #fff;
+    background-image: linear-gradient(180deg, var(--button-hover-grad1), var(--button-hover-grad2));
+    color: var(--button-hover-text);
   }
 `

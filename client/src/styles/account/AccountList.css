@@ -1,4 +1,3 @@
 .selAccountListItem {
-    background-image: linear-gradient(180deg, #65b6e6, #1d5663) !important;
-    color: #dedede;
+    background-image: linear-gradient(180deg, var(--selected-acct-grad1), var(--selected-acct-grad2)) !important;
   }

@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import "../App.css";
 
 export const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,7 +28,7 @@ export const useStyles = makeStyles((theme) => ({
   
 export const useCustomTableHeadStyles = makeStyles(() => ({
       root: {
-        backgroundImage: "linear-gradient(180deg, #fbeeef, #f0bcc0)",
+        backgroundImage: "linear-gradient(180deg, var(--trans-table-header-grad1), var(--trans-table-header-grad2))",
         fontWeight: 'bold',
         lineHeight: ".7",
         fontSize: ".75rem",
@@ -37,8 +38,8 @@ export const useCustomTableHeadStyles = makeStyles(() => ({
 
   export const useCustomIncHeadStyles = makeStyles(() => ({
       root: {
-          backgroundImage: "linear-gradient(180deg, #80cfdb, #2d909f)",
-          color: "whitesmoke",
+          backgroundImage: "linear-gradient(180deg, var(--income-grad1), var(--income-grad2))",
+          color: "var(--title-text)",
           fontWeight: 'bold',
           lineHeight: ".7",
           fontSize: ".75rem",
@@ -48,8 +49,8 @@ export const useCustomTableHeadStyles = makeStyles(() => ({
   
   export const useCustomExpHeadStyles = makeStyles(() => ({
     root: {
-      backgroundImage: "linear-gradient(180deg, #da5863, #97212b)",
-      color: "whitesmoke",
+      backgroundImage: "linear-gradient(180deg, var(--expense-grad1), var(--expense-grad2))",
+      color: "var(--title-text)",
       fontWeight: 'bold',
       lineHeight: ".7",
       fontSize: ".75rem",
@@ -59,8 +60,8 @@ export const useCustomTableHeadStyles = makeStyles(() => ({
   
   export const useCustomTransHeadStyles = makeStyles(() => ({
     root: {
-      backgroundImage: "linear-gradient(180deg, #d9d3d6, #ada0a6)",
-      color: "whitesmoke",
+      backgroundImage: "linear-gradient(180deg, var(--transfer-grad1), var(--transfer-grad2))",
+      color: "var(--title-text)",
       fontWeight: 'bold',
       lineHeight: ".7",
       fontSize: ".75rem",

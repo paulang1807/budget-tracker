@@ -1,8 +1,59 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
-/* :root {
-  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-} */
+:root {
+  --background-color: #f7f7f7;
+  --input-border: #dedede;
+  --input-text: #444;
+  --input-placeholder: #999;
+  --title-background: #2465a9;
+  --title-text: #ddd;
+  --tooltip-background: #333;
+  --selected-acct-grad1: #65b6e6;
+  --selected-acct-grad2: #1d5663;
+
+  /* date grid variables */
+  --date-grid-title: #2465a9;
+  --date-grid-text: #444;
+  --date-grid-text-hover: #d7e3f4;
+  --date-grid-disabled-text: #ddd;
+  --date-grid-disabled-background: #fff;
+  --date-grid-today-highlight: #efdbca;
+  --date-grid-selection: #86aadf;
+  --date-grid-selection-range: #aec6ea;
+
+  /* table heading gradients */
+  --trans-table-header-grad1: #fbeeef;
+  --trans-table-header-grad2: #f0bcc0;
+  --expense-grad1: #da5863;
+  --expense-grad2: #97212b;
+  --income-grad1: #80cfdb;
+  --income-grad2: #2d909f;
+  --transfer-grad1: #d9d3d6;
+  --transfer-grad2: #ada0a6;
+
+  /* transaction group gradients */
+  --group3-grad1: #cedbf2;
+  --group3-grad2: #4d7bd1;
+  --group2-grad1: #8dabe2;
+  --group2-grad2: #193261;
+  --group1-grad1: #4d7bd1;
+  --group1-grad2: #081120;
+
+  /* button colors */
+  --button-background-grad1: #c9d9f1;
+  --button-background-grad2: #1a4482;
+  --button-hover-grad1: #b7d5f5;
+  --button-hover-grad2: #5990ca;
+  --button-text: #dedede;
+  --button-hover-text: #fff;
+  --button-disabled-text: #bbb;
+
+  /* menu icon */
+  --menu-background: #1b476e;
+  --menu-icon: #c2cddffa;
+  --menu-icon-hover: #fff;
+  --menu-icon-hover-background: #75bee6;
+}
 
 * {
   box-sizing: border-box;
@@ -16,7 +67,7 @@ html {
 }
 
 body {
-  background-color: #f7f7f7;
+  background-color: var(--background-color);
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -35,12 +86,12 @@ input[type='number'],
 input[type='date'],
 textarea,
 select {
-  border: 1px solid #dedede;
+  border: 1px solid var(--input-border);
   border-radius: 6px;
   display: block;
   padding: 10px;
   width: 100%;
-  color: #444;
+  color: var(--input-text);
   font-family: sans-serif;
 } 
 
@@ -65,6 +116,6 @@ input[type="text"]::placeholder,
 textarea::placeholder,
 input[type="number"]::placeholder {
   font-size: .75rem;
-  color: #999;
+  color: var(--input-placeholder);
   font-family: sans-serif;
 }

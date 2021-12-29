@@ -3,21 +3,22 @@
 }
 
 .disabled .dgbdc-day span{
-    color: #ddd;
+    color: var(--date-grid-disabled-text);
 }
 
+/* This avoids the current day being highlighted in the end date section */
 .disabled .dgbdc-day span{
-    background: #fff!important;
+    background: var(--date-grid-disabled-background)!important;
 }
 
 .highlight .dgbdc-day span{
-    background: #efdbca;
+    background: var(--date-grid-today-highlight);
 }
 
 .highlight-blue .dgbdc-day span{
-    background: #86aadf;
+    background: var(--date-grid-selection);
 }
 
 .highlight-blue-range .dgbdc-day span{
-    background: #aec6ea;
+    background: var(--date-grid-selection-range);
 }

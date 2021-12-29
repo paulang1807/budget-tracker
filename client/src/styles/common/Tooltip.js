@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import "../App.css";
 
 export const TooltipContent = styled.div`
-  background-color: #333;
+  background-color: var(--tooltip-background);
   border-radius: 5px;
   width: max-content;
   max-width: 300px;

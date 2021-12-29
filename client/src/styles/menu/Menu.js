@@ -1,9 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
+import "../App.css";
 
-// Style for div containing button group
+// Style for menu background
 export const useDivStyles = makeStyles((theme) => ({
     root: {
-      backgroundColor: "#1b476e",
+      backgroundColor: "var(--menu-background)",
     },
   }));
 
@@ -11,7 +12,7 @@ export const useDivStyles = makeStyles((theme) => ({
 export const useIconStyles = makeStyles(() => ({
     root: {
       '&:hover': {
-        backgroundColor: ["#75bee6", "!important"],
+        backgroundColor: ["var(--menu-icon-hover-background)", "!important"],
      },
     },
   }));
