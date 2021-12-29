@@ -105,9 +105,9 @@ export const DateGrid = (props) => {
             return (
                 <DataGridDayContainer className={(day.month !== 0 ? ' disabled' : '') + 
                     (day.dateString === dtToday ? ' highlight' : '') + 
-                      (day.dateString === selDate ? ' highlight-green' : '') + 
-                        (day.dateString === selEndDate ? ' highlight-green' : '') + 
-                        (day.dateString > selDate && day.dateString < selEndDate ? ' highlight-green-range' : '')} key={index}>
+                      (day.dateString === selDate ? ' highlight-blue' : '') + 
+                        (day.dateString === selEndDate ? ' highlight-blue' : '') + 
+                        (day.dateString > selDate && day.dateString < selEndDate ? ' highlight-blue-range' : '')} key={index}>
                     <DataGridBodyDay className='dgbdc-day'>
                         <span onClick={()=>setDate(day.date)}>
                             {day.date}

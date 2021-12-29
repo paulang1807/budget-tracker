@@ -14,10 +14,10 @@
     background: #efdbca;
 }
 
-.highlight-green .dgbdc-day span{
-    background: #d4f9cb;
+.highlight-blue .dgbdc-day span{
+    background: #86aadf;
 }
 
-.highlight-green-range .dgbdc-day span{
-    background: #d4e2cb;
+.highlight-blue-range .dgbdc-day span{
+    background: #aec6ea;
 }

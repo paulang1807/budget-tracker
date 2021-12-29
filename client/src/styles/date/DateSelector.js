@@ -108,6 +108,6 @@ export const YearArrow = styled(DateArrowBase)`
     // Add double arrows for year
     content: '';
     left: 3px;
-    top: -10.75px
+    top: -10.75px;
   }
 `;

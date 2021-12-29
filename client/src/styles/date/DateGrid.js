@@ -35,7 +35,7 @@ export const DateGridArrows = styled.div`
   float: left;
   height: 35px;
   width: 35px;
-  background: #f4f4f4;
+  background-image: linear-gradient(180deg, #c9d9f1, #1a4482);
   border-radius: 100%;
   line-height: 35px;
   text-align: center;
@@ -47,7 +47,7 @@ export const DateGridArrows = styled.div`
 
   &:hover{ 
     cursor: pointer;
-    background: #eee;
+    background-image: linear-gradient(180deg, #b7d5f5, #5990ca);
   }
 `;
 
@@ -60,7 +60,7 @@ export const DataGridHeader = styled.div`
 const DataGridHeaderBase = styled.div`
   float: left;
   width: 100%;
-  color: #666;
+  color: #2465a9;
   font-weight: 200px;
   text-align: center;
 `;
@@ -118,7 +118,7 @@ export const DataGridBodyDay = styled(DataGridDayBase)`
 
     &:hover{
       cursor: pointer;
-      background: #eee;
+      background: #d7e3f4;
     } 
   }
 `;
@@ -134,12 +134,16 @@ const DateArrowBase = styled.span`
   float: left;
   width: 6px;
   height: 6px;
-  border-left: 2px solid #888;
-  border-bottom: 2px solid #888;
+  border-left: 2px solid #dedede;
+  border-bottom: 2px solid #dedede;
   position: absolute;
   left: 50%;
   top:50%;
   margin-top: -3.5px;
+
+  &:hover{
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
 `;
 
 export const MonthArrow = styled(DateArrowBase)`
@@ -161,13 +165,13 @@ export const YearArrow = styled(DateArrowBase)`
     float: left;
     width: 6px;
     height: 6px;
-    border-left: 2px solid #888;
-    border-bottom: 2px solid #888;
+    border-left: 2px solid #dedede;
+    border-bottom: 2px solid #dedede;
     position: absolute;
 
     // Add double arrows for year
     content: '';
     left: 3px;
-    top: -7px
+    top: -7px;
   }
 `;
