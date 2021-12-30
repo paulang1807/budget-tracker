@@ -28,6 +28,17 @@ export const customMUITheme = createTheme({
            },
         },
       },
+      MuiPaper: {
+        root: {
+          color: "var(--input-text)",
+          backgroundColor: ["var(--form-background-color)", "!important"],
+        },
+      },
+      MuiTypography: {
+        colorTextSecondary: {
+          color: "var(--input-text)",
+        },
+      },
       MuiDialogActions: {
         root: {
           padding: "12px 35px"

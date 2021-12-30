@@ -118,7 +118,8 @@ export const DataGridBodyDay = styled(DataGridDayBase)`
 
     &:hover{
       cursor: pointer;
-      background: var(--date-grid-text-hover);
+      background: var(--date-grid-text-hover-background);
+      color: var(--date-grid-text-hover);
     } 
   }
 `;
