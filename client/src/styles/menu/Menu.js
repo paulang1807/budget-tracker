@@ -5,6 +5,9 @@ import "../App.css";
 export const useDivStyles = makeStyles((theme) => ({
     root: {
       backgroundColor: "var(--menu-background)",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between"
     },
   }));
 

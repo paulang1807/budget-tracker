@@ -59,26 +59,24 @@
 }
 
 /* dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-color: #1c2e40;
-    --input-border: #1b476e;
-    --form-background-color: #1b476e;
-    --input-text: #ddd;
-    --input-background-color: #517ca3;
-    --input-placeholder: #909fb1;
-  
-    /* date grid variables */
-    --date-grid-title: #ddd;
-    --date-grid-text: #ddd;
-    --date-grid-text-hover-background: #a9dbef;
-    --date-grid-text-hover: #aaa;
-    --date-grid-disabled-text: #777;
-    --date-grid-disabled-background: #1b476e;
-    --date-grid-today-highlight: #2465a9;
-    --date-grid-selection: #26a3d3;
-    --date-grid-selection-range: #53b7df;
-  }
+.dark {
+  --background-color: #1c2e40;
+  --input-border: #1b476e;
+  --form-background-color: #1b476e;
+  --input-text: #ddd;
+  --input-background-color: #517ca3;
+  --input-placeholder: #909fb1;
+
+  /* date grid variables */
+  --date-grid-title: #ddd;
+  --date-grid-text: #ddd;
+  --date-grid-text-hover-background: #a9dbef;
+  --date-grid-text-hover: #aaa;
+  --date-grid-disabled-text: #777;
+  --date-grid-disabled-background: #1b476e;
+  --date-grid-today-highlight: #2465a9;
+  --date-grid-selection: #26a3d3;
+  --date-grid-selection-range: #53b7df;
 }
 
 * {
