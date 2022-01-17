@@ -5,11 +5,18 @@ import "../App.css";
 export const useDivStyles = makeStyles((theme) => ({
     root: {
       backgroundColor: "var(--menu-background)",
+      width: "131vw",
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-between"
     },
+    groups: {
+      display: "flex",
+      flexDirection: "row",
+      width: "50%",
+    },
   }));
+
 
 // Style for button icons
 export const useIconStyles = makeStyles(() => ({

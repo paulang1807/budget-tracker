@@ -12,6 +12,7 @@
   --tooltip-background: #333;
   --selected-acct-grad1: #65b6e6;
   --selected-acct-grad2: #1d5663;
+  --divider: #4691d2;
 
   /* date grid variables */
   --date-grid-title: #2465a9;
@@ -53,7 +54,8 @@
 
   /* menu icon */
   --menu-background: #1b476e;
-  --menu-icon: #c2cddffa;
+  --menu-icon: #dee4ed;
+  --menu-icon-disabled: #8a9fc1;
   --menu-icon-hover: #fff;
   --menu-icon-hover-background: #75bee6;
 }

@@ -58,6 +58,9 @@ export const customMUITheme = createTheme({
       MuiIconButton: {
         colorPrimary: {
           color: ["var(--menu-icon)", "!important"],
+          '&:disabled': {
+              color: ["var(--menu-icon-disabled)", "!important"]
+         },
         },
         sizeSmall: {
           padding: ["3px 4px", "!important"],
@@ -70,6 +73,11 @@ export const customMUITheme = createTheme({
           '&:hover': {
               color: ["var(--menu-icon-hover)", "!important"]
          },
+        }
+      },
+      MuiDivider: {
+        vertical: {
+          background: "var(--divider)"
         }
       }
     },

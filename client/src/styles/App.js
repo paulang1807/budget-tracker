@@ -17,13 +17,6 @@ export const AccountViewSelect = styled.div`
   padding: 0 4px;
 `;
 
-export const ActionsSelect = styled.div`
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  margin: 0 0 20px 0;
-`;
-
 export const DateSelect = styled.div`
   flex-grow: 7;
 `;

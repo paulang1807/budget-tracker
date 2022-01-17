@@ -9,6 +9,7 @@ export const useStyles = makeStyles(() => ({
 
 export const useMenuStyles = makeStyles((theme) => ({
     root: {
+      color: theme.palette.common.white,
       '&:hover': {
         backgroundColor: theme.palette.info.light,
         color: theme.palette.common.white,

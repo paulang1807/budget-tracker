@@ -1,7 +1,7 @@
 import React  from 'react';
 
 // Styles
-import { BaseContainer, AccountViewSelect, ActionsSelect, DateSelect, TransactionListSelect } from './styles/App';
+import { BaseContainer, AccountViewSelect, DateSelect, TransactionListSelect } from './styles/App';
 import './styles/App.css';
 
 import { Header } from './components/header/Header';
@@ -10,7 +10,6 @@ import { AccountView } from './components/account/AccountView';
 import { DateSelector } from './components/date/DateSelector';
 import { AccountDisplay } from './components/account/AccountDisplay';
 import { TransactionList } from './components/transaction/TransactionList';
-import { Actions } from './components/action/Actions';
 
 import { GlobalProvider } from './context/GlobalState';
 
@@ -35,9 +34,6 @@ function App() {
           <TransactionListSelect>
             <TransactionList />
           </TransactionListSelect>
-          <ActionsSelect>
-            <Actions />
-          </ActionsSelect>
         </BaseContainer>
     
     </GlobalProvider>

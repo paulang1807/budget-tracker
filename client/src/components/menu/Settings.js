@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -13,7 +13,8 @@ import TableChartIcon from '@material-ui/icons/TableChart';
 
 //Styles
 import { ThemeProvider } from '@material-ui/core/styles';
-import { useStyles, useMenuStyles, useMenuActiveStyles } from '../../styles/action/Settings';
+import { useMenuStyles, useMenuActiveStyles } from '../../styles/action/Settings';
+import { useIconStyles } from '../../styles/menu/Menu';
 import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Tooltip from '../common/Tooltip';
@@ -25,12 +26,12 @@ export default function Settings() {
             ,grpbySubcat
             ,handleGroupByMerchant
             ,handleGroupByCategory
-            ,handleGroupBySubCategory  } 
+            ,handleGroupBySubCategory } 
             = useContext(GlobalContext);
 
+    const iconClasses = useIconStyles();
     const [anchorEl, setAnchorEl] = useState(null);
 
-    const classes = useStyles();
     const menuClasses = useMenuStyles();
     const menuActiveClasses = useMenuActiveStyles();
 
@@ -45,17 +46,9 @@ export default function Settings() {
     return (
         <>
             <Tooltip tooltip={'Group by Merchant, Category and/or Subcategory'}>
-                <Button
-                    aria-controls="customized-menu"
-                    aria-haspopup="true"
-                    variant="contained"
-                    color="primary"
-                    startIcon={<TableChartIcon />}
-                    onClick={handleClick}
-                    className={classes.button}
-                    >
-                    GroupBy
-                </Button>
+                <IconButton color="primary" aria-label="groupby" size="small" className={iconClasses.root} onClick={handleClick}>
+                    <TableChartIcon fontSize="large" />
+                </IconButton>
             </Tooltip>
             <ThemeProvider theme={customMUITheme}>
                 <Menu
