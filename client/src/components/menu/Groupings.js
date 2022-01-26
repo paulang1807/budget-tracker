@@ -13,13 +13,13 @@ import TableChartIcon from '@material-ui/icons/TableChart';
 
 //Styles
 import { ThemeProvider } from '@material-ui/core/styles';
-import { useMenuStyles, useMenuActiveStyles } from '../../styles/action/Settings';
+import { useMenuStyles, useMenuActiveStyles } from '../../styles/menu/Groupings';
 import { useIconStyles } from '../../styles/menu/Menu';
 import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Tooltip from '../common/Tooltip';
 
-export default function Settings() {
+export default function Groupings() {
 
     const { grpbyMerch
             ,grpbyCat
@@ -43,6 +43,26 @@ export default function Settings() {
     setAnchorEl(null);
     };
 
+    const handleMenuClick = (typ) => {
+        switch(typ) {
+            case 'merchant' :  {
+                handleGroupByMerchant();
+                handleClose();
+                return;
+            }
+            case 'category' :  {
+                handleGroupByCategory();
+                handleClose();
+                return;
+            }
+            case 'subcategory' :  {
+                handleGroupBySubCategory();
+                handleClose();
+                return;
+            }
+        } 
+    }
+
     return (
         <>
             <Tooltip tooltip={'Group by Merchant, Category and/or Subcategory'}>
@@ -63,7 +83,7 @@ export default function Settings() {
                     onClose={handleClose}
                 >
                     <MenuItem 
-                        onClick={handleGroupByMerchant}
+                        onClick={() => handleMenuClick('merchant')}
                         className={grpbyMerch ? menuActiveClasses.root : menuClasses.root}>
                         <ListItemIcon className={menuClasses.root}>
                             <StoreIcon fontSize="small" />
@@ -71,7 +91,7 @@ export default function Settings() {
                         <ListItemText primary="Merchants" />
                     </MenuItem>
                     <MenuItem 
-                        onClick={handleGroupByCategory}
+                        onClick={() => handleMenuClick('category')}
                         className={grpbyCat ? menuActiveClasses.root : menuClasses.root}>
                         <ListItemIcon className={menuClasses.root}>
                             <CategoryIcon fontSize="small" />
@@ -79,7 +99,7 @@ export default function Settings() {
                         <ListItemText primary="Categories" />
                     </MenuItem>
                     <MenuItem 
-                        onClick={handleGroupBySubCategory}
+                        onClick={() => handleMenuClick('subcategory')}
                         className={grpbySubcat ? menuActiveClasses.root : menuClasses.root}>
                         <ListItemIcon className={menuClasses.root}>
                             <AccountTreeIcon fontSize="small" />

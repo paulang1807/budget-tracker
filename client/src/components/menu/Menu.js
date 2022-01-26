@@ -18,7 +18,7 @@ import { useDivStyles, useIconStyles } from '../../styles/menu/Menu';
 import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Tooltip from '../common/Tooltip';
-import Settings from './Settings';
+import Groupings from './Groupings';
 import { AddTransaction } from '../transaction/AddTransaction';
 
 import { AddAccount } from '../account/AddAccount';
@@ -89,7 +89,7 @@ export const Menu = () => {
                     </div>
                     <Divider orientation="vertical" variant="middle" flexItem />
                     <div>
-                        <Settings />
+                        <Groupings />
                         <Tooltip tooltip={'Add New Transaction'}>
                             <IconButton color="primary" aria-label="add" size="small" className={iconClasses.root} onClick={handleAdd}>
                                 <LibraryAddIcon fontSize="large" />

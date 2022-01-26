@@ -210,7 +210,7 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
-    function toggleAccoutView(showVal) {
+    function toggleAccountView(showVal) {
         acctDispatch({
             type: 'TOGGLE_ACCT_VIEW',
             payload: showVal
@@ -457,7 +457,7 @@ export const GlobalProvider = ({ children }) => {
         getAccounts,
         deleteAccount,
         addAccount,
-        toggleAccoutView,
+        toggleAccountView,
         selectAccount,
         handleAcctModalOpen,
         handleAcctModalClose,
