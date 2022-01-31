@@ -20,7 +20,7 @@ const initialState = {
     loading: true,
     // Account states
     accounts: [],
-    accountView: true,
+    accountView: false,
     selectedAccount: null,
     openAcctModal: false,
     // Date states

@@ -2,8 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 import { Account } from './Account';
 
-// Styles
-import { AccountListItem } from '../../styles/account/Account';
+import { Menu } from "react-pro-sidebar";
+
+import { Sidebar } from '../common/Sidebar';
 
 export const AccountList = () => {
     const { accounts, getAccounts } = useContext(GlobalContext);
@@ -14,11 +15,14 @@ export const AccountList = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    return (
-        <AccountListItem>
+    const menuComponent = <Menu iconShape="square">
             {accounts.map(account => (
                 <Account key={account._id} account={account}/>
             ))}
-        </AccountListItem>
+        </Menu>
+        ;
+
+    return (
+        <Sidebar componentMenu={menuComponent} componentText='Accounts'/>
     )
 }

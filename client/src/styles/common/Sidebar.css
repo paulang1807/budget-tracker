@@ -1,0 +1,29 @@
+#acctsbar .pro-sidebar {
+  width: 15vw;
+  min-width: 15vw;
+  color: var(--sidebar-text);
+}
+
+#acctsbar .pro-sidebar-inner{
+  background-color: var(--sidebar-background);
+}
+
+#acctsbar .pro-sidebar-header p{
+margin-left: 5px;
+    font-size: 1.25em;
+}
+
+#acctsbar .pro-sidebar-header .icon{
+    font-size: 1.5em;
+  }
+
+#acctsbar .pro-sidebar-header div{
+  display:flex; 
+  flex-direction: row; 
+  justify-content: space-between;
+  }
+
+#acctsbar .pro-menu-item:hover {
+  background-image: linear-gradient(180deg, var(--sidebar-item-hover-grad1), var(--sidebar-item-hover-grad2));
+  color: var(--sidebar-hover-text);
+}

@@ -58,6 +58,13 @@
   --menu-icon-disabled: #8a9fc1;
   --menu-icon-hover: #fff;
   --menu-icon-hover-background: #75bee6;
+
+  /* sidebar */
+  --sidebar-background: #eee;
+  --sidebar-text: #333;
+  --sidebar-hover-text: #000;
+  --sidebar-item-hover-grad1: #fff;
+  --sidebar-item-hover-grad2: #d5e4f5;
 }
 
 /* dark mode */
@@ -79,6 +86,13 @@
   --date-grid-today-highlight: #2465a9;
   --date-grid-selection: #26a3d3;
   --date-grid-selection-range: #53b7df;
+
+  /* sidebar */
+  --sidebar-background: #2e6495;
+  --sidebar-text: #dedede;
+  --sidebar-hover-text: #fff;
+  --sidebar-item-hover-grad1: #b7d5f5;
+  --sidebar-item-hover-grad2: #5990ca;
 }
 
 * {

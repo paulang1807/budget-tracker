@@ -27,8 +27,15 @@ export const TransactionListSelect = styled.div`
   margin: 5px 2px 0 2px;
 `;
 
-export const BaseContainer = styled.div`
+export const RowBaseContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+`;
+
+export const ColBaseContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-self: flex-start;
 `;

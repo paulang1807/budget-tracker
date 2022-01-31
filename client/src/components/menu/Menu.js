@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CategoryIcon from '@material-ui/icons/Category';
 import StoreIcon from '@material-ui/icons/Store';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
@@ -19,6 +18,8 @@ import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Tooltip from '../common/Tooltip';
 import Groupings from './Groupings';
+
+import { AccountActions } from './AccountActions';
 import { AddTransaction } from '../transaction/AddTransaction';
 
 import { AddAccount } from '../account/AddAccount';
@@ -26,8 +27,7 @@ import { AddMerchant } from '../merchant/AddMerchant';
 import { DarkModeToggle } from './Toggle';
 export const Menu = () => {
 
-    const { handleAcctModalOpen
-            ,handleMerchModalOpen
+    const { handleMerchModalOpen
             ,handleTransModalOpen 
             ,handleTransTypeChange
             ,selectedTrans
@@ -64,11 +64,7 @@ export const Menu = () => {
             <ThemeProvider theme={customMUITheme}>
                 <div className={divClasses.groups}>
                     <div>
-                        <Tooltip tooltip={'Account'}>
-                            <IconButton color="primary" aria-label="accounts" size="small" className={iconClasses.root} onClick={handleAcctModalOpen}>
-                                <AccountBalanceIcon fontSize="large" />
-                            </IconButton>
-                        </Tooltip>
+                        <AccountActions />
                         <Tooltip tooltip={'Merchant'}>
                             <IconButton color="primary" aria-label="merchants" size="small" className={iconClasses.root} onClick={handleMerchModalOpen}>
                                 <StoreIcon fontSize="large" />

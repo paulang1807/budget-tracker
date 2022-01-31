@@ -1,12 +1,11 @@
 import React  from 'react';
 
 // Styles
-import { BaseContainer, AccountViewSelect, DateSelect, TransactionListSelect } from './styles/App';
+import { RowBaseContainer, ColBaseContainer, DateSelect, TransactionListSelect } from './styles/App';
 import './styles/App.css';
 
 import { Header } from './components/header/Header';
 import { Menu } from './components/menu/Menu';
-import { AccountView } from './components/account/AccountView';
 import { DateSelector } from './components/date/DateSelector';
 import { AccountDisplay } from './components/account/AccountDisplay';
 import { TransactionList } from './components/transaction/TransactionList';
@@ -19,23 +18,19 @@ function App() {
     <GlobalProvider>
       <Header />
       <Menu />
-        <BaseContainer>
-          <AccountViewSelect>
-            <AccountView />
-          </AccountViewSelect>
-          <DateSelect>
-            <DateSelector />
-          </DateSelect>
-        </BaseContainer>
-        <BaseContainer>
-          <div>
-            <AccountDisplay />
-          </div>
-          <TransactionListSelect>
-            <TransactionList />
-          </TransactionListSelect>
-        </BaseContainer>
-    
+      <RowBaseContainer>
+        <AccountDisplay />
+        <>
+          <ColBaseContainer>
+            <DateSelect>
+              <DateSelector />
+            </DateSelect>
+            <TransactionListSelect>
+              <TransactionList />
+            </TransactionListSelect>
+          </ColBaseContainer>
+        </>
+      </RowBaseContainer>
     </GlobalProvider>
   );
 }
