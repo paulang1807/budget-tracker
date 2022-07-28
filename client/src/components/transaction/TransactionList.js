@@ -121,6 +121,8 @@ export const TransactionList = () => {
 
   const { getMerchants
           ,merchants
+          ,merchantView
+          ,selectedMerchant
           ,transactions
           ,getTransactions
           ,accountView
@@ -158,12 +160,12 @@ export const TransactionList = () => {
     setExpOpen(false);
     setTransOpen(false);
     resetChildRowToggle();
-  }, [accountView, selectedAccount])
+  }, [accountView, selectedAccount, merchantView, selectedMerchant])
 
   useEffect(() => {
     // Disable action buttons
     selectTrans(null);
-  }, [selectedAccount, accountView, grpbyMerch , grpbyCat, grpbySubcat])
+  }, [selectedAccount, accountView, merchantView, selectedMerchant, grpbyMerch , grpbyCat, grpbySubcat])
 
   const classes = useStyles();
   const tblHeadClasses = useCustomTableHeadStyles();
@@ -229,8 +231,12 @@ export const TransactionList = () => {
                                 (transactions.filter(transaction => transaction.accountId===selectedAccount 
                                 && Date.parse(transaction.transactionDate) >= Date.parse(rangeStart)
                                 && Date.parse(transaction.transactionDate) <= Date.parse(rangeSEnd))) : 
+                                ((selectedMerchant  && merchantView)? 
+                                (transactions.filter(transaction => transaction.merchantId===selectedMerchant 
+                                && Date.parse(transaction.transactionDate) >= Date.parse(rangeStart)
+                                && Date.parse(transaction.transactionDate) <= Date.parse(rangeSEnd))) : 
                                 (transactions.filter(transaction => Date.parse(transaction.transactionDate) >= Date.parse(rangeStart)
-                                && Date.parse(transaction.transactionDate) <= Date.parse(rangeSEnd)));
+                                && Date.parse(transaction.transactionDate) <= Date.parse(rangeSEnd))));
 
   // Separate out transactions based on type
   const incomes = filteredTransactions.filter(

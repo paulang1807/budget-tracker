@@ -14,10 +14,12 @@ import Tooltip from '../common/Tooltip';
 
 export const AccountView = () => {
 
-    const { toggleAccountView } = useContext(GlobalContext);
+    const { toggleAccountView
+            ,toggleSideBar } = useContext(GlobalContext);
 
     function showAccounts() {
         toggleAccountView(true);
+        toggleSideBar(true);
     }
     
     function showSummary() {

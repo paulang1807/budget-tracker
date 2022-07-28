@@ -4,7 +4,6 @@ import Divider from "@material-ui/core/Divider";
 
 import IconButton from '@material-ui/core/IconButton';
 import CategoryIcon from '@material-ui/icons/Category';
-import StoreIcon from '@material-ui/icons/Store';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -20,6 +19,7 @@ import Tooltip from '../common/Tooltip';
 import Groupings from './Groupings';
 
 import { AccountActions } from './AccountActions';
+import { MerchantActions } from './MerchantActions';
 import { AddTransaction } from '../transaction/AddTransaction';
 
 import { AddAccount } from '../account/AddAccount';
@@ -27,8 +27,7 @@ import { AddMerchant } from '../merchant/AddMerchant';
 import { DarkModeToggle } from './Toggle';
 export const Menu = () => {
 
-    const { handleMerchModalOpen
-            ,handleTransModalOpen 
+    const { handleTransModalOpen 
             ,handleTransTypeChange
             ,selectedTrans
             ,deleteTransaction
@@ -65,11 +64,7 @@ export const Menu = () => {
                 <div className={divClasses.groups}>
                     <div>
                         <AccountActions />
-                        <Tooltip tooltip={'Merchant'}>
-                            <IconButton color="primary" aria-label="merchants" size="small" className={iconClasses.root} onClick={handleMerchModalOpen}>
-                                <StoreIcon fontSize="large" />
-                            </IconButton>
-                        </Tooltip>
+                        <MerchantActions />
                         <Tooltip tooltip={'Category'}>
                             <IconButton color="primary" aria-label="category" size="small" className={iconClasses.root}>
                                 <CategoryIcon fontSize="large" />

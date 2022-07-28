@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
+import StoreIcon from '@material-ui/icons/Store';
 
 //Styles
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -15,9 +15,9 @@ import { customMUITheme } from '../../styles/common/MaterialUIThemes';
 
 import Tooltip from '../common/Tooltip';
 
-export const AccountActions = () => {
+export const MerchantActions = () => {
 
-    const { handleAcctModalOpen
+    const { handleMerchModalOpen
             ,toggleAccountView
             ,toggleMerchantView
             ,toggleSideBar } 
@@ -39,14 +39,14 @@ export const AccountActions = () => {
     const handleMenuClick = (typ) => {
         switch(typ) {
             case 'add' :  {
-                handleAcctModalOpen();
+                handleMerchModalOpen();
                 handleClose();
                 return;
             }
             case 'show' :  {
                 toggleSideBar(true);
-                toggleAccountView(true);
-                toggleMerchantView(false);
+                toggleMerchantView(true);
+                toggleAccountView(false);
                 handleClose();
                 return;
             }
@@ -55,9 +55,9 @@ export const AccountActions = () => {
 
     return (
         <>
-            <Tooltip tooltip={'Account Actions'}>
-                <IconButton color="primary" aria-label="acctactions" size="small" className={iconClasses.root} onClick={handleClick}>
-                    <AccountBalanceIcon fontSize="large" />
+            <Tooltip tooltip={'Merchant Actions'}>
+                <IconButton color="primary" aria-label="merchactions" size="small" className={iconClasses.root} onClick={handleClick}>
+                    <StoreIcon fontSize="large" />
                 </IconButton>
             </Tooltip>
             <ThemeProvider theme={customMUITheme}>
@@ -75,12 +75,12 @@ export const AccountActions = () => {
                     <MenuItem 
                         onClick={() => handleMenuClick('add')}
                         className={menuClasses.root}>
-                        <ListItemText primary="Add Accounts" />
+                        <ListItemText primary="Add Merchants" />
                     </MenuItem>
                     <MenuItem 
                         onClick={() => handleMenuClick('show')}
                         className={ menuClasses.root}>
-                        <ListItemText primary="Show Accounts" />
+                        <ListItemText primary="Show Merchants" />
                     </MenuItem>
                 </Menu>
             </ThemeProvider>

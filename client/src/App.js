@@ -7,7 +7,7 @@ import './styles/App.css';
 import { Header } from './components/header/Header';
 import { Menu } from './components/menu/Menu';
 import { DateSelector } from './components/date/DateSelector';
-import { AccountDisplay } from './components/account/AccountDisplay';
+import { SidebarDisplay } from './components/common/SidebarDisplay';
 import { TransactionList } from './components/transaction/TransactionList';
 
 import { GlobalProvider } from './context/GlobalState';
@@ -19,7 +19,7 @@ function App() {
       <Header />
       <Menu />
       <RowBaseContainer>
-        <AccountDisplay />
+        <SidebarDisplay />
         <>
           <ColBaseContainer>
             <DateSelect>

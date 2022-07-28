@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 
-// import { AccountList } from './AccountList';
-
 //import react pro sidebar components
 import {
   ProSidebar,
@@ -21,16 +19,16 @@ export const Sidebar = (props) => {
 
   const { componentMenu, componentText } = props;
 
-  const { toggleAccountView } 
+  const { toggleSideBar } 
           = useContext(GlobalContext);
 
   const menuIconClick = () => {
-    toggleAccountView(false);
+    toggleSideBar(false);
   };
 
   return (
     componentMenu ? 
-    (<div id="acctsbar">
+    (<div id="sbar">
         <ProSidebar collapsed={false}>
           <SidebarHeader>
             <div onClick={menuIconClick}>

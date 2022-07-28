@@ -6,6 +6,7 @@ import AlertsReducer from './AlertsReducer';
 
 import DateSelectReducer from './DateSelectReducer';
 import ActionsReducer from './ActionsReducer';
+import SideBarReducer from './SideBarReducer';
 
 import axios from 'axios';
 
@@ -18,6 +19,7 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'Jul
 const initialState = {
     error: null,
     loading: true,
+    sideBar: false,
     // Account states
     accounts: [],
     accountView: false,
@@ -51,6 +53,8 @@ const initialState = {
     selectedTrans: null,
     // Merchant states
     merchants: [],
+    merchantView: false,
+    selectedMerchant: null,
     openMerchantModal: false,
     // Alert states
     openAlert: false,
@@ -71,6 +75,7 @@ export const GlobalContext = createContext(initialState);
 // Provider Component
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [sidebarState, sidebarDispatch] = useReducer(SideBarReducer, initialState);
     const [acctState, acctDispatch] = useReducer(AcctReducer, initialState);
     const [merchantState, merchantDispatch] = useReducer(MerchantReducer, initialState);
     const [dateState, dateDispatch] = useReducer(DateSelectReducer, initialState);
@@ -154,6 +159,14 @@ export const GlobalProvider = ({ children }) => {
         dispatch({
             type: 'SEL_TRANS',
             payload: transId
+        })
+    }
+
+    // Actions - Sidebar
+    function toggleSideBar(showVal) {
+        sidebarDispatch({
+            type: 'TOGGLE_SIDEBAR',
+            payload: showVal
         })
     }
 
@@ -275,6 +288,20 @@ export const GlobalProvider = ({ children }) => {
                 payload: err.response.data.error
             })
         }
+    }
+
+    function toggleMerchantView(showVal) {
+        merchantDispatch({
+            type: 'TOGGLE_MERCHANT_VIEW',
+            payload: showVal
+        })
+    }
+
+    function selectMerchant(merchantId) {
+        merchantDispatch({
+            type: 'SEL_MERCHANT',
+            payload: merchantId
+        })
     }
 
     // Actions - Date Arrows
@@ -449,6 +476,9 @@ export const GlobalProvider = ({ children }) => {
     return (<GlobalContext.Provider value={{
         error: state.error,
         loading: state.loading,
+        // Sidebar COntexts
+        sideBar: sidebarState.sideBar,
+        toggleSideBar,
         // Account Contexts
         accounts: acctState.accounts,
         accountView: acctState.accountView,
@@ -472,10 +502,14 @@ export const GlobalProvider = ({ children }) => {
         selectTrans,
         // Merchant Contexts
         merchants: merchantState.merchants,
+        merchantView: merchantState.merchantView,
+        selectedMerchant: merchantState.selectedMerchant,
         openMerchantModal: actionsState.openMerchantModal,
         getMerchants,
         deleteMerchant,
         addMerchant,
+        toggleMerchantView,
+        selectMerchant,
         handleMerchModalOpen,
         handleMerchModalClose,
         // Date Contexts

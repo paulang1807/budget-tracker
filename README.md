@@ -21,3 +21,7 @@
 ### Mongo DB Connections
 - Atlas: `mongodb+srv://<username>:<password>@<cluster_name>.pqac7.mongodb.net/<database_name>?retryWrites=true&w=majority`
 - Local: `mongodb://<user_name>:<password>@0.0.0.0:32768/<database_to_connect>?authSource=<database_name_for_auth>&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`
+
+### References
+- [Build an Expense Tracker | React Hooks & Context API](https://www.youtube.com/watch?v=XuFDcZABiDQ)
+- [Node.js & Express API | Expense Tracker - Part 2 (MERN)](https://www.youtube.com/watch?v=KyWaXA_NvT0)

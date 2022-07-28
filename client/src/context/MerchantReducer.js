@@ -16,10 +16,20 @@ const MerchantReducer = (state, action) => {
                 ...state,
                 merchants: [...state.merchants, action.payload]   // order is reversed when getting the data from the server api call
             }
+        case 'TOGGLE_MERCHANT_VIEW':
+            return {
+                ...state,
+                merchantView: action.payload
+            }
         case 'MERCHANTS_ERR':
             return {
                 ...state,
                 merchants: action.payload
+            }
+        case 'SEL_MERCHANT':
+            return {
+                ...state,
+                selectedMerchant: action.payload
             }
         default:
             return state
